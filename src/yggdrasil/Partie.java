@@ -20,25 +20,20 @@ public class Partie {
     private Sac[] tabSac;
     private ArrayList<Dieu> lDieu;
     private Dieu dieuActuel;
+    private De de;
 
     public Partie() {
+        de = new De();
+        this.lDieu = new ArrayList<>();
         creationEnnemis();
         creationPileEnnemis();
         creationSacs();
-        
-        //POUR DEBUG
-        ArrayList<Dieu> po = new ArrayList<>();
-        po.add(new Odin());
-        creationDieu(po);
-        //****************************
     }
-    
-    private void creationDieu(ArrayList<Dieu> lDieu)
-    {
-        this.lDieu=new ArrayList<>();
-        this.lDieu.addAll(lDieu);
-        this.dieuActuel=this.lDieu.get(0);
+
+    public void ajouterDieu(Dieu d) {
+        this.lDieu.add(d);
     }
+
     private void creationEnnemis() {
         tabEnnemis = new Ennemis[6];
         Ennemis fenrir = new Fenrir();
@@ -48,12 +43,12 @@ public class Partie {
         Ennemis nidhogg = new Nidhogg();
         Ennemis surt = new Surt();
 
-        tabEnnemis[0] = fenrir;
-        tabEnnemis[1] = hel;
+        tabEnnemis[5] = fenrir;
+        tabEnnemis[0] = hel;
         tabEnnemis[2] = jormungand;
         tabEnnemis[3] = loki;
         tabEnnemis[4] = nidhogg;
-        tabEnnemis[5] = surt;
+        tabEnnemis[1] = surt;
     }
 
     private void creationPileEnnemis() {
@@ -76,9 +71,29 @@ public class Partie {
         tabSac[3] = new Sac("blanc", 15, 3);
     }
 
+     public void jouerAsgard(Ennemis e) {
+        dieuActuel.jouerEnAsgard(e, de);
+    }
+     public void jouerDomaineDesMorts()
+     {
+         
+     }
     public Dieu getDieuActuel() {
         return dieuActuel;
     }
-    
+
+   
+
+    public void setDieuActuel(Dieu dieuActuel) {
+        this.dieuActuel = dieuActuel;
+    }
+
+    public ArrayList<Dieu> getlDieu() {
+        return lDieu;
+    }
+
+    public Ennemis[] getTabEnnemis() {
+        return tabEnnemis;
+    }
     
 }

@@ -18,7 +18,9 @@ public abstract class Ennemis {
     public int getPosition() {
         return position;
     }
-
+    public void reculer(int i){
+        position -= i;
+    }
     
     
 }

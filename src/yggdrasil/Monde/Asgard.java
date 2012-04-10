@@ -26,6 +26,7 @@ public class Asgard extends Monde {
         this.ennemis = ennemis;
         this.forceDieu = 0;
         this.forceEnnemi = setForceEnnemi();
+        this.gd=null;
     }
 
     public Asgard(Dieu deus, GeantDeGivre gd) {
@@ -42,7 +43,7 @@ public class Asgard extends Monde {
     }
 
     private int setForceEnnemi() {
-        if (gd != null) {
+        if (gd == null) {
             int pos = ennemis.getPosition();
             if (pos < 3) {
                 return 5;
