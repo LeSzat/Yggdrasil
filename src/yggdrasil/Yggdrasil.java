@@ -54,7 +54,8 @@ public class Yggdrasil {
         while (!arreter) {
             System.out.println("Quel monde jouer?");
             System.out.println("1 - Asgard");
-            System.out.println("2 - Domaine des morts");
+            System.out.println("2 - Midgard");
+            System.out.println("3 - Forge des nains");
             int choix = sc.nextInt();
             if (choix == 1) {
                 System.out.println("Quels dieux ajouter?");
@@ -70,7 +71,11 @@ public class Yggdrasil {
             }
             else if(choix==2)
             {
-                
+                p.jouerEnMidgard();
+            }
+            else if(choix==3)
+            {
+                p.jouerEnForgeDesNains();
             }
             else
                 arreter = true;

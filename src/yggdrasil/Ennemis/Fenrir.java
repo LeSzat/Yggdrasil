@@ -10,4 +10,9 @@ package yggdrasil.Ennemis;
  */
 public class Fenrir extends Ennemis{
     
+      public Fenrir()
+      {
+          super.setNom("Fenrir");
+      }
+    
 }

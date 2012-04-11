@@ -10,6 +10,7 @@ package yggdrasil.Ennemis;
  */
 public abstract class Ennemis {
     private int position;
+    private String nom;
     public Ennemis()
     {
         this.position=1;
@@ -20,6 +21,14 @@ public abstract class Ennemis {
     }
     public void reculer(int i){
         position -= i;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getNom() {
+        return nom;
     }
     
     

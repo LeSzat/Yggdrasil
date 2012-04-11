@@ -10,4 +10,9 @@ package yggdrasil.Ennemis;
  */
 public class Jormungand extends Ennemis{
     
+    public Jormungand()
+    {
+        super.setNom("Jormungand");
+    }
+    
 }

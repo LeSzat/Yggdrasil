@@ -9,5 +9,9 @@ package yggdrasil.Ennemis;
  * @author mathias
  */
 public class Loki extends Ennemis{
+    public Loki()
+    {
+        super.setNom("Loki");
+    }
     
 }

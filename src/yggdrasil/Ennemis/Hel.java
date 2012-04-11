@@ -10,4 +10,8 @@ package yggdrasil.Ennemis;
  */
 public class Hel extends Ennemis{
     
+    public Hel()
+    {
+        super.setNom("Hel");
+    }
 }

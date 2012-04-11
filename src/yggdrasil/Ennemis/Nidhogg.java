@@ -9,5 +9,9 @@ package yggdrasil.Ennemis;
  * @author mathias
  */
 public class Nidhogg extends Ennemis{
+    public Nidhogg()
+    {
+        super.setNom("Nidhogg");
+    }
     
 }

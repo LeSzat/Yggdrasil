@@ -12,17 +12,22 @@ import yggdrasil.Dieu.Dieu;
  */
 public class Artefact {
     private String nom;
-    private String deus;
+    private String ennemi;
     private int niveau;
 
-    public Artefact(String nom, String deus, int niveau) {
+    public Artefact(String nom, String ennemi, int niveau) {
         this.nom = nom;
-        this.deus = deus;
+        this.ennemi = ennemi;
         this.niveau = niveau;
     }
 
-    public String getDeus() {
-        return deus;
+    @Override
+    public String toString()
+    {
+       return nom+" "+ennemi+" "+niveau; 
+    }
+    public String getEnnemi() {
+        return ennemi;
     }
 
     public int getNiveau() {

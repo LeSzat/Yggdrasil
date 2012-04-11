@@ -9,5 +9,8 @@ package yggdrasil.Ennemis;
  * @author mathias
  */
 public class Surt extends Ennemis{
-    
+    public Surt()
+    {
+        super.setNom("Surt");
+    }
 }
