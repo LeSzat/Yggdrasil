@@ -28,8 +28,8 @@ public class DemeureDesElfes extends Monde {
         deus.getlElfes().remove(0);
     }
 
-    public void remettrerElfes(Dieu deus, int i) {
-        for (i = 0; i < 8; i++) {
+    public void remettreElfes(Dieu deus, int i) {
+        for (int j = 0; j < i; j++) {
             this.lElfes.add(new Elfes());
             deus.getlElfes().remove(0);
         }

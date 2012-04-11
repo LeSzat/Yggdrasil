@@ -50,12 +50,14 @@ public class Yggdrasil {
                 quitter = true;
             }
         }
+        p.creerDemeureDesElfes();
         p.setDieuActuel(p.getlDieu().get(0));
         while (!arreter) {
             System.out.println("Quel monde jouer?");
             System.out.println("1 - Asgard");
             System.out.println("2 - Midgard");
             System.out.println("3 - Forge des nains");
+            System.out.println("4 - Demeure des elfes");
             int choix = sc.nextInt();
             if (choix == 1) {
                 System.out.println("Quels dieux ajouter?");
@@ -76,6 +78,10 @@ public class Yggdrasil {
             else if(choix==3)
             {
                 p.jouerEnForgeDesNains();
+            }
+            else if(choix==4)
+            {
+               p.jouerEnDemeureDesElfes();
             }
             else
                 arreter = true;

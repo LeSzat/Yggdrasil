@@ -26,7 +26,11 @@ public class De {
 
     public int getValeur() {
         Random r = new Random();
-        int t1 = r.nextInt(6) - 1;
+        int t1 = -1;
+        do {
+             t1 = r.nextInt(6) - 1;
+        }
+        while(t1<0 && t1>5);
         return face[t1].getVal();
     }
 

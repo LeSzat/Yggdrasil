@@ -60,11 +60,11 @@ public class Asgard extends Monde {
     }
 
     public void ajoutArtefact(Artefact ar) {
-        this.forceEnnemi += ar.getNiveau();
+        this.forceDieu += ar.getNiveau();
     }
 
     public void ajouterElfes(int i) {
-        this.forceEnnemi += i;
+        this.forceDieu += i;
     }
 
     public int getForceDieu() {

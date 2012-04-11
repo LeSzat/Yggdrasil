@@ -9,10 +9,11 @@ import java.util.Random;
 import java.util.Scanner;
 import yggdrasil.Dieu.Dieu;
 import yggdrasil.Ennemis.*;
+import yggdrasil.Monde.DemeureDesElfes;
+import yggdrasil.Monde.DomaineDesMorts;
 import yggdrasil.Monde.ForgeDesNains;
 import yggdrasil.Monde.Ile;
 import yggdrasil.Monde.Midgard;
-import yggdrasil.Monde.RoyaumeDuFeu;
 import yggdrasil.Pion.Vikings;
 
 /**
@@ -29,6 +30,8 @@ public class Partie {
     private De de;
     private Midgard mg;
     private ForgeDesNains fdn;
+    private DemeureDesElfes dde;
+    private DomaineDesMorts dm;
     private Scanner sc;
 
     public Partie() {
@@ -41,7 +44,10 @@ public class Partie {
         this.fdn = new ForgeDesNains();
         sc = new Scanner(System.in);
     }
-
+    public void creerDemeureDesElfes()
+    {
+        dde = new DemeureDesElfes(lDieu.size());
+    }
     public void ajouterDieu(Dieu d) {
         this.lDieu.add(d);
     }
@@ -84,7 +90,7 @@ public class Partie {
     }
 
     public void jouerAsgard(Ennemis e) {
-        dieuActuel.jouerEnAsgard(e, de);
+        dieuActuel.jouerEnAsgard(e, de,dde,dm,fdn);
     }
 
     public void jouerEnMidgard() {
@@ -110,6 +116,7 @@ public class Partie {
             for (int j = 0; j < 3 && j < tabSac[mg.getVane().getPosition()].getlPion().size(); j++) {
                 Random r = new Random();
                 int t1 = r.nextInt(tabSac[mg.getVane().getPosition()].getlPion().size()) - 1;
+                System.out.println(t1);
                 if ((tabSac[mg.getVane().getPosition()].getlPion().get(t1)).toString().compareTo("Vikings") == 0) {
                     dieuActuel.getlVikings().add(new Vikings());
                     tabSac[mg.getVane().getPosition() + 1].getlPion().remove(t1);
@@ -126,6 +133,7 @@ public class Partie {
     }
 
     public void jouerEnDemeureDesElfes() {
+        dieuActuel.jouerEnDemeureDesElfes(dde.getlElfes());
     }
 
     public void jouerMondeDesTenebres() {

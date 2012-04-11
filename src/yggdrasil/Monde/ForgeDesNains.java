@@ -22,7 +22,7 @@ public class ForgeDesNains extends Monde{
         {
             lArtefact.put("Fenrir"+(i+1),new Artefact("Gleipnir","Fenrir",i+1));
             lArtefact.put("Hel"+(i+1),new Artefact("Draupnir","Hel",i+1));
-            lArtefact.put("Jormungand"+(i+1),new Artefact("Mjöllnir","Jormugand",i+1));
+            lArtefact.put("Jormungand"+(i+1),new Artefact("Mjöllnir","Jormungand",i+1));
             lArtefact.put("Loki"+(i+1),new Artefact("Hofund","Loki",i+1));
             lArtefact.put("Nidhogg"+(i+1),new Artefact("Gungnir","Nidhogg",i+1));
             lArtefact.put("Surt"+(i+1),new Artefact("Mimming","Surt",i+1));
