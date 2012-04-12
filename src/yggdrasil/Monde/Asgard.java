@@ -7,7 +7,6 @@ package yggdrasil.Monde;
 import yggdrasil.Artefact;
 import yggdrasil.Dieu.Dieu;
 import yggdrasil.Ennemis.Ennemis;
-import yggdrasil.GeantDeGivre;
 
 /**
  *
@@ -17,7 +16,6 @@ public class Asgard extends Monde {
 
     private Dieu deus;
     private Ennemis ennemis;
-    private GeantDeGivre gd;
     private int forceDieu;
     private int forceEnnemi;
 
@@ -26,36 +24,26 @@ public class Asgard extends Monde {
         this.ennemis = ennemis;
         this.forceDieu = 0;
         this.forceEnnemi = setForceEnnemi();
-        this.gd=null;
-    }
-
-    public Asgard(Dieu deus, GeantDeGivre gd) {
-        this.deus = deus;
-        this.gd = gd;
     }
 
     public void ajoutViking(int NbVikingSac) {
         this.forceDieu += NbVikingSac;
     }
-    
+
     public void ajoutValDe(int val) {
         this.forceDieu += val;
     }
 
     private int setForceEnnemi() {
-        if (gd == null) {
-            int pos = ennemis.getPosition();
-            if (pos < 3) {
-                return 5;
-            } else if (pos < 5) {
-                return 6;
-            } else if (pos < 8) {
-                return 7;
-            } else {
-                return 8;
-            }
+        int pos = ennemis.getPosition();
+        if (pos < 3) {
+            return 5;
+        } else if (pos < 5) {
+            return 6;
+        } else if (pos < 8) {
+            return 7;
         } else {
-            return 3;
+            return 8;
         }
     }
 
