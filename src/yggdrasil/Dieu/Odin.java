@@ -9,5 +9,8 @@ package yggdrasil.Dieu;
  * @author mathias
  */
 public class Odin extends Dieu{
-    
+    public Odin()
+    {
+        super.setNom("Odin");
+    }
 }

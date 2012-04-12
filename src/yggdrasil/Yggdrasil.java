@@ -58,6 +58,9 @@ public class Yggdrasil {
             System.out.println("2 - Midgard");
             System.out.println("3 - Forge des nains");
             System.out.println("4 - Demeure des elfes");
+            System.out.println("5 - Monde des tenebres");
+            System.out.println("6 - Domaine des Morts");
+            System.out.println("7 - Royaume du feu");
             int choix = sc.nextInt();
             if (choix == 1) {
                 System.out.println("Quels dieux ajouter?");
@@ -69,22 +72,22 @@ public class Yggdrasil {
                 System.out.println("6 - fenrir");
                 int choix1 = sc.nextInt();
                 Ennemis[] e = p.getTabEnnemis();
-                p.jouerAsgard(e[choix1-1]);
-            }
-            else if(choix==2)
-            {
+                p.jouerAsgard(e[choix1 - 1]);
+            } else if (choix == 2) {
                 p.jouerEnMidgard();
-            }
-            else if(choix==3)
-            {
+            } else if (choix == 3) {
                 p.jouerEnForgeDesNains();
-            }
-            else if(choix==4)
-            {
-               p.jouerEnDemeureDesElfes();
-            }
-            else
+            } else if (choix == 4) {
+                p.jouerEnDemeureDesElfes();
+            } else if (choix == 5) {
+                p.jouerMondeDesTenebres();
+            } else if (choix == 6) {
+                p.jouerEnDomaineDesMort();
+            }   else if (choix == 7) {
+                p.jouerEnRoyaumeDuFeu();
+            } else {
                 arreter = true;
+            }
         }
 
     }

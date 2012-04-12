@@ -5,6 +5,7 @@
 package yggdrasil;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 import yggdrasil.Dieu.Dieu;
@@ -14,6 +15,7 @@ import yggdrasil.Monde.DomaineDesMorts;
 import yggdrasil.Monde.ForgeDesNains;
 import yggdrasil.Monde.Ile;
 import yggdrasil.Monde.Midgard;
+import yggdrasil.Monde.RoyaumeDuFeu;
 import yggdrasil.Pion.Vikings;
 
 /**
@@ -32,6 +34,7 @@ public class Partie {
     private ForgeDesNains fdn;
     private DemeureDesElfes dde;
     private DomaineDesMorts dm;
+    private RoyaumeDuFeu rdf;
     private Scanner sc;
 
     public Partie() {
@@ -42,12 +45,14 @@ public class Partie {
         creationSacs();
         this.mg = new Midgard();
         this.fdn = new ForgeDesNains();
+        this.rdf = new RoyaumeDuFeu();
         sc = new Scanner(System.in);
     }
-    public void creerDemeureDesElfes()
-    {
+
+    public void creerDemeureDesElfes() {
         dde = new DemeureDesElfes(lDieu.size());
     }
+
     public void ajouterDieu(Dieu d) {
         this.lDieu.add(d);
     }
@@ -90,7 +95,7 @@ public class Partie {
     }
 
     public void jouerAsgard(Ennemis e) {
-        dieuActuel.jouerEnAsgard(e, de,dde,dm,fdn);
+        dieuActuel.jouerEnAsgard(e, de, dde, dm, fdn);
     }
 
     public void jouerEnMidgard() {
@@ -116,6 +121,9 @@ public class Partie {
             for (int j = 0; j < 3 && j < tabSac[mg.getVane().getPosition()].getlPion().size(); j++) {
                 Random r = new Random();
                 int t1 = r.nextInt(tabSac[mg.getVane().getPosition()].getlPion().size()) - 1;
+                if (t1 < 0) {
+                    t1 = 0;
+                }
                 System.out.println(t1);
                 if ((tabSac[mg.getVane().getPosition()].getlPion().get(t1)).toString().compareTo("Vikings") == 0) {
                     dieuActuel.getlVikings().add(new Vikings());
@@ -137,10 +145,57 @@ public class Partie {
     }
 
     public void jouerMondeDesTenebres() {
+        int i = 1;
+        System.out.println("Quel dieu voulez vous aider?");
+        Iterator it = lDieu.iterator();
+        while (it.hasNext()) {
+            Dieu d = (Dieu) it.next();
+            System.out.println(i + " - " + d.getNom());
+            i++;
+        }
+        System.out.println("Choix : ");
+        int choix = sc.nextInt();
+        dieuActuel.jouerMondeDesTenebres(lDieu.get(choix - 1));
+
+    }
+
+    public void jouerEnDomaineDesMort() {
+        System.out.println("Quel sac choisisser vous?");
+        for (int i = 0; i < tabSac.length; i++) {
+            System.out.println(i + 1 + " - " + tabSac[i].getCouleur());
+        }
+        int choix = sc.nextInt();
+        int nbViking = dm.getlViking().size();
+        int nbVikRet = 0;
+        for (int j = 0; j < nbViking && j < 5; j++) {
+            tabSac[choix - 1].getlPion().add(new Vikings());
+            dm.retirerViking();
+            nbVikRet++;
+        }
+        System.out.println("Vous ajouter " + nbVikRet + " dans le sac" + tabSac[choix - 1].getCouleur());
     }
 
     public void jouerEnRoyaumeDuFeu() {
+        System.out.println("Quel sac choisisser vous?");
+        for (int i = 0; i < tabSac.length; i++) {
+            System.out.println(i + 1 + " - " + tabSac[i].getCouleur());
+        }
+        int choix = sc.nextInt();
+        for (int j = 0; j < 5 && tabSac[choix-1].getlPion().size()>0; j++) {
+            Random r = new Random();
+            int t1 = r.nextInt(tabSac[choix-1].getlPion().size()) - 1;
+            if (t1 < 0) {
+                t1 = 0;
+            }
+            if ((tabSac[choix - 1].getlPion().get(t1)).toString().compareTo("Geant de feu") == 0) {
+                rdf.deposer(1);
+                tabSac[choix - 1].getlPion().remove(t1);
+            }
+            
+        }
+        System.out.println("il y a maintenant "+rdf.getlGeantDeFeu().size()+" Dans le sac choisi");
     }
+    
 
     public void jouerEnForteresseDeGlace() {
     }

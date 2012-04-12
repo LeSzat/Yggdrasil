@@ -16,7 +16,6 @@ import yggdrasil.Monde.Asgard;
 import yggdrasil.Monde.DemeureDesElfes;
 import yggdrasil.Monde.DomaineDesMorts;
 import yggdrasil.Monde.ForgeDesNains;
-import yggdrasil.Monde.Midgard;
 import yggdrasil.Pion.Vikings;
 
 /**
@@ -29,6 +28,7 @@ public abstract class Dieu {
     private ArrayList<Elfes> lElfes;
     private HashMap<String, Artefact> lArtefact;
     private Scanner sc;
+    private String nom;
 
     protected Dieu() {
         lVikings = new ArrayList<>();
@@ -37,7 +37,7 @@ public abstract class Dieu {
         sc = new Scanner(System.in);
     }
 
-    public void jouerEnAsgard(Ennemis en, De de,DemeureDesElfes dde,DomaineDesMorts ddm, ForgeDesNains fdn ) {
+    public void jouerEnAsgard(Ennemis en, De de, DemeureDesElfes dde, DomaineDesMorts ddm, ForgeDesNains fdn) {
         System.out.println(en.getClass());
         Asgard as = new Asgard(this, en);
         if (lVikings.size() > 0) {
@@ -53,14 +53,14 @@ public abstract class Dieu {
         } else {
             System.out.println("Vous n'avez pas de vikings à sacrifier");
         }
-       
+
         if (!lArtefact.containsKey(en.getNom() + 1) && !lArtefact.containsKey(en.getNom() + 2)) {
             System.out.println("Vous n'avais pas d'artefact pour ce dieu!");
         } else {
             Iterator it = lArtefact.values().iterator();
             Artefact a = null;
             while (it.hasNext()) {
-                 a = (Artefact) it.next();
+                a = (Artefact) it.next();
                 if (a.getEnnemi().compareTo(en.getNom()) == 0) {
                     System.out.println("Voulez vous utiliser l'artefact " + a.getNom());
                 }
@@ -68,7 +68,7 @@ public abstract class Dieu {
             int choix = sc.nextInt();
             if (choix == 0) {
                 as.ajoutArtefact(a);
-                lArtefact.remove(a.getEnnemi()+a.getNiveau());
+                lArtefact.remove(a.getEnnemi() + a.getNiveau());
                 fdn.remettre(this, a);
             }
         }
@@ -143,7 +143,60 @@ public abstract class Dieu {
         }
     }
 
-    public void jouerMondeDesTenebres() {
+    public void jouerMondeDesTenebres(Dieu deus) {
+        boolean fin = false;
+        while (!fin) {
+            System.out.println("1 - Donner");
+            System.out.println("2 - Prendre");
+            int choix = sc.nextInt();
+            if (choix == 1) {
+                System.out.println("1 - Elfe");
+                System.out.println("2 - Viking");
+                int choix1 = sc.nextInt();
+                if (choix1 == 1) {
+                    System.out.println("Vous avez " + lElfes.size() + " Elfes");
+                    System.out.println("Combien voulez vous en donner?");
+                    int nbElfes = sc.nextInt();
+                    for (int i = 0; i < nbElfes; i++) {
+                        lElfes.remove(0);
+                        deus.getlElfes().add(new Elfes());
+                    }
+                }
+                if (choix1 == 2) {
+                    System.out.println("Vous avez " + lVikings.size() + " Vikings");
+                    System.out.println("Combien voulez vous en donner?");
+                    int nbVikings = sc.nextInt();
+                    for (int i = 0; i < nbVikings; i++) {
+                        lVikings.remove(0);
+                        deus.getlVikings().add(new Vikings());
+                    }
+                }
+            } else if (choix == 2) {
+                System.out.println("1 - Elfe");
+                System.out.println("2 - Viking");
+                int choix1 = sc.nextInt();
+                if (choix1 == 1) {
+                    System.out.println("Il a " + deus.getlElfes().size() + " Elfes");
+                    System.out.println("Combien voulez vous en prendre?");
+                    int nbElfes = sc.nextInt();
+                    for (int i = 0; i < nbElfes; i++) {
+                        lElfes.add(new Elfes());
+                        deus.getlElfes().remove(0);
+                    }
+                }
+                if (choix1 == 2) {
+                    System.out.println("Il a " + lVikings.size() + " Vikings");
+                    System.out.println("Combien voulez vous en prendre?");
+                    int nbVikings = sc.nextInt();
+                    for (int i = 0; i < nbVikings ; i++) {
+                        lVikings.add(new Vikings());
+                        deus.getlVikings().remove(0);
+                    }
+                }
+            }
+            else
+                fin=true;
+        }
     }
 
     public void jouerEnRoyaumeDuFeu() {
@@ -166,4 +219,13 @@ public abstract class Dieu {
     public ArrayList<Vikings> getlVikings() {
         return lVikings;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    
 }

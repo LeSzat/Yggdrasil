@@ -27,4 +27,12 @@ public class DomaineDesMorts extends Monde {
             lViking.add(new Vikings());
         }
     }
+    public void retirerViking()
+    {
+        lViking.remove(0);
+    }
+    public ArrayList<Vikings> getlViking() {
+        return lViking;
+    }
+    
 }

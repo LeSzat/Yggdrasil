@@ -9,5 +9,9 @@ package yggdrasil.Dieu;
  * @author mathias
  */
 public class Freya extends Dieu{
+    public Freya()
+    {
+        super.setNom("Freya");
+    }
     
 }

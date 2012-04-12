@@ -9,5 +9,8 @@ package yggdrasil.Dieu;
  * @author mathias
  */
 public class Thor extends Dieu{
-    
+    public Thor()
+    {
+        super.setNom("Thor");
+    }
 }

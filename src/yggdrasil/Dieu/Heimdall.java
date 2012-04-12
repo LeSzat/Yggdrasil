@@ -9,5 +9,8 @@ package yggdrasil.Dieu;
  * @author mathias
  */
 public class Heimdall extends Dieu{
-    
+    public Heimdall()
+    {
+        super.setNom("Heimdall");
+    }
 }
