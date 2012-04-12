@@ -12,10 +12,7 @@ import yggdrasil.Artefact;
 import yggdrasil.De;
 import yggdrasil.Elfes;
 import yggdrasil.Ennemis.Ennemis;
-import yggdrasil.Monde.Asgard;
-import yggdrasil.Monde.DemeureDesElfes;
-import yggdrasil.Monde.DomaineDesMorts;
-import yggdrasil.Monde.ForgeDesNains;
+import yggdrasil.Monde.*;
 import yggdrasil.Pion.Vikings;
 
 /**
@@ -188,14 +185,14 @@ public abstract class Dieu {
                     System.out.println("Il a " + lVikings.size() + " Vikings");
                     System.out.println("Combien voulez vous en prendre?");
                     int nbVikings = sc.nextInt();
-                    for (int i = 0; i < nbVikings ; i++) {
+                    for (int i = 0; i < nbVikings; i++) {
                         lVikings.add(new Vikings());
                         deus.getlVikings().remove(0);
                     }
                 }
+            } else {
+                fin = true;
             }
-            else
-                fin=true;
         }
     }
 
@@ -205,7 +202,80 @@ public abstract class Dieu {
     public void jouerEnForteresseDeGlace() {
     }
 
-    public void jouerEnTerreBenite() {
+    public void jouerEnTerreBenite(TerreBenite tb, Midgard mg, DomaineDesMorts ddm, ArrayList<String> pileCarteEnnemis, Ennemis[] tabEnnemis, ForteresseDeGlace fdg) {
+        System.out.println("Voulez-vous avancer ou utiliser Vane? 1 ou 2");
+        int choix = sc.nextInt();
+        if (choix == 1) {
+            tb.avancerVane();
+        } else if (choix == 2) {
+            int position = tb.getVanePostion();
+            System.out.println(position);
+
+            switch (position) {
+                case 1:
+                    Ile[] tabIle = mg.getTabIle();
+                    System.out.println("Vane est sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur() + " voulez vous le bouger? o/n");
+                    System.out.println("1 - avancer");
+                    System.out.println("2 - reculer");
+                    int choix1 = sc.nextInt();
+                    if (choix1 == 1) {
+                        mg.bougerValkyrie(1);
+                    } else {
+                        mg.bougerValkyrie(-1);
+                    }
+                    System.out.println("Vane est maintenant sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur());
+                    tb.reset();
+                    break;
+                case 2:
+                    if (ddm.getlViking().size() > 0) {
+                        ddm.retirerViking();
+                        lVikings.add(new Vikings());
+                    }
+                    if (ddm.getlViking().size() > 0) {
+                        ddm.retirerViking();
+                        lVikings.add(new Vikings());
+                    }
+                    tb.reset();
+                    break;
+                case 3:
+                    System.out.println("1 - " + pileCarteEnnemis.get(0));
+                    System.out.println("2 - " + pileCarteEnnemis.get(1));
+                    System.out.println("3 - " + pileCarteEnnemis.get(2));
+                    System.out.println("4 - " + pileCarteEnnemis.get(3));
+                    System.out.println("5 - " + pileCarteEnnemis.get(4));
+                    System.out.println("6 - " + pileCarteEnnemis.get(5));
+                    String[] pe = new String[6];
+                    for (int i = 0; i < 6; i++) {
+                        pe[i] = pileCarteEnnemis.get(0);
+                        pileCarteEnnemis.remove(0);
+                    }
+                    for (int i = 0; i < 6; i++) {
+                        System.out.println("Position : " + (i + 1));
+                        int choix2 = sc.nextInt();
+                        pileCarteEnnemis.add(i, pe[choix2 - 1]);
+                    }
+                    System.out.println("1 - " + pileCarteEnnemis.get(0));
+                    System.out.println("2 - " + pileCarteEnnemis.get(1));
+                    System.out.println("3 - " + pileCarteEnnemis.get(2));
+                    System.out.println("4 - " + pileCarteEnnemis.get(3));
+                    System.out.println("5 - " + pileCarteEnnemis.get(4));
+                    System.out.println("6 - " + pileCarteEnnemis.get(5));
+                    tb.reset();
+                    break;
+                case 4:
+                    System.out.println("Quel dieu voulez vous faire reculer?");
+                    for (int i = 0; i < tabEnnemis.length; i++) {
+                        System.out.println((i + 1) + " - " + tabEnnemis[i]);
+                        int choix2 = sc.nextInt();
+                        tabEnnemis[choix2 - 1].reculer(1);
+                    }
+                    tb.reset();
+                    break;
+                case 5:
+                    tb.reset();
+                    break;
+            }
+        }
     }
 
     public HashMap<String, Artefact> getlArtefact() {
@@ -227,5 +297,4 @@ public abstract class Dieu {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
 }

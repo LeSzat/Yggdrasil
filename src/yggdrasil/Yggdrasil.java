@@ -61,6 +61,7 @@ public class Yggdrasil {
             System.out.println("5 - Monde des tenebres");
             System.out.println("6 - Domaine des Morts");
             System.out.println("7 - Royaume du feu");
+            System.out.println("8 - Terre bénite");
             int choix = sc.nextInt();
             if (choix == 1) {
                 System.out.println("Quels dieux ajouter?");
@@ -83,8 +84,10 @@ public class Yggdrasil {
                 p.jouerMondeDesTenebres();
             } else if (choix == 6) {
                 p.jouerEnDomaineDesMort();
-            }   else if (choix == 7) {
+            } else if (choix == 7) {
                 p.jouerEnRoyaumeDuFeu();
+            } else if (choix == 8) {
+                p.jouerEnTerreBenite();
             } else {
                 arreter = true;
             }

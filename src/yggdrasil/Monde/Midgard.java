@@ -4,14 +4,14 @@
  */
 package yggdrasil.Monde;
 
-import yggdrasil.Vane;
+import yggdrasil.Valkyrie;
 
 /**
  *
  * @author mathias
  */
 public class Midgard extends Monde{
-    private Vane vane;
+    private Valkyrie valkyrie;
     private Ile[] tabIle;
     
     public Midgard()
@@ -22,15 +22,15 @@ public class Midgard extends Monde{
         tabIle[2]=new Ile("Bleu");
         tabIle[3]=new Ile("Vert");
         tabIle[4]=new Ile("Noir");
-        this.vane= new Vane();
+        this.valkyrie= new Valkyrie();
     }
-    public void bougerVane(int mov)
+    public void bougerValkyrie(int mov)
     {
-        vane.setPosition(mov);
+        valkyrie.setPosition(mov);
     }
 
-    public Vane getVane() {
-        return vane;
+    public Valkyrie getValkyrie() {
+        return valkyrie;
     }
 
     public Ile[] getTabIle() {

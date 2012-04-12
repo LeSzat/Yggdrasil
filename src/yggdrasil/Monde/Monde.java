@@ -8,6 +8,19 @@ package yggdrasil.Monde;
  *
  * @author mathias
  */
-public class Monde {
-    
+public abstract class Monde {
+
+    private boolean actif;
+
+    protected Monde() {
+        actif = true;
+    }
+
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
 }

@@ -4,18 +4,10 @@
  */
 package yggdrasil;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import yggdrasil.Dieu.Dieu;
 import yggdrasil.Ennemis.*;
-import yggdrasil.Monde.DemeureDesElfes;
-import yggdrasil.Monde.DomaineDesMorts;
-import yggdrasil.Monde.ForgeDesNains;
-import yggdrasil.Monde.Ile;
-import yggdrasil.Monde.Midgard;
-import yggdrasil.Monde.RoyaumeDuFeu;
+import yggdrasil.Monde.*;
 import yggdrasil.Pion.Vikings;
 
 /**
@@ -35,6 +27,8 @@ public class Partie {
     private DemeureDesElfes dde;
     private DomaineDesMorts dm;
     private RoyaumeDuFeu rdf;
+    private TerreBenite tb;
+    private ForteresseDeGlace fdg;
     private Scanner sc;
 
     public Partie() {
@@ -46,6 +40,8 @@ public class Partie {
         this.mg = new Midgard();
         this.fdn = new ForgeDesNains();
         this.rdf = new RoyaumeDuFeu();
+        this.tb = new TerreBenite();
+        this.fdg = new ForteresseDeGlace();
         sc = new Scanner(System.in);
     }
 
@@ -84,6 +80,7 @@ public class Partie {
             pileCarteEnnemis.add("Nidhogg");
             pileCarteEnnemis.add("Surt");
         }
+        Collections.shuffle(pileCarteEnnemis);
     }
 
     private void creationSacs() {
@@ -100,38 +97,38 @@ public class Partie {
 
     public void jouerEnMidgard() {
         Ile[] tabIle = mg.getTabIle();
-        System.out.println("Vane est sur l'ile " + tabIle[mg.getVane().getPosition()].getCouleur() + " voulez vous le bouger? o/n");
+        System.out.println("Vane est sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur() + " voulez vous le bouger? o/n");
         String choix = sc.nextLine();
         if (choix.compareTo("o") == 0) {
             System.out.println("1 - avancer");
             System.out.println("2 - reculer");
             int choix1 = sc.nextInt();
             if (choix1 == 1) {
-                mg.bougerVane(1);
+                mg.bougerValkyrie(1);
             } else {
-                mg.bougerVane(-1);
+                mg.bougerValkyrie(-1);
             }
-            System.out.println("Vane est maintenant sur l'ile " + tabIle[mg.getVane().getPosition()].getCouleur());
+            System.out.println("Vane est maintenant sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur());
         }
 
-        if (mg.getVane().getPosition() == 0) {
+        if (mg.getValkyrie().getPosition() == 0) {
             System.out.println("Vane est sur l'ile arc en ciel, vous ne pouvez pas tirer de pion!");
         } else {
-            System.out.println(dieuActuel.getClass() + " avait " + dieuActuel.getlVikings().size() + "#" + tabSac[mg.getVane().getPosition() + 1].getlPion().size());
-            for (int j = 0; j < 3 && j < tabSac[mg.getVane().getPosition()].getlPion().size(); j++) {
+            System.out.println(dieuActuel.getClass() + " avait " + dieuActuel.getlVikings().size() + "#" + tabSac[mg.getValkyrie().getPosition() + 1].getlPion().size());
+            for (int j = 0; j < 3 && j < tabSac[mg.getValkyrie().getPosition()].getlPion().size(); j++) {
                 Random r = new Random();
-                int t1 = r.nextInt(tabSac[mg.getVane().getPosition()].getlPion().size()) - 1;
+                int t1 = r.nextInt(tabSac[mg.getValkyrie().getPosition()].getlPion().size()) - 1;
                 if (t1 < 0) {
                     t1 = 0;
                 }
                 System.out.println(t1);
-                if ((tabSac[mg.getVane().getPosition()].getlPion().get(t1)).toString().compareTo("Vikings") == 0) {
+                if ((tabSac[mg.getValkyrie().getPosition()].getlPion().get(t1)).toString().compareTo("Vikings") == 0) {
                     dieuActuel.getlVikings().add(new Vikings());
-                    tabSac[mg.getVane().getPosition() + 1].getlPion().remove(t1);
+                    tabSac[mg.getValkyrie().getPosition() + 1].getlPion().remove(t1);
                 }
-                System.out.println("Vous venez de tirer un " + tabSac[mg.getVane().getPosition()].getlPion().get(t1));
+                System.out.println("Vous venez de tirer un " + tabSac[mg.getValkyrie().getPosition()].getlPion().get(t1));
             }
-            System.out.println(dieuActuel.getClass() + " a maintenant " + dieuActuel.getlVikings().size() + "#" + tabSac[mg.getVane().getPosition() + 1].getlPion().size());
+            System.out.println(dieuActuel.getClass() + " a maintenant " + dieuActuel.getlVikings().size() + "#" + tabSac[mg.getValkyrie().getPosition() + 1].getlPion().size());
 
         }
     }
@@ -181,9 +178,9 @@ public class Partie {
             System.out.println(i + 1 + " - " + tabSac[i].getCouleur());
         }
         int choix = sc.nextInt();
-        for (int j = 0; j < 5 && tabSac[choix-1].getlPion().size()>0; j++) {
+        for (int j = 0; j < 5 && tabSac[choix - 1].getlPion().size() > 0; j++) {
             Random r = new Random();
-            int t1 = r.nextInt(tabSac[choix-1].getlPion().size()) - 1;
+            int t1 = r.nextInt(tabSac[choix - 1].getlPion().size()) - 1;
             if (t1 < 0) {
                 t1 = 0;
             }
@@ -191,16 +188,15 @@ public class Partie {
                 rdf.deposer(1);
                 tabSac[choix - 1].getlPion().remove(t1);
             }
-            
         }
-        System.out.println("il y a maintenant "+rdf.getlGeantDeFeu().size()+" Dans le sac choisi");
+        System.out.println("il y a maintenant " + rdf.getlGeantDeFeu().size() + " Dans le sac choisi");
     }
-    
 
     public void jouerEnForteresseDeGlace() {
     }
 
     public void jouerEnTerreBenite() {
+        dieuActuel.jouerEnTerreBenite(tb, mg, dm, pileCarteEnnemis, tabEnnemis, fdg);
     }
 
     public Dieu getDieuActuel() {
