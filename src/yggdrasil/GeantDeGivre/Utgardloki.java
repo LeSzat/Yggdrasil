@@ -4,20 +4,29 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Monde.DemeureDesElfes;
+
 /**
  *
  * @author mathias
  */
 public class Utgardloki extends GeantDeGivre{
-
-    public Utgardloki() {
+    private DemeureDesElfes dde;
+    public Utgardloki(DemeureDesElfes dde) {
         super("Utgardloki", "Sigel");
+        this.dde=dde;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        dde.setActif(true);
     }
-    
+
+    @Override
+    public void activer() {
+        dde.setActif(false);
+    }
+
+   
     
 }

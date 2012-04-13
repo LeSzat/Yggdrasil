@@ -4,20 +4,31 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Monde.TerreBenite;
+
 /**
  *
  * @author mathias
  */
 public class Gymir extends GeantDeGivre{
+    private TerreBenite tb;
 
-    public Gymir() {
+    public Gymir(TerreBenite tb) {
         super("Gymir", "Tiwaz");
+        this.tb=tb;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        tb.setActif(true);
     }
+
+    @Override
+    public void activer() {
+        tb.setActif(false);
+    }
+
+   
     
     
 }

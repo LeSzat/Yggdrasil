@@ -4,20 +4,28 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Monde.RoyaumeDuFeu;
+
 /**
  *
  * @author mathias
  */
-public class Gialp extends GeantDeGivre{
+public class Gialp extends GeantDeGivre {
 
-    public Gialp() {
+    private RoyaumeDuFeu rdf;
+
+    public Gialp(RoyaumeDuFeu rdf) {
         super("Gialp", "Daeg");
+        this.rdf = rdf;
     }
-
+    
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        rdf.setActif(true);
     }
     
-    
+    @Override
+    public void activer() {
+        rdf.setActif(false);
+    }
 }

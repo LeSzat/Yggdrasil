@@ -4,20 +4,30 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Monde.ForgeDesNains;
+
 /**
  *
  * @author mathias
  */
 public class Geirroed extends GeantDeGivre{
-
-    public Geirroed() {
+    private ForgeDesNains fdn;
+    public Geirroed(ForgeDesNains fdn) {
         super("Geirroed", "Daeg");
+        this.fdn=fdn;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        fdn.setActif(true);
     }
+
+    @Override
+    public void activer() {
+        fdn.setActif(false);
+    }
+
+   
     
     
 }

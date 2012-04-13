@@ -8,6 +8,6 @@ package yggdrasil.Monde;
  *
  * @author mathias
  */
-public class MondeDesTenebres {
+public class MondeDesTenebres extends Monde{
     
 }

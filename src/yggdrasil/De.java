@@ -13,6 +13,7 @@ import java.util.Random;
 public class De {
 
     private Face[] face;
+    private boolean actif;
 
     public De() {
         face = new Face[6];
@@ -22,6 +23,7 @@ public class De {
         face[3] = new Face("Bleu", 1);
         face[4] = new Face("Vert", 2);
         face[5] = new Face("Noir", 3);
+        actif = true;
     }
 
     public int getValeur() {
@@ -39,4 +41,15 @@ public class De {
         int t1 = r.nextInt(6) - 1;
         return face[t1].getCouleur();
     }
+
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
+    
+    
+    
 }

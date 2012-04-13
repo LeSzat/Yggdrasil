@@ -19,7 +19,8 @@ public abstract class GeantDeGivre {
         this.nomRune = nomRune;
     }
 
-    public abstract void appliquerEffet();
+    public abstract void desactiver();
+    public abstract void activer();
 
     public boolean isActif() {
         return actif;

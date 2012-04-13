@@ -10,7 +10,7 @@ import yggdrasil.Vane;
  *
  * @author mathias
  */
-public class TerreBenite {
+public class TerreBenite extends Monde{
     private Vane vane;
     public TerreBenite()
     {

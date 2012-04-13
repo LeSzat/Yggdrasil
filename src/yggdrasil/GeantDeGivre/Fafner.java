@@ -4,20 +4,29 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Monde.MondeDesTenebres;
+
 /**
  *
  * @author mathias
  */
 public class Fafner extends GeantDeGivre{
 
-    public Fafner() {
+    private MondeDesTenebres mdt;
+    public Fafner(MondeDesTenebres mdt) {
         super("Fafner", "Tiwaz");
+        this.mdt=mdt;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        mdt.setActif(true);
     }
-    
+
+    @Override
+    public void activer() {
+        mdt.setActif(false);
+    }
+
     
 }

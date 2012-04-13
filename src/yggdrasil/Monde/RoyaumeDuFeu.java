@@ -11,7 +11,7 @@ import yggdrasil.Pion.GeantDeFeu;
  *
  * @author mathias
  */
-public class RoyaumeDuFeu {
+public class RoyaumeDuFeu extends Monde{
     private ArrayList<GeantDeFeu> lGeantDeFeu;
     
     public RoyaumeDuFeu()

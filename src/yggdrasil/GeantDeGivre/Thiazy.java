@@ -4,7 +4,7 @@
  */
 package yggdrasil.GeantDeGivre;
 
-import yggdrasil.Rune.Rune;
+import yggdrasil.De;
 
 /**
  *
@@ -12,15 +12,20 @@ import yggdrasil.Rune.Rune;
  */
 public class Thiazy extends GeantDeGivre{
 
-    public Thiazy() {
+    private De de;
+    public Thiazy(De de) {
         super("Thiazy", "Tiwaz");
+        this.de=de;
     }
 
-   
-    
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        de.setActif(true);
+    }
+
+    @Override
+    public void activer() {
+        de.setActif(false);
     }
     
     

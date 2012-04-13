@@ -29,6 +29,7 @@ public class Partie {
     private RoyaumeDuFeu rdf;
     private TerreBenite tb;
     private ForteresseDeGlace fdg;
+    private MondeDesTenebres mdt;
     private Scanner sc;
 
     public Partie() {
@@ -41,7 +42,9 @@ public class Partie {
         this.fdn = new ForgeDesNains();
         this.rdf = new RoyaumeDuFeu();
         this.tb = new TerreBenite();
-        this.fdg = new ForteresseDeGlace();
+        this.fdg = new ForteresseDeGlace(this);
+        this.mdt= new MondeDesTenebres();
+        
         sc = new Scanner(System.in);
     }
 
@@ -214,4 +217,43 @@ public class Partie {
     public Ennemis[] getTabEnnemis() {
         return tabEnnemis;
     }
+
+    public DemeureDesElfes getDde() {
+        return dde;
+    }
+
+    public DomaineDesMorts getDm() {
+        return dm;
+    }
+
+    public ForgeDesNains getFdn() {
+        return fdn;
+    }
+
+    public Midgard getMg() {
+        return mg;
+    }
+
+    public RoyaumeDuFeu getRdf() {
+        return rdf;
+    }
+
+    public TerreBenite getTb() {
+        return tb;
+    }
+
+    public De getDe() {
+        return de;
+    }
+
+    public ForteresseDeGlace getFdg() {
+        return fdg;
+    }
+
+    public MondeDesTenebres getMdt() {
+        return mdt;
+    }
+    
+    
+    
 }

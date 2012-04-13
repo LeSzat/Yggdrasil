@@ -4,20 +4,28 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Monde.DomaineDesMorts;
+
 /**
  *
  * @author mathias
  */
 public class Hrym extends GeantDeGivre{
-
-    public Hrym() {
+    private DomaineDesMorts ddm;
+    public Hrym(DomaineDesMorts ddm) {
         super("Hrym", "Sigel");
+        this.ddm=ddm;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        ddm.setActif(true);
     }
-    
-    
+
+    @Override
+    public void activer() {
+        ddm.setActif(false);
+    }
+
+ 
 }
