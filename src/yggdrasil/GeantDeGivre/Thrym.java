@@ -9,15 +9,19 @@ package yggdrasil.GeantDeGivre;
  * @author mathias
  */
 public class Thrym extends GeantDeGivre{
-
+    private boolean actif;
     public Thrym() {
-        super("Thrym", "Mann");
+        super("Thrym", "Sigel");
+        actif=false;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        actif=false;
     }
-    
-    
+
+    @Override
+    public void activer() {
+        actif=true;
+    }
 }

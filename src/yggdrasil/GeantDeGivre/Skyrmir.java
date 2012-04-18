@@ -9,16 +9,19 @@ package yggdrasil.GeantDeGivre;
  * @author mathias
  */
 public class Skyrmir extends GeantDeGivre{
-
+    private boolean actif;
     public Skyrmir() {
-        super("Skyrmir", "Daeg");
+        super("Skyrmir", "Sigel");
+        actif=false;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        actif=false;
     }
-    
-    
-    
+
+    @Override
+    public void activer() {
+        actif=true;
+    }
 }

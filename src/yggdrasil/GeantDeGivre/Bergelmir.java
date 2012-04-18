@@ -9,15 +9,22 @@ package yggdrasil.GeantDeGivre;
  * @author mathias
  */
 public class Bergelmir extends GeantDeGivre{
-
+    private boolean actif;
     public Bergelmir() {
         super("Bergelmir", "Mann");
+        actif=false;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        actif=false;
     }
+
+    @Override
+    public void activer() {
+        actif=true;
+    }
+
     
     
 }

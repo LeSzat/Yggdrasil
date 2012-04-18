@@ -9,15 +9,23 @@ package yggdrasil.GeantDeGivre;
  * @author mathias
  */
 public class Hrungnir extends GeantDeGivre{
-
+    private boolean actif;
     public Hrungnir() {
         super("Hrungnir", "Sigel");
+        actif=false;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        actif=false;
     }
+
+    @Override
+    public void activer() {
+        actif=true;
+    }
+
+   
     
     
 }

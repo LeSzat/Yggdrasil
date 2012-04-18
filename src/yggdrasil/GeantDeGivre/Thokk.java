@@ -9,15 +9,22 @@ package yggdrasil.GeantDeGivre;
  * @author mathias
  */
 public class Thokk extends GeantDeGivre{
-
+    private boolean actif;
     public Thokk() {
         super("Thokk", "Mann");
+        actif=false;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        actif=false;
     }
-    
+
+    @Override
+    public void activer() {
+       actif=false;
+    }
+
+  
     
 }

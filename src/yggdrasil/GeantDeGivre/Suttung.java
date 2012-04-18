@@ -9,15 +9,19 @@ package yggdrasil.GeantDeGivre;
  * @author mathias
  */
 public class Suttung extends GeantDeGivre{
-
+    private boolean actif;
     public Suttung() {
-        super("Suttung", "Tiwaz");
+        super("Suttung", "Sigel");
+        actif=false;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        actif=false;
     }
-    
-    
+
+    @Override
+    public void activer() {
+        actif=true;
+    }
 }

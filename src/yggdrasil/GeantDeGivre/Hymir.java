@@ -9,15 +9,19 @@ package yggdrasil.GeantDeGivre;
  * @author mathias
  */
 public class Hymir extends GeantDeGivre{
-
+    private boolean actif;
     public Hymir() {
-        super("Hymir", "Mann");
+        super("Hymir", "Sigel");
+        actif=false;
     }
 
     @Override
-    public void appliquerEffet() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void desactiver() {
+        actif=false;
     }
-    
-    
+
+    @Override
+    public void activer() {
+        actif=true;
+    }
 }
