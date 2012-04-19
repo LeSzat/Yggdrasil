@@ -51,7 +51,7 @@ public abstract class Dieu {
             System.out.println("Vous n'avez pas de vikings à sacrifier");
         }
 
-        if (!lArtefact.containsKey(en.getNom() + 1) && !lArtefact.containsKey(en.getNom() + 2)) {
+        if (!lArtefact.containsKey(en.getNom() + 1) && !lArtefact.containsKey(en.getNom() + 2)&& !lArtefact.containsKey(en.getNom() + 3)) {
             System.out.println("Vous n'avais pas d'artefact pour ce dieu!");
         } else {
             Iterator it = lArtefact.values().iterator();
@@ -73,7 +73,6 @@ public abstract class Dieu {
         as.ajoutValDe(det);
         System.out.println("La valeur du dé est de " + det);
         System.out.println("vous avez une force de " + as.getForceDieu() + " votre ennemi a une forece de " + as.getForceEnnemi());
-        System.out.println();
 
         if (lElfes.size() > 0) {
             int nbElfes;
@@ -107,15 +106,20 @@ public abstract class Dieu {
         Iterator it = fdn.getlArtefact().values().iterator();
         while (it.hasNext()) {
             a = (Artefact) it.next();
-            if (a.getNiveau() == 1) {
+            if (a.getNiveau() == 1 && !lArtefact.containsKey(a.getEnnemi() + (a.getNiveau() + 1)) && !lArtefact.containsKey(a.getEnnemi() + (a.getNiveau() + 2))) {
                 System.out.println(i + " - " + a);
                 liste.put(i, a);
                 i++;
-            } else if (lArtefact.containsKey(a.getEnnemi() + 1)) {
+            } else if (lArtefact.containsKey(a.getEnnemi() + 1) && a.getNiveau() == 2) {
+                System.out.println(i + " - " + a);
+                liste.put(i, a);
+                i++;
+            } else if (lArtefact.containsKey(a.getEnnemi() + 2) && a.getNiveau() == 3) {
                 System.out.println(i + " - " + a);
                 liste.put(i, a);
                 i++;
             }
+
 
         }
         System.out.println(liste.toString());
@@ -124,10 +128,9 @@ public abstract class Dieu {
         System.out.println("Artefact choisi : " + liste.get(choix));
         if (liste.get(choix).getNiveau() == 1) {
             fdn.prendre(this, liste.get(choix));
-        } else if (liste.get(choix).getNiveau() == 2) {
+        } else {
             fdn.prendre(this, liste.get(choix));
-            System.out.println(lArtefact.get(liste.get(choix).getEnnemi() + 1).toString());
-            fdn.remettre(this, lArtefact.get(liste.get(choix).getEnnemi() + 1));
+            fdn.remettre(this, lArtefact.get(liste.get(choix).getEnnemi() + (liste.get(choix).getNiveau() - 1)));
         }
     }
 

@@ -30,16 +30,30 @@ public class De {
         Random r = new Random();
         int t1 = -1;
         do {
-             t1 = r.nextInt(6) - 1;
-        }
-        while(t1<0 && t1>5);
+            t1 = r.nextInt(6) - 1;
+        } while (t1 < 0 && t1 > 5);
         return face[t1].getVal();
     }
 
-    public String getCouleur() {
+    public int getCouleur() {
         Random r = new Random();
         int t1 = r.nextInt(6) - 1;
-        return face[t1].getCouleur();
+        switch (t1) {
+            case 0:
+                return 0;
+            case 1:
+                return 0;
+            case 2:
+                return 1;
+            case 3:
+                return 1;
+            case 4:
+                return 2;
+            case 5:
+                return 3;
+            default:
+                return getCouleur();
+        }
     }
 
     public boolean isActif() {
@@ -49,7 +63,4 @@ public class De {
     public void setActif(boolean actif) {
         this.actif = actif;
     }
-    
-    
-    
 }

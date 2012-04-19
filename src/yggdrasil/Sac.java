@@ -8,6 +8,7 @@ import yggdrasil.Pion.GeantDeFeu;
 import yggdrasil.Pion.Vikings;
 import yggdrasil.Pion.Pion;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -37,4 +38,17 @@ public class Sac {
     public ArrayList<Pion> getlPion() {
         return lPion;
     }
+    public int getNbVikings()
+    {
+        Iterator it = lPion.iterator();
+        Pion p;
+        int nb=0;
+        while (it.hasNext()) {
+            p = (Pion) it.next();
+            if(p.toString().compareTo("Vikings")==0)
+                nb++;
+        }
+        return nb;
+    }
+    
 }

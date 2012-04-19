@@ -44,7 +44,7 @@ public class Partie {
         this.tb = new TerreBenite();
         this.fdg = new ForteresseDeGlace(this);
         this.mdt= new MondeDesTenebres();
-        
+        this.dm= new DomaineDesMorts();
         sc = new Scanner(System.in);
     }
 
@@ -59,11 +59,11 @@ public class Partie {
     private void creationEnnemis() {
         tabEnnemis = new Ennemis[6];
         Ennemis fenrir = new Fenrir();
-        Ennemis hel = new Hel();
-        Ennemis jormungand = new Jormungand();
+        Ennemis hel = new Hel(de);
+        Ennemis jormungand = new Jormungand(de);
         Ennemis loki = new Loki();
         Ennemis nidhogg = new Nidhogg();
-        Ennemis surt = new Surt();
+        Ennemis surt = new Surt(de);
 
         tabEnnemis[5] = fenrir;
         tabEnnemis[0] = hel;

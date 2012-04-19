@@ -18,7 +18,7 @@ public class ForgeDesNains extends Monde{
     public ForgeDesNains()
     {
         this.lArtefact = new HashMap<>();
-        for(int i=0;i<2;i++)
+        for(int i=0;i<3;i++)
         {
             lArtefact.put("Fenrir"+(i+1),new Artefact("Gleipnir","Fenrir",i+1));
             lArtefact.put("Hel"+(i+1),new Artefact("Draupnir","Hel",i+1));
