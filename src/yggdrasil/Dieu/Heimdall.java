@@ -12,5 +12,6 @@ public class Heimdall extends Dieu{
     public Heimdall()
     {
         super.setNom("Heimdall");
+        super.setCheminImage("/yggdrasil/vue/Heimdall.jpg");
     }
 }

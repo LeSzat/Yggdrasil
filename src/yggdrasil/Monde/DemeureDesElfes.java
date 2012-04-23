@@ -18,7 +18,7 @@ public class DemeureDesElfes extends Monde {
 
     public DemeureDesElfes(int nbJoueurs) {
         this.lElfes = new ArrayList<>();
-        for (int i = 0; i < nbJoueurs; i++) {
+        for (int i = 0; i < nbJoueurs+1; i++) {
             this.lElfes.add(new Elfes());
         }
     }

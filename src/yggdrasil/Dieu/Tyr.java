@@ -12,5 +12,6 @@ public class Tyr extends Dieu{
     public Tyr()
     {
         super.setNom("Tyr");
+        super.setCheminImage("/yggdrasil/vue/Tyr.jpg");
     }
 }

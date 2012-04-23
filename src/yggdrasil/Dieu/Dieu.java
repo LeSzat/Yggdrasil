@@ -4,16 +4,18 @@
  */
 package yggdrasil.Dieu;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import yggdrasil.Artefact;
 import yggdrasil.De;
 import yggdrasil.Elfes;
 import yggdrasil.Ennemis.Ennemis;
 import yggdrasil.Monde.*;
 import yggdrasil.Pion.Vikings;
+import yggdrasil.Sac;
+import yggdrasil.vue.ChoixSac;
+import yggdrasil.vue.EcranPrincipal;
 
 /**
  *
@@ -26,12 +28,15 @@ public abstract class Dieu {
     private HashMap<String, Artefact> lArtefact;
     private Scanner sc;
     private String nom;
+    private String cheminImage;
+    private int partieRestanteAjouer;
 
     protected Dieu() {
         lVikings = new ArrayList<>();
         lElfes = new ArrayList<>();
         lArtefact = new HashMap<>();
         sc = new Scanner(System.in);
+        partieRestanteAjouer = 3;
     }
 
     public void jouerEnAsgard(Ennemis en, De de, DemeureDesElfes dde, DomaineDesMorts ddm, ForgeDesNains fdn) {
@@ -51,7 +56,7 @@ public abstract class Dieu {
             System.out.println("Vous n'avez pas de vikings à sacrifier");
         }
 
-        if (!lArtefact.containsKey(en.getNom() + 1) && !lArtefact.containsKey(en.getNom() + 2)&& !lArtefact.containsKey(en.getNom() + 3)) {
+        if (!lArtefact.containsKey(en.getNom() + 1) && !lArtefact.containsKey(en.getNom() + 2) && !lArtefact.containsKey(en.getNom() + 3)) {
             System.out.println("Vous n'avais pas d'artefact pour ce dieu!");
         } else {
             Iterator it = lArtefact.values().iterator();
@@ -134,12 +139,19 @@ public abstract class Dieu {
         }
     }
 
-    public void jouerEnDemeureDesElfes(ArrayList<Elfes> lelfes) {
-        if (lelfes.size() > 0) {
-            lelfes.remove(0);
-            this.lElfes.add(new Elfes());
+    public void jouerEnDemeureDesElfes(ArrayList<Elfes> lelfes, JFrame page) {
+        if (!lelfes.isEmpty()) {
+            int reponse = JOptionPane.showConfirmDialog(page,
+                    "Il reste " + Integer.toString(lelfes.size()) + " elfe(s). Voulez-vous en prendre 1?",
+                    "Demeure des elfes",
+                    JOptionPane.YES_NO_OPTION);
+            if (reponse == JOptionPane.YES_OPTION) {
+                partieRestanteAjouer--;
+                lelfes.remove(0);
+                lElfes.add(new Elfes());
+            }
         } else {
-            System.out.println("Il n'y a plus d'elfe dans la demeuredes elfes");
+            JOptionPane.showMessageDialog(page, "IL n'y a plus d'elfes, vous ne pouvez pas jouer la demaure des elfes", "Dommage", JOptionPane.WARNING_MESSAGE);
         }
     }
 
@@ -199,10 +211,43 @@ public abstract class Dieu {
         }
     }
 
-    public void jouerEnRoyaumeDuFeu() {
+    public void jouerEnRoyaumeDuFeu(JFrame page, Sac sac, RoyaumeDuFeu rdf) {
+        partieRestanteAjouer--;
+        String message = "";
+        int nbVik = 0;
+        int nbGean = 0;
+        for (int j = 0; j < 5 && sac.getlPion().size() > 0; j++) {
+            Random r = new Random();
+            int t1 = r.nextInt(sac.getlPion().size()) - 1;
+            if (t1 < 0) {
+                t1 = 0;
+            }
+            if ((sac.getlPion().get(t1)).toString().compareTo("Geant de feu") == 0) {
+                nbGean++;
+                rdf.deposer(1);
+                sac.getlPion().remove(t1);
+            } else {
+                nbVik++;
+            }
+        }
+        JOptionPane.showMessageDialog(page, "Vous avez tirez " + nbVik + " Vikings et " + nbGean + " géants de feu. Les géant ont été placés dans le royaume du feu. Les vikings ont été remis dans le sac " + sac.getCouleur().toString().toLowerCase(), "Royaume de feu",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void jouerEnForteresseDeGlace() {
+    }
+
+    public void jouerEnDomaineDesMort(JFrame page, Sac sac, DomaineDesMorts dm) {
+        partieRestanteAjouer--;
+        int nbViking = dm.getlViking().size();
+        int nbVikRet = 0;
+        for (int j = 0; j < nbViking && j < 5; j++) {
+            sac.getlPion().add(new Vikings());
+            dm.retirerViking();
+            nbVikRet++;
+        }
+        JOptionPane.showMessageDialog(page, "Vous venez d'ajouter " + nbVikRet + " vikings dans le sac " + sac.getCouleur().toString().toLowerCase(), "Domaine des morts",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void jouerEnTerreBenite(TerreBenite tb, Midgard mg, DomaineDesMorts ddm, ArrayList<String> pileCarteEnnemis, Ennemis[] tabEnnemis, ForteresseDeGlace fdg) {
@@ -299,5 +344,21 @@ public abstract class Dieu {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getCheminImage() {
+        return cheminImage;
+    }
+
+    public void setCheminImage(String cheminImage) {
+        this.cheminImage = cheminImage;
+    }
+
+    public int getPartieRestanteAjouer() {
+        return partieRestanteAjouer;
+    }
+
+    public void setPartieRestanteAjouer(int partieRestanteAjouer) {
+        this.partieRestanteAjouer = partieRestanteAjouer;
     }
 }

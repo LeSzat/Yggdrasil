@@ -4,9 +4,15 @@
  */
 package yggdrasil;
 
+import java.awt.GraphicsEnvironment;
+import java.io.IOException;
 import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import yggdrasil.Dieu.*;
 import yggdrasil.Ennemis.Ennemis;
+import yggdrasil.vue.Accueil;
+import yggdrasil.vue.choixJoueur;
 
 /**
  *
@@ -18,80 +24,18 @@ public class Yggdrasil {
      * @param args the command line arguments
      */
     static Scanner sc = new Scanner(System.in);
+    static JFrame page;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
         Partie p = new Partie();
-        boolean quitter = false;
-        boolean arreter = false;
-        while (!quitter) {
-            System.out.println("Quels dieux ajouter?");
-            System.out.println("1 - Odin");
-            System.out.println("2 - Thor");
-            System.out.println("3 - Frey");
-            System.out.println("4 - Heimdall");
-            System.out.println("5 - Tyr");
-            System.out.println("6 - Freya");
-            System.out.println("0 - Quitter");
-            int choix = sc.nextInt();
-            if (choix == 1) {
-                p.ajouterDieu(new Odin());
-            } else if (choix == 2) {
-                p.ajouterDieu(new Thor());
-            } else if (choix == 3) {
-                p.ajouterDieu(new Frey());
-            } else if (choix == 4) {
-                p.ajouterDieu(new Heimdall());
-            } else if (choix == 5) {
-                p.ajouterDieu(new Tyr());
-            } else if (choix == 6) {
-                p.ajouterDieu(new Freya());
-            } else {
-                quitter = true;
-            }
-        }
-        p.creerDemeureDesElfes();
-        p.setDieuActuel(p.getlDieu().get(0));
-        while (!arreter) {
-            System.out.println("Quel monde jouer?");
-            System.out.println("1 - Asgard");
-            System.out.println("2 - Midgard");
-            System.out.println("3 - Forge des nains");
-            System.out.println("4 - Demeure des elfes");
-            System.out.println("5 - Monde des tenebres");
-            System.out.println("6 - Domaine des Morts");
-            System.out.println("7 - Royaume du feu");
-            System.out.println("8 - Terre bénite");
-            int choix = sc.nextInt();
-            if (choix == 1) {
-                System.out.println("Quels dieux ajouter?");
-                System.out.println("1 - Hell");
-                System.out.println("2 - Surt");
-                System.out.println("3 - Jorgumand");
-                System.out.println("4 - Loki");
-                System.out.println("5 - Nidhogg");
-                System.out.println("6 - fenrir");
-                int choix1 = sc.nextInt();
-                Ennemis[] e = p.getTabEnnemis();
-                p.jouerAsgard(e[choix1 - 1]);
-            } else if (choix == 2) {
-                p.jouerEnMidgard();
-            } else if (choix == 3) {
-                p.jouerEnForgeDesNains();
-            } else if (choix == 4) {
-                p.jouerEnDemeureDesElfes();
-            } else if (choix == 5) {
-                p.jouerMondeDesTenebres();
-            } else if (choix == 6) {
-                p.jouerEnDomaineDesMort();
-            } else if (choix == 7) {
-                p.jouerEnRoyaumeDuFeu();
-            } else if (choix == 8) {
-                p.jouerEnTerreBenite();
-            } else {
-                arreter = true;
-            }
-        }
-
+        page = new JFrame();
+        page.setTitle("Yggdrasil");
+        GraphicsEnvironment env =
+                GraphicsEnvironment.getLocalGraphicsEnvironment();
+        page.setExtendedState(page.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        page.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Accueil jp = new Accueil(page,p);
+        
     }
 }

@@ -12,6 +12,8 @@ public class Frey extends Dieu{
     public Frey()
     {
         super.setNom("Frey");
+        super.setCheminImage("/yggdrasil/vue/Frey.jpg");
+        
     }
     
 }

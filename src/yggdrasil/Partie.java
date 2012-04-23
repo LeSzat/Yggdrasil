@@ -5,10 +5,13 @@
 package yggdrasil;
 
 import java.util.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import yggdrasil.Dieu.Dieu;
 import yggdrasil.Ennemis.*;
 import yggdrasil.Monde.*;
 import yggdrasil.Pion.Vikings;
+import yggdrasil.vue.ChoixSac;
 
 /**
  *
@@ -140,8 +143,8 @@ public class Partie {
         dieuActuel.jouerEnForgeDesNains(fdn);
     }
 
-    public void jouerEnDemeureDesElfes() {
-        dieuActuel.jouerEnDemeureDesElfes(dde.getlElfes());
+    public void jouerEnDemeureDesElfes(JFrame page) {
+        dieuActuel.jouerEnDemeureDesElfes(dde.getlElfes(),page);
     }
 
     public void jouerMondeDesTenebres() {
@@ -159,40 +162,27 @@ public class Partie {
 
     }
 
-    public void jouerEnDomaineDesMort() {
-        System.out.println("Quel sac choisisser vous?");
-        for (int i = 0; i < tabSac.length; i++) {
-            System.out.println(i + 1 + " - " + tabSac[i].getCouleur());
-        }
-        int choix = sc.nextInt();
-        int nbViking = dm.getlViking().size();
-        int nbVikRet = 0;
-        for (int j = 0; j < nbViking && j < 5; j++) {
-            tabSac[choix - 1].getlPion().add(new Vikings());
-            dm.retirerViking();
-            nbVikRet++;
-        }
-        System.out.println("Vous ajouter " + nbVikRet + " dans le sac" + tabSac[choix - 1].getCouleur());
+    public void jouerEnDomaineDesMort(JFrame page) {
+        ChoixSac cs = new ChoixSac(page,true);
+          cs.setLocationRelativeTo(page);
+          cs.setVisible(true);
+          int choix=cs.getChoix();
+          if(choix>-1)
+          {
+            dieuActuel.jouerEnDomaineDesMort(page, tabSac[choix], dm);
+          }
+          
     }
 
-    public void jouerEnRoyaumeDuFeu() {
-        System.out.println("Quel sac choisisser vous?");
-        for (int i = 0; i < tabSac.length; i++) {
-            System.out.println(i + 1 + " - " + tabSac[i].getCouleur());
-        }
-        int choix = sc.nextInt();
-        for (int j = 0; j < 5 && tabSac[choix - 1].getlPion().size() > 0; j++) {
-            Random r = new Random();
-            int t1 = r.nextInt(tabSac[choix - 1].getlPion().size()) - 1;
-            if (t1 < 0) {
-                t1 = 0;
-            }
-            if ((tabSac[choix - 1].getlPion().get(t1)).toString().compareTo("Geant de feu") == 0) {
-                rdf.deposer(1);
-                tabSac[choix - 1].getlPion().remove(t1);
-            }
-        }
-        System.out.println("il y a maintenant " + rdf.getlGeantDeFeu().size() + " Dans le sac choisi");
+    public void jouerEnRoyaumeDuFeu(JFrame page) {
+         ChoixSac cs = new ChoixSac(page,true);
+          cs.setLocationRelativeTo(page);
+          cs.setVisible(true);
+          int choix=cs.getChoix();
+          if(choix>-1)
+          {
+            dieuActuel.jouerEnRoyaumeDuFeu(page, tabSac[choix], rdf);
+          }
     }
 
     public void jouerEnForteresseDeGlace() {

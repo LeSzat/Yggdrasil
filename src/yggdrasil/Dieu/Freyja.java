@@ -8,10 +8,11 @@ package yggdrasil.Dieu;
  *
  * @author mathias
  */
-public class Freya extends Dieu{
-    public Freya()
+public class Freyja extends Dieu{
+    public Freyja()
     {
-        super.setNom("Freya");
+        super.setNom("Freyja");
+        super.setCheminImage("/yggdrasil/vue/Freyja.jpg");
     }
     
 }

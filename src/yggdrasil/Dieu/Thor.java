@@ -12,5 +12,6 @@ public class Thor extends Dieu{
     public Thor()
     {
         super.setNom("Thor");
+        super.setCheminImage("/yggdrasil/vue/Thor.jpg");
     }
 }

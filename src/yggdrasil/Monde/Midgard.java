@@ -22,6 +22,7 @@ public class Midgard extends Monde{
         tabIle[2]=new Ile("Bleu");
         tabIle[3]=new Ile("Vert");
         tabIle[4]=new Ile("Noir");
+        tabIle[4].setSubmergee(true);
         this.valkyrie= new Valkyrie();
     }
     public void bougerValkyrie(int mov)
