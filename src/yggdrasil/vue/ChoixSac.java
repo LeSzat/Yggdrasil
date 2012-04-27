@@ -22,10 +22,6 @@ public class ChoixSac extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         jrbBlanc.setSelected(true);
-        jrbBlanc.setActionCommand("blanc");
-        jrbBleu.setActionCommand("bleu");
-        jrbVert.setActionCommand("vert");
-        jrbNoir.setActionCommand("noir");
         choixSac.add(jrbBlanc);
         choixSac.add(jrbBleu);
         choixSac.add(jrbVert);
@@ -177,6 +173,7 @@ public class ChoixSac extends javax.swing.JDialog {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 ChoixSac dialog = new ChoixSac(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {

@@ -4,14 +4,16 @@
  */
 package yggdrasil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Scanner;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import yggdrasil.Dieu.Dieu;
 import yggdrasil.Ennemis.*;
 import yggdrasil.Monde.*;
-import yggdrasil.Pion.Vikings;
 import yggdrasil.vue.ChoixSac;
+import yggdrasil.vue.choixEnnemi;
 
 /**
  *
@@ -46,8 +48,8 @@ public class Partie {
         this.rdf = new RoyaumeDuFeu();
         this.tb = new TerreBenite();
         this.fdg = new ForteresseDeGlace(this);
-        this.mdt= new MondeDesTenebres();
-        this.dm= new DomaineDesMorts();
+        this.mdt = new MondeDesTenebres();
+        this.dm = new DomaineDesMorts();
         sc = new Scanner(System.in);
     }
 
@@ -97,54 +99,26 @@ public class Partie {
         tabSac[3] = new Sac("Noir", 15, 3);
     }
 
-    public void jouerAsgard(Ennemis e) {
-        dieuActuel.jouerEnAsgard(e, de, dde, dm, fdn);
-    }
-
-    public void jouerEnMidgard() {
-        Ile[] tabIle = mg.getTabIle();
-        System.out.println("Vane est sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur() + " voulez vous le bouger? o/n");
-        String choix = sc.nextLine();
-        if (choix.compareTo("o") == 0) {
-            System.out.println("1 - avancer");
-            System.out.println("2 - reculer");
-            int choix1 = sc.nextInt();
-            if (choix1 == 1) {
-                mg.bougerValkyrie(1);
-            } else {
-                mg.bougerValkyrie(-1);
-            }
-            System.out.println("Vane est maintenant sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur());
-        }
-
-        if (mg.getValkyrie().getPosition() == 0) {
-            System.out.println("Vane est sur l'ile arc en ciel, vous ne pouvez pas tirer de pion!");
-        } else {
-            System.out.println(dieuActuel.getClass() + " avait " + dieuActuel.getlVikings().size() + "#" + tabSac[mg.getValkyrie().getPosition() + 1].getlPion().size());
-            for (int j = 0; j < 3 && j < tabSac[mg.getValkyrie().getPosition()].getlPion().size(); j++) {
-                Random r = new Random();
-                int t1 = r.nextInt(tabSac[mg.getValkyrie().getPosition()].getlPion().size()) - 1;
-                if (t1 < 0) {
-                    t1 = 0;
-                }
-                System.out.println(t1);
-                if ((tabSac[mg.getValkyrie().getPosition()].getlPion().get(t1)).toString().compareTo("Vikings") == 0) {
-                    dieuActuel.getlVikings().add(new Vikings());
-                    tabSac[mg.getValkyrie().getPosition() + 1].getlPion().remove(t1);
-                }
-                System.out.println("Vous venez de tirer un " + tabSac[mg.getValkyrie().getPosition()].getlPion().get(t1));
-            }
-            System.out.println(dieuActuel.getClass() + " a maintenant " + dieuActuel.getlVikings().size() + "#" + tabSac[mg.getValkyrie().getPosition() + 1].getlPion().size());
-
+    public void jouerAsgard(JFrame page) {
+        choixEnnemi ce = new choixEnnemi(page, true);
+        ce.setLocationRelativeTo(page);
+        ce.setVisible(true);
+        int choix = ce.getChoix();
+        if (choix > -1) {
+            dieuActuel.jouerEnAsgard(tabEnnemis[choix], de, dde, dm, fdn,page);
         }
     }
 
-    public void jouerEnForgeDesNains() {
-        dieuActuel.jouerEnForgeDesNains(fdn);
+    public void jouerEnMidgard(JFrame page) {
+        dieuActuel.jouerEnMidgard(page, mg, tabSac);
+    }
+
+    public void jouerEnForgeDesNains(JFrame page) {
+        dieuActuel.jouerEnForgeDesNains(fdn, page);
     }
 
     public void jouerEnDemeureDesElfes(JFrame page) {
-        dieuActuel.jouerEnDemeureDesElfes(dde.getlElfes(),page);
+        dieuActuel.jouerEnDemeureDesElfes(dde.getlElfes(), page);
     }
 
     public void jouerMondeDesTenebres() {
@@ -163,26 +137,24 @@ public class Partie {
     }
 
     public void jouerEnDomaineDesMort(JFrame page) {
-        ChoixSac cs = new ChoixSac(page,true);
-          cs.setLocationRelativeTo(page);
-          cs.setVisible(true);
-          int choix=cs.getChoix();
-          if(choix>-1)
-          {
+        ChoixSac cs = new ChoixSac(page, true);
+        cs.setLocationRelativeTo(page);
+        cs.setVisible(true);
+        int choix = cs.getChoix();
+        if (choix > -1) {
             dieuActuel.jouerEnDomaineDesMort(page, tabSac[choix], dm);
-          }
-          
+        }
+
     }
 
     public void jouerEnRoyaumeDuFeu(JFrame page) {
-         ChoixSac cs = new ChoixSac(page,true);
-          cs.setLocationRelativeTo(page);
-          cs.setVisible(true);
-          int choix=cs.getChoix();
-          if(choix>-1)
-          {
+        ChoixSac cs = new ChoixSac(page, true);
+        cs.setLocationRelativeTo(page);
+        cs.setVisible(true);
+        int choix = cs.getChoix();
+        if (choix > -1) {
             dieuActuel.jouerEnRoyaumeDuFeu(page, tabSac[choix], rdf);
-          }
+        }
     }
 
     public void jouerEnForteresseDeGlace() {
@@ -243,7 +215,4 @@ public class Partie {
     public MondeDesTenebres getMdt() {
         return mdt;
     }
-    
-    
-    
 }

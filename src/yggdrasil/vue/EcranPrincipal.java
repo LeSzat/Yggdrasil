@@ -271,14 +271,11 @@ public class EcranPrincipal extends javax.swing.JPanel {
 
         if (tabIle[1].isSubmergee()) {
             ileBlancheSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/ileSub.png")));
-        }
-        else if (tabIle[2].isSubmergee()) {
+        } else if (tabIle[2].isSubmergee()) {
             ileBleueSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/ileSub.png")));
-        }
-        else if (tabIle[3].isSubmergee()) {
+        } else if (tabIle[3].isSubmergee()) {
             ileVerteSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/ileSub.png")));
-        }
-        else if (tabIle[4].isSubmergee()) {
+        } else if (tabIle[4].isSubmergee()) {
             ileNoireSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/ileSub.png")));
         }
     }
@@ -584,7 +581,12 @@ public class EcranPrincipal extends javax.swing.JPanel {
         boutonMidgard.setBorderPainted(false);
         boutonMidgard.setContentAreaFilled(false);
         boutonMidgard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(boutonMidgard, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 240, 130));
+        boutonMidgard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boutonMidgardMouseClicked(evt);
+            }
+        });
+        jPanel3.add(boutonMidgard, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 270, 110));
 
         boutonForgeDesNains.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/carteArte.png"))); // NOI18N
         boutonForgeDesNains.setToolTipText("<html>\n<h3>Forge des nains</h3>\nRécupérer un Artefact de niveau 1 au choix dans la Forge des Nains.<br/>\nou<br/>\nRemettre un Artefact de niveau 1 ou 2 dans la Forge des Nains afin de récupérer<br/>\nun Artefact de niveau directement supérieur, à condition que ces 2 Artefacts<br/>\naffectent le même Ennemi.<br/>\nIl faut noter que l’effet des Artefacts s’applique dès qu’ils ont été récupérés.<br/>\nUn Dieu peut posséder plusieurs Artefacts différents. Deux Dieux peuvent<br/>\nposséder le même Artefact mais à des niveaux différents.<br/></html>");
@@ -592,6 +594,11 @@ public class EcranPrincipal extends javax.swing.JPanel {
         boutonForgeDesNains.setBorderPainted(false);
         boutonForgeDesNains.setContentAreaFilled(false);
         boutonForgeDesNains.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        boutonForgeDesNains.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boutonForgeDesNainsMouseClicked(evt);
+            }
+        });
         jPanel3.add(boutonForgeDesNains, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 60, 90));
 
         boutonDomaineDesMort.setToolTipText("<html>\n<h3>Domaines des morts</h3>\nAjouter dans le sac Île de votre choix 5 Vikings pris sur le Domaine des</br>\nMorts. S’il reste moins de 5 Vikings sur le Domaine des Morts, ajouter ceux</br>\nqui sont disponibles.\n</html>");
@@ -700,7 +707,12 @@ public class EcranPrincipal extends javax.swing.JPanel {
         boutonAsgard.setBorderPainted(false);
         boutonAsgard.setContentAreaFilled(false);
         boutonAsgard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(boutonAsgard, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 370, 180));
+        boutonAsgard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boutonAsgardMouseClicked(evt);
+            }
+        });
+        jPanel3.add(boutonAsgard, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 370, 190));
 
         jPanel19.setOpaque(false);
         jPanel19.setLayout(new java.awt.BorderLayout());
@@ -1065,6 +1077,30 @@ public class EcranPrincipal extends javax.swing.JPanel {
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
     }//GEN-LAST:event_boutonRoyaumeDuFeuMouseClicked
+
+    private void boutonMidgardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonMidgardMouseClicked
+        // TODO add your handling code here:
+        partie.jouerEnMidgard(page);
+        page.getContentPane().removeAll();
+        page.getContentPane().add(new EcranPrincipal(page, partie));
+        page.revalidate();
+    }//GEN-LAST:event_boutonMidgardMouseClicked
+
+    private void boutonAsgardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonAsgardMouseClicked
+        // TODO add your handling code here:
+        partie.jouerAsgard(page);
+        page.getContentPane().removeAll();
+        page.getContentPane().add(new EcranPrincipal(page, partie));
+        page.revalidate();
+    }//GEN-LAST:event_boutonAsgardMouseClicked
+
+    private void boutonForgeDesNainsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonForgeDesNainsMouseClicked
+        // TODO add your handling code here:
+        partie.jouerEnForgeDesNains(page);
+        page.getContentPane().removeAll();
+        page.getContentPane().add(new EcranPrincipal(page, partie));
+        page.revalidate();
+    }//GEN-LAST:event_boutonForgeDesNainsMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fenrir;
     private javax.swing.JLabel Fenrir1;

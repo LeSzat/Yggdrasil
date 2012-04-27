@@ -14,8 +14,7 @@ import yggdrasil.Ennemis.Ennemis;
 import yggdrasil.Monde.*;
 import yggdrasil.Pion.Vikings;
 import yggdrasil.Sac;
-import yggdrasil.vue.ChoixSac;
-import yggdrasil.vue.EcranPrincipal;
+import yggdrasil.vue.ChoixArtefact;
 
 /**
  *
@@ -39,72 +38,95 @@ public abstract class Dieu {
         partieRestanteAjouer = 3;
     }
 
-    public void jouerEnAsgard(Ennemis en, De de, DemeureDesElfes dde, DomaineDesMorts ddm, ForgeDesNains fdn) {
-        System.out.println(en.getClass());
+    public void jouerEnAsgard(Ennemis en, De de, DemeureDesElfes dde, DomaineDesMorts ddm, ForgeDesNains fdn, JFrame page) {
         Asgard as = new Asgard(this, en);
-        if (lVikings.size() > 0) {
-            int nbVikaSac;
-            System.out.println("Combien de vikings voulez vous sacrifier 0 et " + lVikings.size());
+        partieRestanteAjouer--;
+        if (!lVikings.isEmpty()) {
 
-            nbVikaSac = sc.nextInt();
+            int taille = lVikings.size();
+            String[] choixNbVikings = new String[taille + 1];
+            for (int i = 0; i <= taille; i++) {
+                choixNbVikings[i] = Integer.toString(i);
+            }
+            JOptionPane jop = new JOptionPane();
+            String nbVikaSa = (String) JOptionPane.showInputDialog(page,
+                    "Combien de vikings voulez vous sacrifier",
+                    "Asgard",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    choixNbVikings,
+                    choixNbVikings[0]);
+            int nbVikaSac = Integer.parseInt(nbVikaSa);
             as.ajoutViking(nbVikaSac);
             for (int i = 0; i < nbVikaSac; i++) {
                 lVikings.remove(0);
             }
             ddm.ajouterVikings(nbVikaSac);
         } else {
-            System.out.println("Vous n'avez pas de vikings à sacrifier");
+            JOptionPane.showMessageDialog(page, "Vous n'avez pas de Viking à sacrifier", "Asgard",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
 
         if (!lArtefact.containsKey(en.getNom() + 1) && !lArtefact.containsKey(en.getNom() + 2) && !lArtefact.containsKey(en.getNom() + 3)) {
-            System.out.println("Vous n'avais pas d'artefact pour ce dieu!");
+            JOptionPane.showMessageDialog(page, "Vous n'avez pas d'artefact pour cet ennemi", "Asgard",
+                    JOptionPane.INFORMATION_MESSAGE);
         } else {
             Iterator it = lArtefact.values().iterator();
             Artefact a = null;
+            int rep = -1;
             while (it.hasNext()) {
                 a = (Artefact) it.next();
                 if (a.getEnnemi().compareTo(en.getNom()) == 0) {
-                    System.out.println("Voulez vous utiliser l'artefact " + a.getNom());
+                    rep = JOptionPane.showConfirmDialog(page, "Voulez vous utiliser l'artefact " + a.getNom() + " de niveau " + a.getNiveau(), "Asgard",
+                            JOptionPane.YES_NO_OPTION);
+                    if (rep == JOptionPane.YES_OPTION) {
+                        as.ajoutArtefact(a);
+                        fdn.remettre(this, a);
+                    }
                 }
-            }
-            int choix = sc.nextInt();
-            if (choix == 0) {
-                as.ajoutArtefact(a);
-                lArtefact.remove(a.getEnnemi() + a.getNiveau());
-                fdn.remettre(this, a);
             }
         }
         int det = de.getValeur();
-        as.ajoutValDe(det);
-        System.out.println("La valeur du dé est de " + det);
-        System.out.println("vous avez une force de " + as.getForceDieu() + " votre ennemi a une forece de " + as.getForceEnnemi());
 
-        if (lElfes.size() > 0) {
+        as.ajoutValDe(det);
+
+        JOptionPane.showMessageDialog(page, "La valeur du dé est de " + det, "Asgard", JOptionPane.INFORMATION_MESSAGE);
+
+        JOptionPane.showMessageDialog(page, "vous avez une force de " + as.getForceDieu() + " votre ennemi a une force de " + as.getForceEnnemi(), "Asgard", JOptionPane.INFORMATION_MESSAGE);
+
+        if (!lElfes.isEmpty()) {
             int nbElfes;
-            System.out.println("Combien d'elfes voulez vous sacrifier entre 0 et " + lElfes.size());
-            nbElfes = sc.nextInt();
-            as.ajouterElfes(nbElfes);
-            for (int i = 0; i < nbElfes; i++) {
-                lElfes.remove(0);
+            int taille = lElfes.size();
+            String[] choixNbElfes = new String[taille + 1];
+            for (int i = 0; i <= taille; i++) {
+                choixNbElfes[i] = Integer.toString(i);
             }
+            JOptionPane jop = new JOptionPane();
+            String nbVikaSa = (String) JOptionPane.showInputDialog(page,
+                    "Combien de vikings voulez vous sacrifier",
+                    "Asgard",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    choixNbElfes,
+                    choixNbElfes[0]);
+            nbElfes = Integer.parseInt(nbVikaSa);
+            as.ajouterElfes(nbElfes);
             dde.remettreElfes(this, nbElfes);
         }
 
         if (as.getForceDieu() >= as.getForceEnnemi()) {
-            System.out.println("Vous avez gagné!!");
+            JOptionPane.showMessageDialog(page, "Vous avez gagné votre ennemi recule d'une case", "Asgard", JOptionPane.INFORMATION_MESSAGE);
             if (en.getPosition() > 1) {
                 en.reculer(1);
             } else {
-                System.out.println("Votre ennemi était sur la case départ il ne peux pas reculer");
+                JOptionPane.showMessageDialog(page, "Votre ennemi était sur la case départ il ne peux pas reculer", "Asgard", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
-            System.out.println("Vous avez perdu!");
+            JOptionPane.showMessageDialog(page, "Vous avez perdu!", "Asgard", JOptionPane.INFORMATION_MESSAGE);
         }
-
     }
 
-    public void jouerEnForgeDesNains(ForgeDesNains fdn) {
-        System.out.println("Liste des artefact disponible");
+    public void jouerEnForgeDesNains(ForgeDesNains fdn, JFrame page) {
         int i = 0;
         Artefact a;
         HashMap<Integer, Artefact> liste = new HashMap<>();
@@ -112,30 +134,29 @@ public abstract class Dieu {
         while (it.hasNext()) {
             a = (Artefact) it.next();
             if (a.getNiveau() == 1 && !lArtefact.containsKey(a.getEnnemi() + (a.getNiveau() + 1)) && !lArtefact.containsKey(a.getEnnemi() + (a.getNiveau() + 2))) {
-                System.out.println(i + " - " + a);
                 liste.put(i, a);
                 i++;
             } else if (lArtefact.containsKey(a.getEnnemi() + 1) && a.getNiveau() == 2) {
-                System.out.println(i + " - " + a);
                 liste.put(i, a);
                 i++;
             } else if (lArtefact.containsKey(a.getEnnemi() + 2) && a.getNiveau() == 3) {
-                System.out.println(i + " - " + a);
                 liste.put(i, a);
                 i++;
             }
-
-
         }
-        System.out.println(liste.toString());
-        System.out.println("Quel artefact voulez vous?");
-        int choix = sc.nextInt();
-        System.out.println("Artefact choisi : " + liste.get(choix));
-        if (liste.get(choix).getNiveau() == 1) {
-            fdn.prendre(this, liste.get(choix));
-        } else {
-            fdn.prendre(this, liste.get(choix));
-            fdn.remettre(this, lArtefact.get(liste.get(choix).getEnnemi() + (liste.get(choix).getNiveau() - 1)));
+        ChoixArtefact ca = new ChoixArtefact(page, true, liste);
+        ca.setLocationRelativeTo(page);
+        ca.setVisible(true);
+
+        int choix = ca.getChoix();
+        if (choix > -1) {
+            partieRestanteAjouer--;
+            if (liste.get(choix).getNiveau() == 1) {
+                fdn.prendre(this, liste.get(choix));
+            } else {
+                fdn.prendre(this, liste.get(choix));
+                fdn.remettre(this, lArtefact.get(liste.get(choix).getEnnemi() + (liste.get(choix).getNiveau() - 1)));
+            }
         }
     }
 
@@ -235,6 +256,71 @@ public abstract class Dieu {
     }
 
     public void jouerEnForteresseDeGlace() {
+    }
+
+    public void jouerEnMidgard(JFrame page, Midgard mg, Sac[] tabSac) {
+        Ile[] tabIle = mg.getTabIle();
+        partieRestanteAjouer--;
+        int rep = JOptionPane.showConfirmDialog(page, "La Valkyrie est sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase() + " voulez vous le bouger?", "Midgard",
+                JOptionPane.YES_NO_OPTION);
+        if (rep == JOptionPane.YES_OPTION) {
+            if (mg.getValkyrie().getPosition() == 0) {
+                mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() + 1);
+                JOptionPane.showMessageDialog(page, "La Valkyrie est mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
+                page.validate();
+            } else if (mg.getValkyrie().getPosition() == 4) {
+                mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() - 1);
+                JOptionPane.showMessageDialog(page, "La Valkyrie est mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
+                page.validate();
+            } else {
+                String[] ileChoix = {tabIle[mg.getValkyrie().getPosition() - 1].getCouleur(), tabIle[mg.getValkyrie().getPosition() + 1].getCouleur()};
+                JOptionPane jop = new JOptionPane();
+                int rang = JOptionPane.showOptionDialog(page,
+                        "Sur quelle île voulez-vous aller?",
+                        "Midgard",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        ileChoix,
+                        ileChoix[ileChoix.length - 1]);
+                if (rang == 0) {
+                    mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() - 1);
+                    JOptionPane.showMessageDialog(page, "La Valkyrie mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
+                } else if (rang == 1) {
+                    mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() + 1);
+                    JOptionPane.showMessageDialog(page, "La Valkyrie mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
+                }
+                page.validate();
+
+            }
+        }
+
+        if (mg.getValkyrie().getPosition() == 0) {
+            JOptionPane.showMessageDialog(page, "La Valkyrie est  sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase() + " vous ne pouvez pas sauver de vikings sur cette île", "Midgard", JOptionPane.INFORMATION_MESSAGE);
+        } else if (tabIle[mg.getValkyrie().getPosition()].isSubmergee()) {
+            if (mg.getValkyrie().getPosition() == 0) {
+                JOptionPane.showMessageDialog(page, "L'île" + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase() + " est submérgée, vous ne pouvez pas aller chercher des âmes", "Midgard", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            int NbViking = 0;
+            int NbGeant = 0;
+            for (int j = 0; j < 3 && !tabSac[mg.getValkyrie().getPosition() - 1].getlPion().isEmpty(); j++) {
+                Random r = new Random();
+                int t1 = r.nextInt(tabSac[mg.getValkyrie().getPosition() - 1].getlPion().size()) - 1;
+                if (t1 < 0) {
+                    t1 = 0;
+                }
+                if ((tabSac[mg.getValkyrie().getPosition() - 1].getlPion().get(t1)).toString().compareTo("Vikings") == 0) {
+                    this.getlVikings().add(new Vikings());
+                    tabSac[mg.getValkyrie().getPosition() - 1].getlPion().remove(t1);
+                    NbViking++;
+                } else {
+                    NbGeant++;
+                }
+            }
+            JOptionPane.showMessageDialog(page, "Vous avez tirez " + NbViking + " vikings et " + NbGeant + " géants de feu. Vous avez récupéré les Vikings. Les géants de feu ont été remis dans le sac " + tabSac[mg.getValkyrie().getPosition() - 1].getCouleur().toString().toLowerCase(), "Royaume de feu",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     public void jouerEnDomaineDesMort(JFrame page, Sac sac, DomaineDesMorts dm) {

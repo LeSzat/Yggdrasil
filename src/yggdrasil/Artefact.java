@@ -4,8 +4,6 @@
  */
 package yggdrasil;
 
-import yggdrasil.Dieu.Dieu;
-
 /**
  *
  * @author mathias
