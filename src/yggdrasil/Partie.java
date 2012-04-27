@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Scanner;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import yggdrasil.Dieu.Dieu;
 import yggdrasil.Ennemis.*;
 import yggdrasil.Monde.*;
@@ -105,7 +106,7 @@ public class Partie {
         ce.setVisible(true);
         int choix = ce.getChoix();
         if (choix > -1) {
-            dieuActuel.jouerEnAsgard(tabEnnemis[choix], de, dde, dm, fdn,page);
+            dieuActuel.jouerEnAsgard(tabEnnemis[choix], de, dde, dm, fdn, page);
         }
     }
 
@@ -121,18 +122,33 @@ public class Partie {
         dieuActuel.jouerEnDemeureDesElfes(dde.getlElfes(), page);
     }
 
-    public void jouerMondeDesTenebres() {
-        int i = 1;
-        System.out.println("Quel dieu voulez vous aider?");
+    public void jouerMondeDesTenebres(JFrame page) {
+        int taille = lDieu.size();
+        String[] choixDieu = new String[taille - 1];
+
+        int i = 0;
         Iterator it = lDieu.iterator();
         while (it.hasNext()) {
-            Dieu d = (Dieu) it.next();
-            System.out.println(i + " - " + d.getNom());
-            i++;
+            Dieu deus = (Dieu) it.next();
+            if (!deus.getNom().equals(dieuActuel.getNom())) {
+                choixDieu[i] = deus.getNom();
+                i++;
+            }
         }
-        System.out.println("Choix : ");
-        int choix = sc.nextInt();
-        dieuActuel.jouerMondeDesTenebres(lDieu.get(choix - 1));
+        JOptionPane jop = new JOptionPane();
+        String dieu = (String) JOptionPane.showInputDialog(page,
+                "Quel dieu voulez vous aider",
+                "Monde des ténébre",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choixDieu,
+                choixDieu[0]);
+        for(Dieu d:lDieu)
+        {
+            if(d.getNom().equals(dieu))
+                dieuActuel.jouerMondeDesTenebres(d,page);
+        }
+        
 
     }
 
@@ -160,8 +176,8 @@ public class Partie {
     public void jouerEnForteresseDeGlace() {
     }
 
-    public void jouerEnTerreBenite() {
-        dieuActuel.jouerEnTerreBenite(tb, mg, dm, pileCarteEnnemis, tabEnnemis, fdg);
+    public void jouerEnTerreBenite(JFrame page) {
+        dieuActuel.jouerEnTerreBenite(tb, mg, dm, pileCarteEnnemis, tabEnnemis, fdg,page);
     }
 
     public Dieu getDieuActuel() {

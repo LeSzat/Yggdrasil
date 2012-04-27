@@ -15,6 +15,8 @@ import yggdrasil.Monde.*;
 import yggdrasil.Pion.Vikings;
 import yggdrasil.Sac;
 import yggdrasil.vue.ChoixArtefact;
+import yggdrasil.vue.ChoixOrdreCarteEnnemi;
+import yggdrasil.vue.choixEnnemi;
 
 /**
  *
@@ -176,57 +178,148 @@ public abstract class Dieu {
         }
     }
 
-    public void jouerMondeDesTenebres(Dieu deus) {
+    public void jouerMondeDesTenebres(Dieu deus, JFrame page) {
         boolean fin = false;
+        partieRestanteAjouer--;
         while (!fin) {
-            System.out.println("1 - Donner");
-            System.out.println("2 - Prendre");
-            int choix = sc.nextInt();
-            if (choix == 1) {
-                System.out.println("1 - Elfe");
-                System.out.println("2 - Viking");
-                int choix1 = sc.nextInt();
-                if (choix1 == 1) {
-                    System.out.println("Vous avez " + lElfes.size() + " Elfes");
-                    System.out.println("Combien voulez vous en donner?");
-                    int nbElfes = sc.nextInt();
-                    for (int i = 0; i < nbElfes; i++) {
-                        lElfes.remove(0);
-                        deus.getlElfes().add(new Elfes());
+            String[] choix = {"donner", "prendre", "arrêter"};
+            JOptionPane jop = new JOptionPane();
+            int rang = JOptionPane.showOptionDialog(page,
+                    "Que voulez-vous faire?",
+                    "Monde des ténébres",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    choix,
+                    choix[0]);
+            if (rang == 0) {
+                String[] choix1 = {"Elfes", "Vikings"};
+                JOptionPane jop1 = new JOptionPane();
+                int rang1 = JOptionPane.showOptionDialog(page,
+                        "Que voulez-vous prendre?",
+                        "Monde des ténébres",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        choix1,
+                        choix1[0]);
+                if (rang1 == 0) {
+                    if (!lElfes.isEmpty()) {
+
+                        int taille = lElfes.size();
+                        String[] choixNbElfes = new String[taille + 1];
+                        for (int i = 0; i <= taille; i++) {
+                            choixNbElfes[i] = Integer.toString(i);
+                        }
+                        JOptionPane jop2 = new JOptionPane();
+                        String nbElfes = (String) JOptionPane.showInputDialog(page,
+                                "Combien d'elfes voulez-vous donner.",
+                                "Monde des ténébres",
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                choixNbElfes,
+                                choixNbElfes[0]);
+                        int nbElfe = Integer.parseInt(nbElfes);
+
+                        for (int i = 0; i < nbElfe; i++) {
+                            lElfes.remove(0);
+                            deus.getlElfes().add(new Elfes());
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(page, "Vous n'avez plus d'elfes à donner", "Domaines des ténébres", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else if (rang1 == 1) {
+                    if (!lVikings.isEmpty()) {
+
+                        int taille = lVikings.size();
+                        String[] choixNbElfes = new String[taille + 1];
+                        for (int i = 0; i <= taille; i++) {
+                            choixNbElfes[i] = Integer.toString(i);
+                        }
+                        JOptionPane jop2 = new JOptionPane();
+                        String nbElfes = (String) JOptionPane.showInputDialog(page,
+                                "Combien de vikings voulez-vous donner.",
+                                "Monde des ténébres",
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                choixNbElfes,
+                                choixNbElfes[0]);
+                        int nbElfe = Integer.parseInt(nbElfes);
+
+                        for (int i = 0; i < nbElfe; i++) {
+                            lVikings.remove(0);
+                            deus.getlVikings().add(new Vikings());
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(page, "Vous n'avez plus de vikings à donner", "Domaines des ténébres", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
-                if (choix1 == 2) {
-                    System.out.println("Vous avez " + lVikings.size() + " Vikings");
-                    System.out.println("Combien voulez vous en donner?");
-                    int nbVikings = sc.nextInt();
-                    for (int i = 0; i < nbVikings; i++) {
-                        lVikings.remove(0);
-                        deus.getlVikings().add(new Vikings());
+
+
+            }
+            if (rang == 1) {
+                String[] choix1 = {"Elfes", "Vikings"};
+                JOptionPane jop1 = new JOptionPane();
+                int rang1 = JOptionPane.showOptionDialog(page,
+                        "Que voulez-vous prendre?",
+                        "Monde des ténébres",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        choix1,
+                        choix1[0]);
+                if (rang1 == 0) {
+                    if (!deus.getlElfes().isEmpty()) {
+
+                        int taille = deus.getlElfes().size();
+                        String[] choixNbElfes = new String[taille + 1];
+                        for (int i = 0; i <= taille; i++) {
+                            choixNbElfes[i] = Integer.toString(i);
+                        }
+                        JOptionPane jop2 = new JOptionPane();
+                        String nbElfes = (String) JOptionPane.showInputDialog(page,
+                                "Combien d'elfes voulez-vous prendre.",
+                                "Monde des ténébres",
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                choixNbElfes,
+                                choixNbElfes[0]);
+                        int nbElfe = Integer.parseInt(nbElfes);
+
+                        for (int i = 0; i < nbElfe; i++) {
+                            deus.getlElfes().remove(0);
+                            lElfes.add(new Elfes());
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(page, "Il n'a plus d'elfes à donner", "Domaines des ténébres", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else if (rang1 == 1) {
+                    if (!deus.getlVikings().isEmpty()) {
+
+                        int taille = deus.getlVikings().size();
+                        String[] choixNbElfes = new String[taille + 1];
+                        for (int i = 0; i <= taille; i++) {
+                            choixNbElfes[i] = Integer.toString(i);
+                        }
+                        JOptionPane jop2 = new JOptionPane();
+                        String nbElfes = (String) JOptionPane.showInputDialog(page,
+                                "Combien de vikings voulez-vous prendre.",
+                                "Monde des ténébres",
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                choixNbElfes,
+                                choixNbElfes[0]);
+                        int nbElfe = Integer.parseInt(nbElfes);
+
+                        for (int i = 0; i < nbElfe; i++) {
+                            deus.getlVikings().remove(0);
+                            lVikings.add(new Vikings());
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(page, "Il n'a plus de vikings à donner", "Domaines des ténébres", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
-            } else if (choix == 2) {
-                System.out.println("1 - Elfe");
-                System.out.println("2 - Viking");
-                int choix1 = sc.nextInt();
-                if (choix1 == 1) {
-                    System.out.println("Il a " + deus.getlElfes().size() + " Elfes");
-                    System.out.println("Combien voulez vous en prendre?");
-                    int nbElfes = sc.nextInt();
-                    for (int i = 0; i < nbElfes; i++) {
-                        lElfes.add(new Elfes());
-                        deus.getlElfes().remove(0);
-                    }
-                }
-                if (choix1 == 2) {
-                    System.out.println("Il a " + lVikings.size() + " Vikings");
-                    System.out.println("Combien voulez vous en prendre?");
-                    int nbVikings = sc.nextInt();
-                    for (int i = 0; i < nbVikings; i++) {
-                        lVikings.add(new Vikings());
-                        deus.getlVikings().remove(0);
-                    }
-                }
-            } else {
+            } else if (rang == 2) {
                 fin = true;
             }
         }
@@ -267,11 +360,9 @@ public abstract class Dieu {
             if (mg.getValkyrie().getPosition() == 0) {
                 mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() + 1);
                 JOptionPane.showMessageDialog(page, "La Valkyrie est mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
-                page.validate();
             } else if (mg.getValkyrie().getPosition() == 4) {
                 mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() - 1);
                 JOptionPane.showMessageDialog(page, "La Valkyrie est mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
-                page.validate();
             } else {
                 String[] ileChoix = {tabIle[mg.getValkyrie().getPosition() - 1].getCouleur(), tabIle[mg.getValkyrie().getPosition() + 1].getCouleur()};
                 JOptionPane jop = new JOptionPane();
@@ -290,7 +381,6 @@ public abstract class Dieu {
                     mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() + 1);
                     JOptionPane.showMessageDialog(page, "La Valkyrie mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
                 }
-                page.validate();
 
             }
         }
@@ -336,72 +426,110 @@ public abstract class Dieu {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void jouerEnTerreBenite(TerreBenite tb, Midgard mg, DomaineDesMorts ddm, ArrayList<String> pileCarteEnnemis, Ennemis[] tabEnnemis, ForteresseDeGlace fdg) {
-        System.out.println("Voulez-vous avancer ou utiliser Vane? 1 ou 2");
-        int choix = sc.nextInt();
-        if (choix == 1) {
-            tb.avancerVane();
-        } else if (choix == 2) {
-            int position = tb.getVanePostion();
-            System.out.println(position);
+    public void jouerEnTerreBenite(TerreBenite tb, Midgard mg, DomaineDesMorts ddm, ArrayList<String> pileCarteEnnemis, Ennemis[] tabEnnemis, ForteresseDeGlace fdg, JFrame page) {
 
+        String[] choix = {"avancer Vane", "utiliser Vane"};
+        JOptionPane jop = new JOptionPane();
+        int rang = JOptionPane.showOptionDialog(page,
+                "Que voulez-vous faire?",
+                "Terre bénite",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choix,
+                choix[0]);
+        if (rang == 0) {
+            partieRestanteAjouer--;
+            tb.avancerVane();
+        } else if (rang == 1) {
+            int position = tb.getVanePostion();
             switch (position) {
                 case 1:
+                    partieRestanteAjouer--;
                     Ile[] tabIle = mg.getTabIle();
-                    System.out.println("Vane est sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur() + " voulez vous le bouger? o/n");
-                    System.out.println("1 - avancer");
-                    System.out.println("2 - reculer");
-                    int choix1 = sc.nextInt();
-                    if (choix1 == 1) {
-                        mg.bougerValkyrie(1);
-                    } else {
-                        mg.bougerValkyrie(-1);
+                    int rep = JOptionPane.showConfirmDialog(page, "La Valkyrie est sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase() + " voulez vous le bouger?", "Midgard",
+                            JOptionPane.YES_NO_OPTION);
+                    if (rep == JOptionPane.YES_OPTION) {
+                        if (mg.getValkyrie().getPosition() == 0) {
+                            mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() + 1);
+                            JOptionPane.showMessageDialog(page, "La Valkyrie est mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
+                        } else if (mg.getValkyrie().getPosition() == 4) {
+                            mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() - 1);
+                            JOptionPane.showMessageDialog(page, "La Valkyrie est mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            String[] ileChoix = {tabIle[mg.getValkyrie().getPosition() - 1].getCouleur(), tabIle[mg.getValkyrie().getPosition() + 1].getCouleur()};
+                            JOptionPane jop1 = new JOptionPane();
+                            int rang1 = JOptionPane.showOptionDialog(page,
+                                    "Sur quelle île voulez-vous aller?",
+                                    "Midgard",
+                                    JOptionPane.YES_NO_CANCEL_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE,
+                                    null,
+                                    ileChoix,
+                                    ileChoix[ileChoix.length - 1]);
+                            if (rang1 == 0) {
+                                mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() - 1);
+                                JOptionPane.showMessageDialog(page, "La Valkyrie mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
+                            } else if (rang1 == 1) {
+                                mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() + 1);
+                                JOptionPane.showMessageDialog(page, "La Valkyrie mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
+                            }
+
+                        }
                     }
-                    System.out.println("Vane est maintenant sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur());
+                    if (mg.getValkyrie().getPosition() == 0) {
+                        JOptionPane.showMessageDialog(page, "La Valkyrie est  sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase() + " vous ne pouvez pas sauver de vikings sur cette île", "Midgard", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (tabIle[mg.getValkyrie().getPosition()].isSubmergee()) {
+                        if (mg.getValkyrie().getPosition() == 0) {
+                            JOptionPane.showMessageDialog(page, "L'île" + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase() + " est submérgée, vous ne pouvez pas aller chercher des âmes", "Midgard", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
                     tb.reset();
                     break;
                 case 2:
-                    if (ddm.getlViking().size() > 0) {
+                    partieRestanteAjouer--;
+                    if (!ddm.getlViking().isEmpty()) {
                         ddm.retirerViking();
                         lVikings.add(new Vikings());
                     }
-                    if (ddm.getlViking().size() > 0) {
+                    if (!ddm.getlViking().isEmpty()) {
                         ddm.retirerViking();
                         lVikings.add(new Vikings());
                     }
                     tb.reset();
                     break;
                 case 3:
-                    System.out.println("1 - " + pileCarteEnnemis.get(0));
-                    System.out.println("2 - " + pileCarteEnnemis.get(1));
-                    System.out.println("3 - " + pileCarteEnnemis.get(2));
-                    System.out.println("4 - " + pileCarteEnnemis.get(3));
-                    System.out.println("5 - " + pileCarteEnnemis.get(4));
-                    System.out.println("6 - " + pileCarteEnnemis.get(5));
-                    String[] pe = new String[6];
-                    for (int i = 0; i < 6; i++) {
-                        pe[i] = pileCarteEnnemis.get(0);
-                        pileCarteEnnemis.remove(0);
-                    }
-                    for (int i = 0; i < 6; i++) {
-                        System.out.println("Position : " + (i + 1));
-                        int choix2 = sc.nextInt();
-                        pileCarteEnnemis.add(i, pe[choix2 - 1]);
-                    }
-                    System.out.println("1 - " + pileCarteEnnemis.get(0));
-                    System.out.println("2 - " + pileCarteEnnemis.get(1));
-                    System.out.println("3 - " + pileCarteEnnemis.get(2));
-                    System.out.println("4 - " + pileCarteEnnemis.get(3));
-                    System.out.println("5 - " + pileCarteEnnemis.get(4));
-                    System.out.println("6 - " + pileCarteEnnemis.get(5));
+                    partieRestanteAjouer--;
+                    ChoixOrdreCarteEnnemi coce = new ChoixOrdreCarteEnnemi(page, true, pileCarteEnnemis);
+                    coce.setLocationRelativeTo(page);
+                    coce.setVisible(true);
                     tb.reset();
                     break;
                 case 4:
-                    System.out.println("Quel dieu voulez vous faire reculer?");
-                    for (int i = 0; i < tabEnnemis.length; i++) {
-                        System.out.println((i + 1) + " - " + tabEnnemis[i]);
-                        int choix2 = sc.nextInt();
-                        tabEnnemis[choix2 - 1].reculer(1);
+                    partieRestanteAjouer--;
+                    choixEnnemi ce = new choixEnnemi(page, true);
+                    ce.setLocationRelativeTo(page);
+                    ce.setVisible(true);
+                    int choix1 = ce.getChoix();
+                    switch (choix1) {
+                        case 0:
+                            tabEnnemis[0].reculer(1);
+                            break;
+                        case 1:
+                            tabEnnemis[1].reculer(1);
+                            break;
+                        case 2:
+                            tabEnnemis[2].reculer(1);
+                            break;
+                        case 3:
+                            tabEnnemis[3].reculer(1);
+                            break;
+                        case 4:
+                            tabEnnemis[4].reculer(1);
+                            break;
+                        case 5:
+                            tabEnnemis[5].reculer(1);
+                            break;
                     }
                     tb.reset();
                     break;

@@ -14,7 +14,7 @@ public abstract class Ennemis {
     private String nom;
 
     public Ennemis() {
-        this.position = 0;
+        this.position = 1;
     }
 
     public int getPosition() {

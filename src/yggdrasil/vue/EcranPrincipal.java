@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import yggdrasil.Artefact;
 import yggdrasil.Ennemis.Ennemis;
-import yggdrasil.Partie;
 import yggdrasil.Monde.Ile;
+import yggdrasil.Partie;
 
 /**
  *
@@ -574,6 +574,11 @@ public class EcranPrincipal extends javax.swing.JPanel {
         boutonTerreBenite.setBorderPainted(false);
         boutonTerreBenite.setContentAreaFilled(false);
         boutonTerreBenite.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        boutonTerreBenite.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boutonTerreBeniteMouseClicked(evt);
+            }
+        });
         jPanel3.add(boutonTerreBenite, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 3, 200, 110));
 
         boutonMidgard.setToolTipText("<html>\n<h3>Midgard</h3>\n<h4>1. Déplacer éventuellement les Valkyries</h4>\nVous pouvez déplacer les Valkyries d’une île vers une île immédiatement<br/>\nvoisine. Cela est possible même si l’île d’arrivée ou de départ est submergée.<br/>\n<h4>2. Puis chercher les âmes vikings sur l’île où se trouvent les Valkyries.</h4>\nVous pouvez chercher les âmes sur l’île où se trouvent les Valkyries, à condition<br/>\nque cette île ne soit pas submergée. L’île de l’Arc-en-ciel est l’île de départ des<br/>\nValkyries, aucune recherche ne peut y être réalisée.<br/>\nChercher les âmes revient à piocher 3 pions dans le sac de l’île sur laquelle<br/>\nse trouvent les Valkyries. S’il y a moins de 3 pions présents dans ce sac, alors<br/>\npiocher tous les pions restants.<br/>\nLes Vikings éventuellement piochés sont conservés par le Dieu actif et les<br/>\nGéants de Feu sont remis dans le sac.</html>");
@@ -638,7 +643,12 @@ public class EcranPrincipal extends javax.swing.JPanel {
         boutonMondeDesTenebres.setBorderPainted(false);
         boutonMondeDesTenebres.setContentAreaFilled(false);
         boutonMondeDesTenebres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(boutonMondeDesTenebres, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, 100, 50));
+        boutonMondeDesTenebres.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boutonMondeDesTenebresMouseClicked(evt);
+            }
+        });
+        jPanel3.add(boutonMondeDesTenebres, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, 100, 100));
 
         jPanel6.setOpaque(false);
 
@@ -1101,6 +1111,23 @@ public class EcranPrincipal extends javax.swing.JPanel {
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
     }//GEN-LAST:event_boutonForgeDesNainsMouseClicked
+
+    private void boutonMondeDesTenebresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonMondeDesTenebresMouseClicked
+        // TODO add your handling code here:
+        partie.jouerMondeDesTenebres(page);
+        page.getContentPane().removeAll();
+        page.getContentPane().add(new EcranPrincipal(page, partie));
+        page.revalidate();
+    }//GEN-LAST:event_boutonMondeDesTenebresMouseClicked
+
+    private void boutonTerreBeniteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonTerreBeniteMouseClicked
+        // TODO add your handling code here:
+        partie.jouerEnTerreBenite(page);
+        page.getContentPane().removeAll();
+        page.getContentPane().add(new EcranPrincipal(page, partie));
+        page.revalidate();
+    }//GEN-LAST:event_boutonTerreBeniteMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fenrir;
     private javax.swing.JLabel Fenrir1;
