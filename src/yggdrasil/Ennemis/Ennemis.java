@@ -32,7 +32,16 @@ public abstract class Ennemis {
             return 8;
         }
     }
-
+    public int getPuissance()
+    {
+         if (position < 3) {
+            return 1;
+        } else if (position < 5) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
     public void reculer(int i) {
         if (position > 0) {
             position -= i;

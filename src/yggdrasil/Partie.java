@@ -14,9 +14,7 @@ import yggdrasil.Dieu.Dieu;
 import yggdrasil.Ennemis.*;
 import yggdrasil.GeantDeGivre.GeantDeGivre;
 import yggdrasil.Monde.*;
-import yggdrasil.vue.ChoixGeantDeGivreCombat;
-import yggdrasil.vue.ChoixSac;
-import yggdrasil.vue.choixEnnemi;
+import yggdrasil.vue.*;
 
 /**
  *
@@ -66,7 +64,7 @@ public class Partie {
 
     private void creationEnnemis() {
         tabEnnemis = new Ennemis[6];
-        Ennemis fenrir = new Fenrir();
+        Ennemis fenrir = new Fenrir(de);
         Ennemis hel = new Hel(de);
         Ennemis jormungand = new Jormungand(de);
         Ennemis loki = new Loki();
@@ -176,8 +174,8 @@ public class Partie {
     }
 
     public void jouerEnForteresseDeGlace(JFrame page) {
-        ArrayList<GeantDeGivre> lGeantTemp= new ArrayList<>();
-         for (GeantDeGivre gdgf : fdg.getGeantDeffausse()) {
+        ArrayList<GeantDeGivre> lGeantTemp = new ArrayList<>();
+        for (GeantDeGivre gdgf : fdg.getGeantDeffausse()) {
             if (gdgf.isActif()) {
                 lGeantTemp.add(gdgf);
             }
@@ -188,10 +186,55 @@ public class Partie {
             cgdg.setVisible(true);
             GeantDeGivre gdg = cgdg.getGdg();
             dieuActuel.jouerEnForteresseDeGlace(dieuActuel, gdg, de, dm, dde, page);
+        } else {
+            JOptionPane.showMessageDialog(page, "Pas de géant de givre à combatrre", "Forteresse de glace", JOptionPane.ERROR_MESSAGE);
         }
-        else
-        {
-             JOptionPane.showMessageDialog(page, "Pas de géant de givre à combatrre", "Forteresse de glace", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void appliquerEnnemi(JFrame page, String e) {
+        if (e.compareTo("Hel") == 0) {
+            Hel hel = (Hel) tabEnnemis[0];
+            hel.action(tabSac, dm, page);
+        } else if (e.compareTo("Surt") == 0) {
+            Surt surt = (Surt) tabEnnemis[1];
+            surt.action(tabSac, rdf, page);
+        } else if (e.compareTo("Jormungand") == 0) {
+            Jormungand jormungand = (Jormungand) tabEnnemis[2];
+            jormungand.action(mg, page);
+        } else if (e.compareTo("Loki") == 0) {
+            Loki loki = (Loki) tabEnnemis[3];
+            loki.action(fdg);
+        } else if (e.compareTo("Nidhogg") == 0) {
+            Nidhogg nidhogg = (Nidhogg) tabEnnemis[4];
+            nidhogg.action(tabEnnemis, page);
+        } else if (e.compareTo("Fenrir") == 0) {
+            Fenrir fenrir = (Fenrir) tabEnnemis[5];
+            fenrir.action(page);
+            while (!fenrir.isCalmer()) {
+                fenrir.essayerDeCalmer(page);
+                dieuActuel.setPartieRestanteAjouer(dieuActuel.getPartieRestanteAjouer() - 1);
+                if (dieuActuel.getPartieRestanteAjouer() == 0) {
+                    int j = lDieu.indexOf(dieuActuel);
+                    dieuActuel.reset();
+                    if ((j + 1) == lDieu.size()) {
+                        dieuActuel = (lDieu.get(0));
+                    } else {
+                        dieuActuel = (lDieu.get(j + 1));
+                    }
+                    String e1 = pileCarteEnnemis.get(0);
+                    DieuTire dt = new DieuTire(page, true, e1);
+                    dt.setLocationRelativeTo(page);
+                    dt.setVisible(true);
+                    pileCarteEnnemis.remove(0);
+                    appliquerEnnemi(page, e1);
+                    page.getContentPane().removeAll();
+                    page.getContentPane().add(new EcranPrincipal(page, this));
+                    page.revalidate();
+                }
+                page.getContentPane().removeAll();
+                page.getContentPane().add(new EcranPrincipal(page, this));
+                page.revalidate();
+            }
         }
     }
 
@@ -254,5 +297,8 @@ public class Partie {
     public ArrayList<String> getPileCarteEnnemis() {
         return pileCarteEnnemis;
     }
-    
+
+    public Sac[] getTabSac() {
+        return tabSac;
+    }
 }

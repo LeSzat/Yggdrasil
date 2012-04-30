@@ -5,6 +5,8 @@
 package yggdrasil.Ennemis;
 
 import java.util.Iterator;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import yggdrasil.De;
 import yggdrasil.Monde.DomaineDesMorts;
 import yggdrasil.Pion.Pion;
@@ -24,25 +26,24 @@ public class Hel extends Ennemis {
         this.de = de;
     }
 
-    public void action(Sac[] tabSacs, DomaineDesMorts ddm) {
+    public void action(Sac[] tabSacs, DomaineDesMorts ddm, JFrame page) {
         this.avancer(1);
         int k = 0;
         int nb = 0;
         Sac s = tabSacs[de.getCouleur()];
         int nbViking = s.getNbVikings();
-        while (k < this.getForce() && k < nbViking) {
+        while (k < this.getPuissance() && k < nbViking) {
             Iterator it = s.getlPion().iterator();
             Pion p;
-            while (it.hasNext()) {
-                p = (Pion) it.next();
-                if (p.toString().compareTo("Vikings") == 0) {
-                    ddm.getlViking().add((Vikings) p);
-                    s.getlPion().remove(p);
-                    nb++;
-                }
-
+            p = (Pion) it.next();
+            if (p.toString().compareTo("Vikings") == 0) {
+                ddm.getlViking().add((Vikings) p);
+                s.getlPion().remove(p);
+                nb++;
             }
+
             k++;
         }
+        JOptionPane.showMessageDialog(page, "Hel a retiré " + nb + " Vikings du sac " + s.getCouleur().toLowerCase() + ", il les a envoyés dans le domaine des morts.", "Effet de Hel", JOptionPane.INFORMATION_MESSAGE);
     }
 }

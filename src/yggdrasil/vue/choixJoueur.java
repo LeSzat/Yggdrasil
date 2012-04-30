@@ -25,7 +25,7 @@ public class choixJoueur extends javax.swing.JPanel {
     public choixJoueur(JFrame page, Partie p) {
         this.page = page;
         this.partie = p;
-        joueur= new String[6];
+        joueur = new String[6];
         for (int i = 0; i < 6; i++) {
             joueur[i] = "";
         }
@@ -530,9 +530,10 @@ public class choixJoueur extends javax.swing.JPanel {
         dt.setLocationRelativeTo(page);
         dt.setVisible(true);
         partie.getPileCarteEnnemis().remove(0);
-
-
-
+        partie.appliquerEnnemi(page, e);
+         page.getContentPane().removeAll();
+        page.getContentPane().add(new EcranPrincipal(page, partie));
+        page.revalidate();
     }//GEN-LAST:event_jButton1MouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox JcomboJoueur1;

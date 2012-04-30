@@ -45,9 +45,12 @@ public class ForteresseDeGlace extends Monde {
 
         Collections.shuffle(pileGeantDeGivre);
     }
-
-    public void Combattre()
+    public void piocherCarte()
     {
+        GeantDeGivre gdg= pileGeantDeGivre.get(0);
+        pileGeantDeGivre.remove(gdg);
+        geantDeffausse.add(gdg);
+        gdg.setActif(true);
     }
 
     public ArrayList<GeantDeGivre> getGeantDeffausse() {

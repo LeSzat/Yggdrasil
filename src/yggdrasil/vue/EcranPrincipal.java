@@ -323,22 +323,19 @@ public class EcranPrincipal extends javax.swing.JPanel {
                 partie.setDieuActuel(partie.getlDieu().get(j + 1));
 
             }
-        }
-
-        page.getContentPane().removeAll();
-        page.getContentPane().add(new EcranPrincipal(page, partie));
-        page.revalidate();
-        if (partie.getDieuActuel().getPartieRestanteAjouer() == partie.getDieuActuel().getMAXPARTIE()) {
+            page.getContentPane().removeAll();
+            page.getContentPane().add(new EcranPrincipal(page, partie));
+            page.revalidate();
             String e = partie.getPileCarteEnnemis().get(0);
             DieuTire dt = new DieuTire(page, true, e);
             dt.setLocationRelativeTo(page);
             dt.setVisible(true);
             partie.getPileCarteEnnemis().remove(0);
-            jLabel10.setText("Il vous reste " + partie.getDieuActuel().getPartieRestanteAjouer() + " parties a jouer");
-            jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource(partie.getDieuActuel().getCheminImage())));
-            jLabel2.setText(Integer.toString(partie.getDieuActuel().getlElfes().size()));
-            if(e.compareTo("Hell"))
+            partie.appliquerEnnemi(page, e);
         }
+        page.getContentPane().removeAll();
+        page.getContentPane().add(new EcranPrincipal(page, partie));
+        page.revalidate();
     }
 
     /**
@@ -363,10 +360,9 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jPanel57 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -625,7 +621,14 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jLabel28.setMinimumSize(new java.awt.Dimension(80, 125));
         jLabel28.setPreferredSize(new java.awt.Dimension(80, 125));
         jPanel57.add(jLabel28);
-        jPanel57.add(jLabel12);
+
+        jLabel29.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel29.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel29.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel29);
 
         jLabel30.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(0, 255, 255));
@@ -642,14 +645,6 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jLabel31.setMinimumSize(new java.awt.Dimension(80, 125));
         jLabel31.setPreferredSize(new java.awt.Dimension(80, 125));
         jPanel57.add(jLabel31);
-
-        jLabel29.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(0, 255, 255));
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setMaximumSize(new java.awt.Dimension(80, 125));
-        jLabel29.setMinimumSize(new java.awt.Dimension(80, 125));
-        jLabel29.setPreferredSize(new java.awt.Dimension(80, 125));
-        jPanel57.add(jLabel29);
 
         jLabel32.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(0, 255, 255));
@@ -1274,7 +1269,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1300,49 +1295,33 @@ public class EcranPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         partie.jouerEnDomaineDesMort(page);
         verifFinTour();
-        page.getContentPane().removeAll();
-        page.getContentPane().add(new EcranPrincipal(page, partie));
-        page.revalidate();
-        verifFinTour();
+      
     }//GEN-LAST:event_boutonDomaineDesMortMouseClicked
 
     private void boutonRoyaumeDuFeuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonRoyaumeDuFeuMouseClicked
         // TODO add your handling code here:
         partie.jouerEnRoyaumeDuFeu(page);
         verifFinTour();
-        page.getContentPane().removeAll();
-        page.getContentPane().add(new EcranPrincipal(page, partie));
-        page.revalidate();
-        verifFinTour();
+      
     }//GEN-LAST:event_boutonRoyaumeDuFeuMouseClicked
 
     private void boutonMidgardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonMidgardMouseClicked
         // TODO add your handling code here:
         partie.jouerEnMidgard(page);
         verifFinTour();
-        page.getContentPane().removeAll();
-        page.getContentPane().add(new EcranPrincipal(page, partie));
-        page.revalidate();
-        verifFinTour();
+      
     }//GEN-LAST:event_boutonMidgardMouseClicked
 
     private void boutonAsgardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonAsgardMouseClicked
         // TODO add your handling code here:
         partie.jouerAsgard(page);
         verifFinTour();
-        page.getContentPane().removeAll();
-        page.getContentPane().add(new EcranPrincipal(page, partie));
-        page.revalidate();
-        verifFinTour();
+       
     }//GEN-LAST:event_boutonAsgardMouseClicked
 
     private void boutonForgeDesNainsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonForgeDesNainsMouseClicked
         // TODO add your handling code here:
         partie.jouerEnForgeDesNains(page);
-        verifFinTour();
-        page.getContentPane().removeAll();
-        page.getContentPane().add(new EcranPrincipal(page, partie));
-        page.revalidate();
         verifFinTour();
     }//GEN-LAST:event_boutonForgeDesNainsMouseClicked
 
@@ -1350,29 +1329,17 @@ public class EcranPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         partie.jouerMondeDesTenebres(page);
         verifFinTour();
-        page.getContentPane().removeAll();
-        page.getContentPane().add(new EcranPrincipal(page, partie));
-        page.revalidate();
-        verifFinTour();
     }//GEN-LAST:event_boutonMondeDesTenebresMouseClicked
 
     private void boutonTerreBeniteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonTerreBeniteMouseClicked
         // TODO add your handling code here:
         partie.jouerEnTerreBenite(page);
         verifFinTour();
-        page.getContentPane().removeAll();
-        page.getContentPane().add(new EcranPrincipal(page, partie));
-        page.revalidate();
-        verifFinTour();
     }//GEN-LAST:event_boutonTerreBeniteMouseClicked
 
     private void boutonForteresseDeGlaceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonForteresseDeGlaceMouseClicked
         // TODO add your handling code here:
         partie.jouerEnForteresseDeGlace(page);
-        verifFinTour();
-        page.getContentPane().removeAll();
-        page.getContentPane().add(new EcranPrincipal(page, partie));
-        page.revalidate();
         verifFinTour();
     }//GEN-LAST:event_boutonForteresseDeGlaceMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1422,7 +1389,6 @@ public class EcranPrincipal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;

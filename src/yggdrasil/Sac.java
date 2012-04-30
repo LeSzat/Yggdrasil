@@ -4,11 +4,12 @@
  */
 package yggdrasil;
 
-import yggdrasil.Pion.GeantDeFeu;
-import yggdrasil.Pion.Vikings;
-import yggdrasil.Pion.Pion;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import yggdrasil.Pion.GeantDeFeu;
+import yggdrasil.Pion.Pion;
+import yggdrasil.Pion.Vikings;
 
 /**
  *
@@ -28,6 +29,7 @@ public class Sac {
         for (int i = 0; i < nbGeantDeFeu; i++) {
             this.lPion.add(new GeantDeFeu());
         }
+        Collections.shuffle(lPion);
 
     }
 

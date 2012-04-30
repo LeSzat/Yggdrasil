@@ -79,8 +79,8 @@ public abstract class Dieu {
                     JOptionPane.INFORMATION_MESSAGE);
         } else {
             Iterator it = lArtefact.values().iterator();
-            Artefact a = null;
-            int rep = -1;
+            Artefact a;
+            int rep;
             while (it.hasNext()) {
                 a = (Artefact) it.next();
                 if (a.getEnnemi().compareTo(en.getNom()) == 0) {
