@@ -23,11 +23,16 @@ public class EcranPrincipal extends javax.swing.JPanel {
      */
     private JFrame page;
     private Partie partie;
+    private JLabel[] tabGeant;
 
     public EcranPrincipal(JFrame page, Partie partie) {
         this.page = page;
         this.partie = partie;
+        this.tabGeant = new JLabel[16];
+
         initComponents();
+
+
         switch (partie.getTb().getVanePostion()) {
             case 0:
                 vanpo0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/vane.png")));
@@ -278,6 +283,62 @@ public class EcranPrincipal extends javax.swing.JPanel {
         } else if (tabIle[4].isSubmergee()) {
             ileNoireSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/ileSub.png")));
         }
+        tabGeant[0] = jLabel28;
+        tabGeant[1] = jLabel29;
+        tabGeant[2] = jLabel30;
+        tabGeant[3] = jLabel31;
+        tabGeant[4] = jLabel32;
+        tabGeant[5] = jLabel33;
+        tabGeant[6] = jLabel34;
+        tabGeant[7] = jLabel35;
+        tabGeant[8] = jLabel36;
+        tabGeant[9] = jLabel37;
+        tabGeant[10] = jLabel38;
+        tabGeant[11] = jLabel39;
+        tabGeant[12] = jLabel40;
+        tabGeant[13] = jLabel41;
+        tabGeant[14] = jLabel42;
+        tabGeant[15] = jLabel43;
+        int tailleGeanDef = partie.getFdg().getGeantDeffausse().size();
+        for (int i = 0; i < tailleGeanDef; i++) {
+            tabGeant[i].setIcon(new javax.swing.ImageIcon(getClass().getResource(partie.getFdg().getGeantDeffausse().get(i).getCheminImage())));
+            if (!partie.getFdg().getGeantDeffausse().get(i).isActif()) {
+                tabGeant[i].setText("Battu!");
+            }
+            tabGeant[i].setHorizontalTextPosition(JLabel.CENTER);
+            tabGeant[i].setVerticalTextPosition(JLabel.CENTER);
+
+        }
+
+
+    }
+
+    private void verifFinTour() {
+        if (partie.getDieuActuel().getPartieRestanteAjouer() == 0) {
+            int j = partie.getlDieu().indexOf(partie.getDieuActuel());
+            partie.getDieuActuel().reset();
+            if ((j + 1) == partie.getlDieu().size()) {
+                partie.setDieuActuel(partie.getlDieu().get(0));
+            } else {
+                partie.setDieuActuel(partie.getlDieu().get(j + 1));
+
+            }
+        }
+
+        page.getContentPane().removeAll();
+        page.getContentPane().add(new EcranPrincipal(page, partie));
+        page.revalidate();
+        if (partie.getDieuActuel().getPartieRestanteAjouer() == partie.getDieuActuel().getMAXPARTIE()) {
+            String e = partie.getPileCarteEnnemis().get(0);
+            DieuTire dt = new DieuTire(page, true, e);
+            dt.setLocationRelativeTo(page);
+            dt.setVisible(true);
+            partie.getPileCarteEnnemis().remove(0);
+            jLabel10.setText("Il vous reste " + partie.getDieuActuel().getPartieRestanteAjouer() + " parties a jouer");
+            jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource(partie.getDieuActuel().getCheminImage())));
+            jLabel2.setText(Integer.toString(partie.getDieuActuel().getlElfes().size()));
+            if(e.compareTo("Hell"))
+        }
     }
 
     /**
@@ -299,6 +360,25 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         panelArtefact = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel57 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -530,6 +610,147 @@ public class EcranPrincipal extends javax.swing.JPanel {
 
         add(jPanel1, java.awt.BorderLayout.WEST);
 
+        jPanel7.setBackground(new java.awt.Color(255, 102, 204));
+        jPanel7.setOpaque(false);
+        jPanel7.setLayout(new java.awt.BorderLayout());
+
+        jPanel57.setBackground(new java.awt.Color(255, 51, 51));
+        jPanel57.setOpaque(false);
+        jPanel57.setLayout(new java.awt.GridLayout(4, 4));
+
+        jLabel28.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel28.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel28.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel28);
+        jPanel57.add(jLabel12);
+
+        jLabel30.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel30.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel30.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel30.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel30);
+
+        jLabel31.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel31.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel31.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel31);
+
+        jLabel29.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel29.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel29.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel29);
+
+        jLabel32.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel32.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel32.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel32);
+
+        jLabel33.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel33.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel33.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel33);
+
+        jLabel34.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel34.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel34.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel34.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel34);
+
+        jLabel35.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel35.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel35.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel35.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel35);
+
+        jLabel36.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel36.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel36.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel36);
+
+        jLabel37.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel37.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel37.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel37);
+
+        jLabel38.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel38.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel38.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel38.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel38);
+
+        jLabel39.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel39.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel39.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel39.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel39);
+
+        jLabel40.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel40.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel40.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel40.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel40);
+
+        jLabel41.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel41.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel41.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel41.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel41);
+
+        jLabel42.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel42.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel42.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel42.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel42);
+
+        jLabel43.setFont(new java.awt.Font("Yggdrasil", 0, 18)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel43.setMaximumSize(new java.awt.Dimension(80, 125));
+        jLabel43.setMinimumSize(new java.awt.Dimension(80, 125));
+        jLabel43.setPreferredSize(new java.awt.Dimension(80, 125));
+        jPanel57.add(jLabel43);
+
+        jPanel7.add(jPanel57, java.awt.BorderLayout.CENTER);
+
+        add(jPanel7, java.awt.BorderLayout.EAST);
+
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -663,6 +884,11 @@ public class EcranPrincipal extends javax.swing.JPanel {
         boutonForteresseDeGlace.setBorderPainted(false);
         boutonForteresseDeGlace.setContentAreaFilled(false);
         boutonForteresseDeGlace.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        boutonForteresseDeGlace.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boutonForteresseDeGlaceMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1048,7 +1274,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1064,9 +1290,8 @@ public class EcranPrincipal extends javax.swing.JPanel {
     private void boutonDeumeureDesElfesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonDeumeureDesElfesMouseClicked
         // TODO add your handling code here:
         partie.jouerEnDemeureDesElfes(page);
-        page.getContentPane().removeAll();
-        page.getContentPane().add(new EcranPrincipal(page, partie));
-        page.revalidate();
+        verifFinTour();
+
 
 
     }//GEN-LAST:event_boutonDeumeureDesElfesMouseClicked
@@ -1074,60 +1299,82 @@ public class EcranPrincipal extends javax.swing.JPanel {
     private void boutonDomaineDesMortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonDomaineDesMortMouseClicked
         // TODO add your handling code here:
         partie.jouerEnDomaineDesMort(page);
+        verifFinTour();
         page.getContentPane().removeAll();
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
-
+        verifFinTour();
     }//GEN-LAST:event_boutonDomaineDesMortMouseClicked
 
     private void boutonRoyaumeDuFeuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonRoyaumeDuFeuMouseClicked
         // TODO add your handling code here:
         partie.jouerEnRoyaumeDuFeu(page);
+        verifFinTour();
         page.getContentPane().removeAll();
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
+        verifFinTour();
     }//GEN-LAST:event_boutonRoyaumeDuFeuMouseClicked
 
     private void boutonMidgardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonMidgardMouseClicked
         // TODO add your handling code here:
         partie.jouerEnMidgard(page);
+        verifFinTour();
         page.getContentPane().removeAll();
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
+        verifFinTour();
     }//GEN-LAST:event_boutonMidgardMouseClicked
 
     private void boutonAsgardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonAsgardMouseClicked
         // TODO add your handling code here:
         partie.jouerAsgard(page);
+        verifFinTour();
         page.getContentPane().removeAll();
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
+        verifFinTour();
     }//GEN-LAST:event_boutonAsgardMouseClicked
 
     private void boutonForgeDesNainsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonForgeDesNainsMouseClicked
         // TODO add your handling code here:
         partie.jouerEnForgeDesNains(page);
+        verifFinTour();
         page.getContentPane().removeAll();
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
+        verifFinTour();
     }//GEN-LAST:event_boutonForgeDesNainsMouseClicked
 
     private void boutonMondeDesTenebresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonMondeDesTenebresMouseClicked
         // TODO add your handling code here:
         partie.jouerMondeDesTenebres(page);
+        verifFinTour();
         page.getContentPane().removeAll();
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
+        verifFinTour();
     }//GEN-LAST:event_boutonMondeDesTenebresMouseClicked
 
     private void boutonTerreBeniteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonTerreBeniteMouseClicked
         // TODO add your handling code here:
         partie.jouerEnTerreBenite(page);
+        verifFinTour();
         page.getContentPane().removeAll();
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
+        verifFinTour();
     }//GEN-LAST:event_boutonTerreBeniteMouseClicked
 
+    private void boutonForteresseDeGlaceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonForteresseDeGlaceMouseClicked
+        // TODO add your handling code here:
+        partie.jouerEnForteresseDeGlace(page);
+        verifFinTour();
+        page.getContentPane().removeAll();
+        page.getContentPane().add(new EcranPrincipal(page, partie));
+        page.revalidate();
+        verifFinTour();
+    }//GEN-LAST:event_boutonForteresseDeGlaceMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fenrir;
     private javax.swing.JLabel Fenrir1;
@@ -1175,9 +1422,26 @@ public class EcranPrincipal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1235,7 +1499,9 @@ public class EcranPrincipal extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel54;
     private javax.swing.JPanel jPanel55;
     private javax.swing.JPanel jPanel56;
+    private javax.swing.JPanel jPanel57;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel jorgumand0;
     private javax.swing.JLabel jorgumand1;

@@ -16,6 +16,8 @@ public class Fafner extends GeantDeGivre{
     public Fafner(MondeDesTenebres mdt) {
         super("Fafner", "Tiwaz");
         this.mdt=mdt;
+        
+        super.setCheminImage("/yggdrasil/vue/fafner.png");
     }
 
     @Override

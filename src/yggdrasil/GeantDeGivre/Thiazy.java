@@ -16,6 +16,8 @@ public class Thiazy extends GeantDeGivre{
     public Thiazy(De de) {
         super("Thiazy", "Tiwaz");
         this.de=de;
+        
+        super.setCheminImage("/yggdrasil/vue/thiazy.png");
     }
 
     @Override

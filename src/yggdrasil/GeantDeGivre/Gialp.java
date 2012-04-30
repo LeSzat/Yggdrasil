@@ -17,6 +17,8 @@ public class Gialp extends GeantDeGivre {
     public Gialp(RoyaumeDuFeu rdf) {
         super("Gialp", "Daeg");
         this.rdf = rdf;
+        
+        super.setCheminImage("/yggdrasil/vue/gialp.png");
     }
     
     @Override

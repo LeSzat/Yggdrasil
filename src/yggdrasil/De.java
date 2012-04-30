@@ -31,7 +31,7 @@ public class De {
         int t1 = -1;
         do {
             t1 = r.nextInt(6) - 1;
-        } while (t1 < 0 && t1 > 5);
+        } while (t1 < 0 || t1 > 5);
         return face[t1].getVal();
     }
 

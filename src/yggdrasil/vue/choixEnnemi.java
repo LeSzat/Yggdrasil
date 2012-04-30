@@ -134,7 +134,10 @@ public class choixEnnemi extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void changerTitre(String s)
+    {
+        jLabel1.setText(s);
+    }
     private void validerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_validerMouseClicked
         // TODO add your handling code here:
         if (jrbHel.isSelected()) {

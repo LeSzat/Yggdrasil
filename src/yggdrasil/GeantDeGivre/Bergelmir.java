@@ -13,6 +13,8 @@ public class Bergelmir extends GeantDeGivre{
     public Bergelmir() {
         super("Bergelmir", "Mann");
         actif=false;
+        
+        super.setCheminImage("/yggdrasil/vue/bergelmir.png");
     }
 
     @Override

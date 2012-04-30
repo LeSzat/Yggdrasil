@@ -16,6 +16,8 @@ public class Gymir extends GeantDeGivre{
     public Gymir(TerreBenite tb) {
         super("Gymir", "Tiwaz");
         this.tb=tb;
+        
+        super.setCheminImage("/yggdrasil/vue/gymir.png");
     }
 
     @Override

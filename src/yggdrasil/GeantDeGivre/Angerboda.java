@@ -14,6 +14,7 @@ public class Angerboda extends GeantDeGivre{
     public Angerboda() {
         super("Angerboda", "Sigel");
         actif=false;
+        super.setCheminImage("/yggdrasil/vue/angerboda.png");
     }
 
     @Override
@@ -25,6 +26,7 @@ public class Angerboda extends GeantDeGivre{
     public void activer() {
         actif=true;
     }
+    
 
    
     

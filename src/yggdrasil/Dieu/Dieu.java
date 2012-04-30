@@ -11,10 +11,12 @@ import yggdrasil.Artefact;
 import yggdrasil.De;
 import yggdrasil.Elfes;
 import yggdrasil.Ennemis.Ennemis;
+import yggdrasil.GeantDeGivre.GeantDeGivre;
 import yggdrasil.Monde.*;
 import yggdrasil.Pion.Vikings;
 import yggdrasil.Sac;
 import yggdrasil.vue.ChoixArtefact;
+import yggdrasil.vue.ChoixGeantDeGivre;
 import yggdrasil.vue.ChoixOrdreCarteEnnemi;
 import yggdrasil.vue.choixEnnemi;
 
@@ -23,7 +25,7 @@ import yggdrasil.vue.choixEnnemi;
  * @author mathias
  */
 public abstract class Dieu {
-
+     private final int MAXPARTIE = 3;
     private ArrayList<Vikings> lVikings;
     private ArrayList<Elfes> lElfes;
     private HashMap<String, Artefact> lArtefact;
@@ -37,9 +39,12 @@ public abstract class Dieu {
         lElfes = new ArrayList<>();
         lArtefact = new HashMap<>();
         sc = new Scanner(System.in);
-        partieRestanteAjouer = 3;
+        partieRestanteAjouer = MAXPARTIE;
     }
-
+    public void reset()
+    {
+        partieRestanteAjouer=MAXPARTIE;
+    }
     public void jouerEnAsgard(Ennemis en, De de, DemeureDesElfes dde, DomaineDesMorts ddm, ForgeDesNains fdn, JFrame page) {
         Asgard as = new Asgard(this, en);
         partieRestanteAjouer--;
@@ -348,7 +353,70 @@ public abstract class Dieu {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void jouerEnForteresseDeGlace() {
+    public void jouerEnForteresseDeGlace(Dieu deus, GeantDeGivre gdg, De de, DomaineDesMorts ddm, DemeureDesElfes dde, JFrame page) {
+
+        int forcedieu = 0;
+        partieRestanteAjouer--;
+        if (!lVikings.isEmpty()) {
+
+            int taille = lVikings.size();
+            String[] choixNbVikings = new String[taille + 1];
+            for (int i = 0; i <= taille; i++) {
+                choixNbVikings[i] = Integer.toString(i);
+            }
+            JOptionPane jop = new JOptionPane();
+            String nbVikaSa = (String) JOptionPane.showInputDialog(page,
+                    "Combien de vikings voulez vous sacrifier",
+                    "Forteresse de glace",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    choixNbVikings,
+                    choixNbVikings[0]);
+            int nbVikaSac = Integer.parseInt(nbVikaSa);
+            forcedieu += nbVikaSac;
+            for (int i = 0; i < nbVikaSac; i++) {
+                lVikings.remove(0);
+            }
+            ddm.ajouterVikings(nbVikaSac);
+        } else {
+            JOptionPane.showMessageDialog(page, "Vous n'avez pas de Viking à sacrifier", "Asgard",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        int det = de.getValeur();
+        forcedieu += de.getValeur();
+
+
+
+
+        JOptionPane.showMessageDialog(page, "La valeur du dé est de " + det, "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
+
+        JOptionPane.showMessageDialog(page, "vous avez une force de " + forcedieu + " votre ennemi a une force de " + gdg.getForce(), "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
+
+        if (!lElfes.isEmpty()) {
+            int nbElfes;
+            int taille = lElfes.size();
+            String[] choixNbElfes = new String[taille + 1];
+            for (int i = 0; i <= taille; i++) {
+                choixNbElfes[i] = Integer.toString(i);
+            }
+            JOptionPane jop = new JOptionPane();
+            String nbVikaSa = (String) JOptionPane.showInputDialog(page,
+                    "Combien de vikings voulez vous sacrifier",
+                    "Forteresse de glace",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    choixNbElfes,
+                    choixNbElfes[0]);
+            nbElfes = Integer.parseInt(nbVikaSa);
+            forcedieu += nbElfes;
+            dde.remettreElfes(this, nbElfes);
+        }
+        if (forcedieu >= gdg.getForce()) {
+            JOptionPane.showMessageDialog(page, "Vous avez gagné!", "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
+            gdg.setActif(false);
+        } else {
+            JOptionPane.showMessageDialog(page, "Vous avez perdu!", "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     public void jouerEnMidgard(JFrame page, Midgard mg, Sac[] tabSac) {
@@ -509,7 +577,9 @@ public abstract class Dieu {
                     partieRestanteAjouer--;
                     choixEnnemi ce = new choixEnnemi(page, true);
                     ce.setLocationRelativeTo(page);
+                    ce.changerTitre("Quel dieu voulez vous faire reculer");
                     ce.setVisible(true);
+                    
                     int choix1 = ce.getChoix();
                     switch (choix1) {
                         case 0:
@@ -534,6 +604,15 @@ public abstract class Dieu {
                     tb.reset();
                     break;
                 case 5:
+                    partieRestanteAjouer--;
+                    ChoixGeantDeGivre cgdg = new ChoixGeantDeGivre(page, true, fdg.getPileGeantDeGivre());
+                    cgdg.setLocationRelativeTo(page);
+                    cgdg.setVisible(true);
+                    GeantDeGivre gdg=cgdg.getGdg();
+                    gdg.setActif(false);
+                    fdg.getPileGeantDeGivre().remove(gdg);
+                    Collections.shuffle(fdg.getPileGeantDeGivre());
+                    fdg.getGeantDeffausse().add(gdg);
                     tb.reset();
                     break;
             }
@@ -575,4 +654,9 @@ public abstract class Dieu {
     public void setPartieRestanteAjouer(int partieRestanteAjouer) {
         this.partieRestanteAjouer = partieRestanteAjouer;
     }
+
+    public  int getMAXPARTIE() {
+        return MAXPARTIE;
+    }
+    
 }

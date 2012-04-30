@@ -13,6 +13,8 @@ public class Thokk extends GeantDeGivre{
     public Thokk() {
         super("Thokk", "Mann");
         actif=false;
+        
+        super.setCheminImage("/yggdrasil/vue/thokk.png");
     }
 
     @Override

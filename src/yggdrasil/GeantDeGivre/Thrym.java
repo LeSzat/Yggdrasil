@@ -13,6 +13,7 @@ public class Thrym extends GeantDeGivre{
     public Thrym() {
         super("Thrym", "Sigel");
         actif=false;
+        super.setCheminImage("/yggdrasil/vue/thrym.png");
     }
 
     @Override

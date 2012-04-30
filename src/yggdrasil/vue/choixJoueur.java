@@ -525,6 +525,11 @@ public class choixJoueur extends javax.swing.JPanel {
         page.getContentPane().removeAll();
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
+        String e = partie.getPileCarteEnnemis().get(0);
+        DieuTire dt = new DieuTire(page, true, e);
+        dt.setLocationRelativeTo(page);
+        dt.setVisible(true);
+        partie.getPileCarteEnnemis().remove(0);
 
 
 

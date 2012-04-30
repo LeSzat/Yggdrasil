@@ -12,7 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import yggdrasil.Dieu.Dieu;
 import yggdrasil.Ennemis.*;
+import yggdrasil.GeantDeGivre.GeantDeGivre;
 import yggdrasil.Monde.*;
+import yggdrasil.vue.ChoixGeantDeGivreCombat;
 import yggdrasil.vue.ChoixSac;
 import yggdrasil.vue.choixEnnemi;
 
@@ -143,12 +145,12 @@ public class Partie {
                 null,
                 choixDieu,
                 choixDieu[0]);
-        for(Dieu d:lDieu)
-        {
-            if(d.getNom().equals(dieu))
-                dieuActuel.jouerMondeDesTenebres(d,page);
+        for (Dieu d : lDieu) {
+            if (d.getNom().equals(dieu)) {
+                dieuActuel.jouerMondeDesTenebres(d, page);
+            }
         }
-        
+
 
     }
 
@@ -173,11 +175,28 @@ public class Partie {
         }
     }
 
-    public void jouerEnForteresseDeGlace() {
+    public void jouerEnForteresseDeGlace(JFrame page) {
+        ArrayList<GeantDeGivre> lGeantTemp= new ArrayList<>();
+         for (GeantDeGivre gdgf : fdg.getGeantDeffausse()) {
+            if (gdgf.isActif()) {
+                lGeantTemp.add(gdgf);
+            }
+        }
+        if (!lGeantTemp.isEmpty()) {
+            ChoixGeantDeGivreCombat cgdg = new ChoixGeantDeGivreCombat(page, true, lGeantTemp);
+            cgdg.setLocationRelativeTo(page);
+            cgdg.setVisible(true);
+            GeantDeGivre gdg = cgdg.getGdg();
+            dieuActuel.jouerEnForteresseDeGlace(dieuActuel, gdg, de, dm, dde, page);
+        }
+        else
+        {
+             JOptionPane.showMessageDialog(page, "Pas de géant de givre à combatrre", "Forteresse de glace", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void jouerEnTerreBenite(JFrame page) {
-        dieuActuel.jouerEnTerreBenite(tb, mg, dm, pileCarteEnnemis, tabEnnemis, fdg,page);
+        dieuActuel.jouerEnTerreBenite(tb, mg, dm, pileCarteEnnemis, tabEnnemis, fdg, page);
     }
 
     public Dieu getDieuActuel() {
@@ -231,4 +250,9 @@ public class Partie {
     public MondeDesTenebres getMdt() {
         return mdt;
     }
+
+    public ArrayList<String> getPileCarteEnnemis() {
+        return pileCarteEnnemis;
+    }
+    
 }

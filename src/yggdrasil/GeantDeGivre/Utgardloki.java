@@ -15,6 +15,7 @@ public class Utgardloki extends GeantDeGivre{
     public Utgardloki(DemeureDesElfes dde) {
         super("Utgardloki", "Sigel");
         this.dde=dde;
+        super.setCheminImage("/yggdrasil/vue/utgardloki.png");
     }
 
     @Override

@@ -13,6 +13,8 @@ public class Hymir extends GeantDeGivre{
     public Hymir() {
         super("Hymir", "Sigel");
         actif=false;
+        
+        super.setCheminImage("/yggdrasil/vue/hymir.png");
     }
 
     @Override

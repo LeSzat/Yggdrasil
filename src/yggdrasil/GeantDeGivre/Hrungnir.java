@@ -13,6 +13,8 @@ public class Hrungnir extends GeantDeGivre{
     public Hrungnir() {
         super("Hrungnir", "Sigel");
         actif=false;
+        
+        super.setCheminImage("/yggdrasil/vue/hrungnir.png");
     }
 
     @Override

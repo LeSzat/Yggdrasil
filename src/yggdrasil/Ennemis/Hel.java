@@ -7,8 +7,6 @@ package yggdrasil.Ennemis;
 import java.util.Iterator;
 import yggdrasil.De;
 import yggdrasil.Monde.DomaineDesMorts;
-import yggdrasil.Monde.RoyaumeDuFeu;
-import yggdrasil.Pion.GeantDeFeu;
 import yggdrasil.Pion.Pion;
 import yggdrasil.Pion.Vikings;
 import yggdrasil.Sac;
@@ -25,25 +23,26 @@ public class Hel extends Ennemis {
         super.setNom("Hel");
         this.de = de;
     }
-    
+
     public void action(Sac[] tabSacs, DomaineDesMorts ddm) {
         this.avancer(1);
         int k = 0;
-        Sac s = tabSacs[de.getCouleur()];        
+        int nb = 0;
+        Sac s = tabSacs[de.getCouleur()];
         int nbViking = s.getNbVikings();
         while (k < this.getForce() && k < nbViking) {
             Iterator it = s.getlPion().iterator();
             Pion p;
-            int nb = 0;
             while (it.hasNext()) {
                 p = (Pion) it.next();
                 if (p.toString().compareTo("Vikings") == 0) {
-                    ddm.getlViking().add((Vikings)p);
+                    ddm.getlViking().add((Vikings) p);
                     s.getlPion().remove(p);
+                    nb++;
                 }
-                
+
             }
-            
+            k++;
         }
     }
 }

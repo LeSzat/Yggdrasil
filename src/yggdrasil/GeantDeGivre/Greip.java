@@ -13,6 +13,8 @@ public class Greip extends GeantDeGivre{
     public Greip() {
         super("Greip", "Daeg");
         actif =false;
+        super.setCheminImage("/yggdrasil/vue/greip.png");
+        
     }
 
       @Override

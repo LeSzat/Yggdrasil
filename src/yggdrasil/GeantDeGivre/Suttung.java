@@ -13,6 +13,7 @@ public class Suttung extends GeantDeGivre{
     public Suttung() {
         super("Suttung", "Sigel");
         actif=false;
+        super.setCheminImage("/yggdrasil/vue/suttung.png");
     }
 
     @Override

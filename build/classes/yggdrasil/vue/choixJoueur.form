@@ -1019,7 +1019,6 @@
               <Color blue="ff" green="ff" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Continuer"/>
-            <Property name="actionCommand" type="java.lang.String" value="Continuer"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true">

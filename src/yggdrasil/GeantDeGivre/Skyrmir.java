@@ -13,6 +13,8 @@ public class Skyrmir extends GeantDeGivre{
     public Skyrmir() {
         super("Skyrmir", "Sigel");
         actif=false;
+        
+        super.setCheminImage("/yggdrasil/vue/skymir.png");
     }
 
     @Override

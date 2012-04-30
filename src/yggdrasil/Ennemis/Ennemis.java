@@ -14,7 +14,7 @@ public abstract class Ennemis {
     private String nom;
 
     public Ennemis() {
-        this.position = 1;
+        this.position = 0;
     }
 
     public int getPosition() {
@@ -34,11 +34,15 @@ public abstract class Ennemis {
     }
 
     public void reculer(int i) {
-        position -= i;
+        if (position > 0) {
+            position -= i;
+        }
     }
 
     public void avancer(int i) {
-        position += i;
+        if (i < 7) {
+            position += i;
+        }
     }
 
     public void setNom(String nom) {

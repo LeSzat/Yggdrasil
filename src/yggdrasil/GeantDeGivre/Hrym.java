@@ -15,6 +15,8 @@ public class Hrym extends GeantDeGivre{
     public Hrym(DomaineDesMorts ddm) {
         super("Hrym", "Sigel");
         this.ddm=ddm;
+        
+        super.setCheminImage("/yggdrasil/vue/hrym.png");
     }
 
     @Override
