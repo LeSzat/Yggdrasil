@@ -9,21 +9,18 @@ package yggdrasil.GeantDeGivre;
  * @author mathias
  */
 public class Hymir extends GeantDeGivre{
-    private boolean actif;
     public Hymir() {
         super("Hymir", "Sigel");
-        actif=false;
-        
         super.setCheminImage("/yggdrasil/vue/hymir.png");
     }
 
     @Override
     public void desactiver() {
-        actif=false;
+        super.setActif(false);
     }
 
     @Override
     public void activer() {
-        actif=true;
+        super.setActif(true);
     }
 }

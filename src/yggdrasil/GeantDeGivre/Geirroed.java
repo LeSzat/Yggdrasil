@@ -15,17 +15,18 @@ public class Geirroed extends GeantDeGivre{
     public Geirroed(ForgeDesNains fdn) {
         super("Geirroed", "Daeg");
         this.fdn=fdn;
-        
         super.setCheminImage("/yggdrasil/vue/geirroed.png");
     }
 
     @Override
     public void desactiver() {
+        super.setActif(false);
         fdn.setActif(true);
     }
 
     @Override
     public void activer() {
+        super.setActif(true);
         fdn.setActif(false);
     }
 

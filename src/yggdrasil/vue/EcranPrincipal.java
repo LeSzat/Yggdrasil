@@ -7,7 +7,9 @@ package yggdrasil.vue;
 import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import yggdrasil.Artefact;
+import yggdrasil.Dieu.Freyja;
 import yggdrasil.Ennemis.Ennemis;
 import yggdrasil.Monde.Ile;
 import yggdrasil.Partie;
@@ -326,25 +328,25 @@ public class EcranPrincipal extends javax.swing.JPanel {
             page.getContentPane().removeAll();
             page.getContentPane().add(new EcranPrincipal(page, partie));
             page.revalidate();
-             if ("Odin".equals(partie.getDieuActuel().getNom())) {
-            String e = partie.getPileCarteEnnemis().get(0);
-            String e1 = partie.getPileCarteEnnemis().get(1);
-            OdinTire dt = new OdinTire(page, true, e,e1);
-            dt.setLocationRelativeTo(page);
-            dt.setVisible(true);
-            int choix=dt.getChoix();
-            String ec=partie.getPileCarteEnnemis().get(choix);
-            partie.getPileCarteEnnemis().remove(ec);
-            partie.appliquerEnnemi(page, ec);
+            if ("Odin".equals(partie.getDieuActuel().getNom())) {
+                String e = partie.getPileCarteEnnemis().get(0);
+                String e1 = partie.getPileCarteEnnemis().get(1);
+                OdinTire dt = new OdinTire(page, true, e, e1);
+                dt.setLocationRelativeTo(page);
+                dt.setVisible(true);
+                int choix = dt.getChoix();
+                String ec = partie.getPileCarteEnnemis().get(choix);
+                partie.getPileCarteEnnemis().remove(ec);
+                partie.appliquerEnnemi(page, ec);
 
-        } else {
-            String e = partie.getPileCarteEnnemis().get(0);
-            DieuTire dt = new DieuTire(page, true, e);
-            dt.setLocationRelativeTo(page);
-            dt.setVisible(true);
-            partie.getPileCarteEnnemis().remove(0);
-            partie.appliquerEnnemi(page, e);
-        }
+            } else {
+                String e = partie.getPileCarteEnnemis().get(0);
+                DieuTire dt = new DieuTire(page, true, e);
+                dt.setLocationRelativeTo(page);
+                dt.setVisible(true);
+                partie.getPileCarteEnnemis().remove(0);
+                partie.appliquerEnnemi(page, e);
+            }
 
         }
         page.getContentPane().removeAll();
@@ -1298,63 +1300,137 @@ public class EcranPrincipal extends javax.swing.JPanel {
 
     private void boutonDeumeureDesElfesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonDeumeureDesElfesMouseClicked
         // TODO add your handling code here:
-        partie.jouerEnDemeureDesElfes(page);
-        verifFinTour();
-
-
-
+        if (partie.getDde().isActif()) {
+            if (!partie.getDieuActuel().isaJoueurEnDeumeureDesElfes()
+                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJoueurEnDeumeureDesElfes() < 2)) {
+                partie.jouerEnDemeureDesElfes(page);
+                verifFinTour();
+            } else {
+                JOptionPane.showMessageDialog(page, "Vous avez déjà joué dans ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(page, "Un géant bloc l'accés à ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_boutonDeumeureDesElfesMouseClicked
 
     private void boutonDomaineDesMortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonDomaineDesMortMouseClicked
         // TODO add your handling code here:
-        partie.jouerEnDomaineDesMort(page);
-        verifFinTour();
-      
+        if (partie.getDm().isActif()) {
+            if (!partie.getDieuActuel().isaJouerEnDomaineDesMorts()
+                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnDomaineDesMorts() < 2)) {
+                partie.jouerEnDomaineDesMort(page);
+                verifFinTour();
+            } else {
+                JOptionPane.showMessageDialog(page, "Vous avez déjà joué dans ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(page, "Un géant bloc l'accés à ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_boutonDomaineDesMortMouseClicked
 
     private void boutonRoyaumeDuFeuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonRoyaumeDuFeuMouseClicked
         // TODO add your handling code here:
-        partie.jouerEnRoyaumeDuFeu(page);
-        verifFinTour();
-      
+        if (partie.getRdf().isActif()) {
+            if (!partie.getDieuActuel().isaJouerEnRoyaumeDuFeu()
+                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnRoyaumeDuFeu() < 2)) {
+                partie.jouerEnRoyaumeDuFeu(page);
+                verifFinTour();
+            } else {
+                JOptionPane.showMessageDialog(page, "Vous avez déjà joué dans ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(page, "Un géant bloc l'accés à ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_boutonRoyaumeDuFeuMouseClicked
 
     private void boutonMidgardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonMidgardMouseClicked
         // TODO add your handling code here:
-        partie.jouerEnMidgard(page);
-        verifFinTour();
-      
+        if (partie.getMg().isActif()) {
+            if (!partie.getDieuActuel().isaJouerEnMidgard()
+                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnMidgard() < 2)) {
+                partie.jouerEnMidgard(page);
+                verifFinTour();
+            } else {
+                JOptionPane.showMessageDialog(page, "Vous avez déjà joué dans ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(page, "Un géant bloc l'accés à ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_boutonMidgardMouseClicked
 
     private void boutonAsgardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonAsgardMouseClicked
         // TODO add your handling code here:
-        partie.jouerAsgard(page);
-        verifFinTour();
-       
+        if (partie.getAs().isActif()) {
+            if (!partie.getDieuActuel().isaJouerEnAsgard()
+                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnAsgard() < 2)) {
+                partie.jouerAsgard(page);
+                verifFinTour();
+            } else {
+                JOptionPane.showMessageDialog(page, "Vous avez déjà joué dans ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(page, "Un géant bloc l'accés à ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_boutonAsgardMouseClicked
 
     private void boutonForgeDesNainsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonForgeDesNainsMouseClicked
         // TODO add your handling code here:
-        partie.jouerEnForgeDesNains(page);
-        verifFinTour();
+        if (partie.getFdn().isActif()) {
+            if (!partie.getDieuActuel().isaJouerEnForgeDesNains()
+                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnForgeDesNains() < 2)) {
+                partie.jouerEnForgeDesNains(page);
+                verifFinTour();
+            } else {
+                JOptionPane.showMessageDialog(page, "Vous avez déjà joué dans ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(page, "Un géant bloc l'accés à ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_boutonForgeDesNainsMouseClicked
 
     private void boutonMondeDesTenebresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonMondeDesTenebresMouseClicked
         // TODO add your handling code here:
-        partie.jouerMondeDesTenebres(page);
-        verifFinTour();
+        if (partie.getMdt().isActif()) {
+            if (!partie.getDieuActuel().isaJouerEnMondeDesTenebres()
+                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnMondeDesTenebres() < 2)) {
+                partie.jouerMondeDesTenebres(page);
+                verifFinTour();
+            } else {
+                JOptionPane.showMessageDialog(page, "Vous avez déjà joué dans ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(page, "Un géant bloc l'accés à ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_boutonMondeDesTenebresMouseClicked
 
     private void boutonTerreBeniteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonTerreBeniteMouseClicked
         // TODO add your handling code here:
-        partie.jouerEnTerreBenite(page);
-        verifFinTour();
+        if (partie.getTb().isActif()) {
+            if (!partie.getDieuActuel().isaJouerEnTerreBenite()
+                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnTerreBenite() < 2)) {
+                partie.jouerEnTerreBenite(page);
+                verifFinTour();
+            } else {
+                JOptionPane.showMessageDialog(page, "Vous avez déjà joué dans ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(page, "Un géant bloc l'accés à ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_boutonTerreBeniteMouseClicked
 
     private void boutonForteresseDeGlaceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonForteresseDeGlaceMouseClicked
         // TODO add your handling code here:
-        partie.jouerEnForteresseDeGlace(page);
-        verifFinTour();
+        if (partie.getFdg().isActif()) {
+            if (!partie.getDieuActuel().isaJouerEnForteresseDeGlace()
+                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnForteresseDeGlace() < 2)) {
+                partie.jouerEnForteresseDeGlace(page);
+                verifFinTour();
+            } else {
+                JOptionPane.showMessageDialog(page, "Vous avez déjà joué dans ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(page, "Un géant bloc l'accés à ce monde", "Yggdrasil", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_boutonForteresseDeGlaceMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fenrir;

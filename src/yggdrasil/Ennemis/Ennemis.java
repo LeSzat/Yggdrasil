@@ -12,9 +12,11 @@ public abstract class Ennemis {
 
     private int position;
     private String nom;
+    private boolean geantActif;
 
     public Ennemis() {
         this.position = 0;
+        geantActif=false;
     }
 
     public int getPosition() {
@@ -61,4 +63,13 @@ public abstract class Ennemis {
     public String getNom() {
         return nom;
     }
+
+    public boolean isGeantActif() {
+        return geantActif;
+    }
+
+    public void setGeantActif(boolean geantActif) {
+        this.geantActif = geantActif;
+    }
+    
 }

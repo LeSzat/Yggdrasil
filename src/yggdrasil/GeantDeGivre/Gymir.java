@@ -16,17 +16,18 @@ public class Gymir extends GeantDeGivre{
     public Gymir(TerreBenite tb) {
         super("Gymir", "Tiwaz");
         this.tb=tb;
-        
         super.setCheminImage("/yggdrasil/vue/gymir.png");
     }
 
     @Override
     public void desactiver() {
-        tb.setActif(true);
+        tb.setActif(false);
+        super.setActif(true);
     }
 
     @Override
     public void activer() {
+        super.setActif(true);
         tb.setActif(false);
     }
 

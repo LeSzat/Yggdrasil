@@ -4,26 +4,30 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Ennemis.Fenrir;
+
 /**
  *
  * @author mathias
  */
 public class Skyrmir extends GeantDeGivre{
-    private boolean actif;
-    public Skyrmir() {
+    private Fenrir fenrir;
+    public Skyrmir(Fenrir fenrir) {
         super("Skyrmir", "Sigel");
-        actif=false;
+        this.fenrir=fenrir;
         
         super.setCheminImage("/yggdrasil/vue/skymir.png");
     }
 
     @Override
     public void desactiver() {
-        actif=false;
+        super.setActif(false);
+        fenrir.setGeantActif(false);
     }
 
     @Override
     public void activer() {
-        actif=true;
+        super.setActif(true);
+        fenrir.setGeantActif(true);
     }
 }

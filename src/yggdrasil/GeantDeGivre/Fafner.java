@@ -22,11 +22,14 @@ public class Fafner extends GeantDeGivre{
 
     @Override
     public void desactiver() {
+        super.setActif(false);
         mdt.setActif(true);
+        
     }
 
     @Override
     public void activer() {
+        super.setActif(true);
         mdt.setActif(false);
     }
 

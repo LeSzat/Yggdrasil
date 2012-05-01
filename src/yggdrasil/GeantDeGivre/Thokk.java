@@ -4,27 +4,30 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Ennemis.Nidhogg;
+
 /**
  *
  * @author mathias
  */
 public class Thokk extends GeantDeGivre{
-    private boolean actif;
-    public Thokk() {
+    private Nidhogg nidhogg;
+    public Thokk(Nidhogg nidhogg) {
         super("Thokk", "Mann");
-        actif=false;
-        
+        this.nidhogg=nidhogg;
         super.setCheminImage("/yggdrasil/vue/thokk.png");
     }
 
     @Override
     public void desactiver() {
-        actif=false;
+        super.setActif(false);
+        nidhogg.setGeantActif(false);
     }
 
     @Override
     public void activer() {
-       actif=false;
+        super.setActif(true);
+       nidhogg.setGeantActif(true);
     }
 
   

@@ -4,30 +4,31 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Ennemis.Hel;
+
 /**
  *
  * @author mathias
  */
-public class Angerboda extends GeantDeGivre{
-    private boolean actif;
-
-    public Angerboda() {
+public class Angerboda extends GeantDeGivre {
+    
+    private Hel hel;
+    
+    public Angerboda(Hel hel) {
         super("Angerboda", "Sigel");
-        actif=false;
         super.setCheminImage("/yggdrasil/vue/angerboda.png");
+        this.hel = hel;
     }
-
+    
     @Override
     public void desactiver() {
-        actif=false;
+        super.setActif(false);
+        hel.setGeantActif(false);
     }
-
+    
     @Override
     public void activer() {
-        actif=true;
+        super.setActif(false);
+        hel.setGeantActif(true);
     }
-    
-
-   
-    
 }

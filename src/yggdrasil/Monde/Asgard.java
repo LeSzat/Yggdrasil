@@ -14,13 +14,11 @@ import yggdrasil.Ennemis.Ennemis;
  */
 public class Asgard extends Monde {
 
-    private Dieu deus;
     private Ennemis ennemis;
     private int forceDieu;
     private int forceEnnemi;
 
-    public Asgard(Dieu deus, Ennemis ennemis) {
-        this.deus = deus;
+    public void commencerCombat(Dieu deus, Ennemis ennemis) {
         this.ennemis = ennemis;
         this.forceDieu = deus.getFORCEINITIALE();
         this.forceEnnemi = setForceEnnemi();
@@ -36,15 +34,29 @@ public class Asgard extends Monde {
 
     private int setForceEnnemi() {
         int pos = ennemis.getPosition();
-        if (pos < 3) {
-            return 5;
-        } else if (pos < 5) {
-            return 6;
-        } else if (pos < 8) {
-            return 7;
-        } else {
-            return 8;
+        if (!ennemis.isGeantActif()) {
+            if (pos < 3) {
+                return 5;
+            } else if (pos < 5) {
+                return 6;
+            } else if (pos < 8) {
+                return 7;
+            } else {
+                return 8;
+            }
         }
+        else{
+            if (pos < 3) {
+                return 6;
+            } else if (pos < 5) {
+                return 7;
+            } else if (pos < 8) {
+                return 8;
+            } else {
+                return 9;
+            }
+        }
+            
     }
 
     public void ajoutArtefact(Artefact ar) {

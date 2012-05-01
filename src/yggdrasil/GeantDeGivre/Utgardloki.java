@@ -4,28 +4,24 @@
  */
 package yggdrasil.GeantDeGivre;
 
-import yggdrasil.Monde.DemeureDesElfes;
-
 /**
  *
  * @author mathias
  */
 public class Utgardloki extends GeantDeGivre{
-    private DemeureDesElfes dde;
-    public Utgardloki(DemeureDesElfes dde) {
+    public Utgardloki() {
         super("Utgardloki", "Sigel");
-        this.dde=dde;
         super.setCheminImage("/yggdrasil/vue/utgardloki.png");
     }
 
     @Override
     public void desactiver() {
-        dde.setActif(true);
+        super.setActif(false);
     }
 
     @Override
     public void activer() {
-        dde.setActif(false);
+        super.setActif(true);
     }
 
    

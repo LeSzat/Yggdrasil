@@ -4,25 +4,29 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Ennemis.Loki;
+
 /**
  *
  * @author mathias
  */
 public class Suttung extends GeantDeGivre{
-    private boolean actif;
-    public Suttung() {
+    private Loki loki;
+    public Suttung(Loki loki) {
         super("Suttung", "Sigel");
-        actif=false;
         super.setCheminImage("/yggdrasil/vue/suttung.png");
+        this.loki=loki;
     }
 
     @Override
     public void desactiver() {
-        actif=false;
+        super.setActif(false);
+        loki.setGeantActif(false);
     }
 
     @Override
     public void activer() {
-        actif=true;
+        super.setActif(true);
+        loki.setGeantActif(true);
     }
 }

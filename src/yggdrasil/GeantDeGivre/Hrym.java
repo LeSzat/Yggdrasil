@@ -21,11 +21,13 @@ public class Hrym extends GeantDeGivre{
 
     @Override
     public void desactiver() {
+        super.setActif(false);
         ddm.setActif(true);
     }
 
     @Override
     public void activer() {
+        super.setActif(true);
         ddm.setActif(false);
     }
 

@@ -23,11 +23,13 @@ public class Gialp extends GeantDeGivre {
     
     @Override
     public void desactiver() {
+        super.setActif(false);
         rdf.setActif(true);
     }
     
     @Override
     public void activer() {
+        super.setActif(true);
         rdf.setActif(false);
     }
 }

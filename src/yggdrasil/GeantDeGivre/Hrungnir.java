@@ -4,27 +4,30 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Monde.DemeureDesElfes;
+
 /**
  *
  * @author mathias
  */
 public class Hrungnir extends GeantDeGivre{
-    private boolean actif;
-    public Hrungnir() {
+    private DemeureDesElfes dde;
+    public Hrungnir(DemeureDesElfes dde) {
         super("Hrungnir", "Sigel");
-        actif=false;
-        
         super.setCheminImage("/yggdrasil/vue/hrungnir.png");
+        this.dde=dde;
     }
 
     @Override
     public void desactiver() {
-        actif=false;
+        super.setActif(false);
+        dde.setActif(true);
     }
 
     @Override
     public void activer() {
-        actif=true;
+        super.setActif(true);
+        dde.setActif(false);
     }
 
    

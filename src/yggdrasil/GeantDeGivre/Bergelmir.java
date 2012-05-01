@@ -9,22 +9,19 @@ package yggdrasil.GeantDeGivre;
  * @author mathias
  */
 public class Bergelmir extends GeantDeGivre{
-    private boolean actif;
     public Bergelmir() {
         super("Bergelmir", "Mann");
-        actif=false;
-        
         super.setCheminImage("/yggdrasil/vue/bergelmir.png");
     }
 
     @Override
     public void desactiver() {
-        actif=false;
+        super.setActif(false);
     }
 
     @Override
     public void activer() {
-        actif=true;
+        super.setActif(true);
     }
 
     

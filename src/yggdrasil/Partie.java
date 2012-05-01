@@ -35,6 +35,7 @@ public class Partie {
     private TerreBenite tb;
     private ForteresseDeGlace fdg;
     private MondeDesTenebres mdt;
+    private Asgard as;
 
     public Partie() {
         de = new De();
@@ -49,6 +50,7 @@ public class Partie {
         this.fdg = new ForteresseDeGlace(this);
         this.mdt = new MondeDesTenebres();
         this.dm = new DomaineDesMorts();
+        as=new Asgard();
     }
 
     public void creerDemeureDesElfes() {
@@ -103,7 +105,7 @@ public class Partie {
         ce.setVisible(true);
         int choix = ce.getChoix();
         if (choix > -1) {
-            dieuActuel.jouerEnAsgard(tabEnnemis[choix], de, dde, dm, fdn, page);
+            dieuActuel.jouerEnAsgard(tabEnnemis[choix], de, dde, dm, fdn,as, page);
         }
     }
 
@@ -312,4 +314,9 @@ public class Partie {
     public Sac[] getTabSac() {
         return tabSac;
     }
+
+    public Asgard getAs() {
+        return as;
+    }
+    
 }

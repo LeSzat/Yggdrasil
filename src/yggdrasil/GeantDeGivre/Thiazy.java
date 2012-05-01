@@ -22,11 +22,13 @@ public class Thiazy extends GeantDeGivre{
 
     @Override
     public void desactiver() {
+        super.setActif(false);
         de.setActif(true);
     }
 
     @Override
     public void activer() {
+        super.setActif(true);
         de.setActif(false);
     }
     

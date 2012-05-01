@@ -4,25 +4,29 @@
  */
 package yggdrasil.GeantDeGivre;
 
+import yggdrasil.Ennemis.Jormungand;
+
 /**
  *
  * @author mathias
  */
 public class Thrym extends GeantDeGivre{
-    private boolean actif;
-    public Thrym() {
+    private Jormungand jormungand;
+    public Thrym(Jormungand jormungand) {
         super("Thrym", "Sigel");
-        actif=false;
         super.setCheminImage("/yggdrasil/vue/thrym.png");
+        this.jormungand=jormungand;
     }
 
     @Override
     public void desactiver() {
-        actif=false;
+        super.setActif(false);
+        jormungand.setGeantActif(false);
     }
 
     @Override
     public void activer() {
-        actif=true;
+        super.setActif(true);
+        jormungand.setGeantActif(true);
     }
 }

@@ -25,30 +25,64 @@ import yggdrasil.vue.choixEnnemi;
  * @author mathias
  */
 public abstract class Dieu {
-     private final int MAXPARTIE = 3;
-     private final int FORCEINITIALE =0;
+
+    private final int MAXPARTIE = 3;
+    private final int FORCEINITIALE = 0;
     private ArrayList<Vikings> lVikings;
     private ArrayList<Elfes> lElfes;
     private HashMap<String, Artefact> lArtefact;
-    private Scanner sc;
     private String nom;
     private String cheminImage;
     private int partieRestanteAjouer;
+    private boolean aJouerEnMidgard;
+    private boolean aJouerEnAsgard;
+    private boolean aJoueurEnDeumeureDesElfes;
+    private boolean aJouerEnMondeDesTenebres;
+    private boolean aJouerEnForgeDesNains;
+    private boolean aJouerEnForteresseDeGlace;
+    private boolean aJouerEnRoyaumeDuFeu;
+    private boolean aJouerEnDomaineDesMorts;
+    private boolean aJouerEnTerreBenite;
 
     protected Dieu() {
         lVikings = new ArrayList<>();
         lElfes = new ArrayList<>();
         lArtefact = new HashMap<>();
-        sc = new Scanner(System.in);
         partieRestanteAjouer = MAXPARTIE;
+
+        aJouerEnMidgard = false;
+        aJouerEnAsgard = false;
+        aJoueurEnDeumeureDesElfes = false;
+        aJouerEnMondeDesTenebres = false;
+        aJouerEnForgeDesNains = false;
+        aJouerEnForteresseDeGlace = false;
+        aJouerEnRoyaumeDuFeu = false;
+        aJouerEnDomaineDesMorts = false;
+        aJouerEnTerreBenite = false;
     }
-    public void reset()
-    {
-        partieRestanteAjouer=MAXPARTIE;
+
+    public void reset() {
+        partieRestanteAjouer = MAXPARTIE;
+        aJouerEnMidgard = false;
+        aJouerEnAsgard = false;
+        aJoueurEnDeumeureDesElfes = false;
+        aJouerEnMondeDesTenebres = false;
+        aJouerEnForgeDesNains = false;
+        aJouerEnForteresseDeGlace = false;
+        aJouerEnRoyaumeDuFeu = false;
+        aJouerEnDomaineDesMorts = false;
+        aJouerEnTerreBenite = false;
     }
-    public void jouerEnAsgard(Ennemis en, De de, DemeureDesElfes dde, DomaineDesMorts ddm, ForgeDesNains fdn, JFrame page) {
-        Asgard as = new Asgard(this, en);
+
+    public void jouerEnAsgard(Ennemis en, De de, DemeureDesElfes dde, DomaineDesMorts ddm, ForgeDesNains fdn, Asgard as, JFrame page) {
+        as.commencerCombat(this, en);
         partieRestanteAjouer--;
+        if (this.getNom().compareTo("Freyja") == 0) {
+            Freyja f = (Freyja) this;
+            f.setaJouerEnAsgard(f.getaJouerEnAsgard() + 1);
+        }
+        aJouerEnAsgard = true;
+
         if (!lVikings.isEmpty()) {
 
             int taille = lVikings.size();
@@ -94,14 +128,20 @@ public abstract class Dieu {
                 }
             }
         }
-        int det = de.getValeur();
+        if (de.isActif()) {
+            int det = de.getValeur();
 
-        as.ajoutValDe(det);
+            as.ajoutValDe(det);
 
-        JOptionPane.showMessageDialog(page, "La valeur du dé est de " + det, "Asgard", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(page, "La valeur du dé est de " + det, "Asgard", JOptionPane.INFORMATION_MESSAGE);
 
-        JOptionPane.showMessageDialog(page, "vous avez une force de " + as.getForceDieu() + " votre ennemi a une force de " + as.getForceEnnemi(), "Asgard", JOptionPane.INFORMATION_MESSAGE);
-
+           
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(page, "Vous ne pouvez pas jeter le dé, il faut battre Thiazy pour pouvour le réutiliser", "Asgard", JOptionPane.INFORMATION_MESSAGE);
+        }
+         JOptionPane.showMessageDialog(page, "vous avez une force de " + as.getForceDieu() + " votre ennemi a une force de " + as.getForceEnnemi(), "Asgard", JOptionPane.INFORMATION_MESSAGE);
         if (!lElfes.isEmpty()) {
             int nbElfes;
             int taille = lElfes.size();
@@ -159,6 +199,12 @@ public abstract class Dieu {
         int choix = ca.getChoix();
         if (choix > -1) {
             partieRestanteAjouer--;
+            if (this.getNom().compareTo("Freyja") == 0) {
+                Freyja f = (Freyja) this;
+                f.setaJouerEnForgeDesNains(f.getaJouerEnForgeDesNains() + 1);
+            }
+            aJouerEnForgeDesNains = true;
+
             if (liste.get(choix).getNiveau() == 1) {
                 fdn.prendre(this, liste.get(choix));
             } else {
@@ -175,6 +221,12 @@ public abstract class Dieu {
                     "Demeure des elfes",
                     JOptionPane.YES_NO_OPTION);
             if (reponse == JOptionPane.YES_OPTION) {
+                if (this.getNom().compareTo("Freyja") == 0) {
+                    Freyja f = (Freyja) this;
+                    f.setaJoueurEnDeumeureDesElfes(f.getaJoueurEnDeumeureDesElfes() + 1);
+                }
+                aJoueurEnDeumeureDesElfes = true;
+
                 partieRestanteAjouer--;
                 lelfes.remove(0);
                 lElfes.add(new Elfes());
@@ -187,6 +239,12 @@ public abstract class Dieu {
     public void jouerMondeDesTenebres(Dieu deus, JFrame page) {
         boolean fin = false;
         partieRestanteAjouer--;
+        if (this.getNom().compareTo("Freyja") == 0) {
+            Freyja f = (Freyja) this;
+            f.setaJouerEnMondeDesTenebres(f.getaJouerEnMondeDesTenebres() + 1);
+        }
+        aJouerEnMondeDesTenebres = true;
+
         while (!fin) {
             String[] choix = {"donner", "prendre", "arrêter"};
             JOptionPane jop = new JOptionPane();
@@ -333,6 +391,12 @@ public abstract class Dieu {
 
     public void jouerEnRoyaumeDuFeu(JFrame page, Sac sac, RoyaumeDuFeu rdf) {
         partieRestanteAjouer--;
+        if (this.getNom().compareTo("Freyja") == 0) {
+            Freyja f = (Freyja) this;
+            f.setaJouerEnRoyaumeDuFeu(f.getaJouerEnRoyaumeDuFeu() + 1);
+        }
+        aJouerEnRoyaumeDuFeu = true;
+
         String message = "";
         int nbVik = 0;
         int nbGean = 0;
@@ -356,8 +420,14 @@ public abstract class Dieu {
 
     public void jouerEnForteresseDeGlace(Dieu deus, GeantDeGivre gdg, De de, DomaineDesMorts ddm, DemeureDesElfes dde, JFrame page) {
 
-        int forcedieu = 0;
+        int forcedieu = deus.getFORCEINITIALE();
         partieRestanteAjouer--;
+        if (this.getNom().compareTo("Freyja") == 0) {
+            Freyja f = (Freyja) this;
+            f.setaJouerEnForteresseDeGlace(f.getaJouerEnForteresseDeGlace() + 1);
+        }
+        aJouerEnForteresseDeGlace = true;
+
         if (!lVikings.isEmpty()) {
 
             int taille = lVikings.size();
@@ -383,13 +453,17 @@ public abstract class Dieu {
             JOptionPane.showMessageDialog(page, "Vous n'avez pas de Viking à sacrifier", "Asgard",
                     JOptionPane.INFORMATION_MESSAGE);
         }
+        
+        
+        if(de.isActif())
+        {
         int det = de.getValeur();
         forcedieu += de.getValeur();
-
-
-
-
         JOptionPane.showMessageDialog(page, "La valeur du dé est de " + det, "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
+        }else
+        {
+             JOptionPane.showMessageDialog(page, "Vous ne pouvez pas utiliser le dé. Thiazy l'a bloqué", "Asgard", JOptionPane.INFORMATION_MESSAGE);
+        }
 
         JOptionPane.showMessageDialog(page, "vous avez une force de " + forcedieu + " votre ennemi a une force de " + gdg.getForce(), "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
 
@@ -423,6 +497,12 @@ public abstract class Dieu {
     public void jouerEnMidgard(JFrame page, Midgard mg, Sac[] tabSac) {
         Ile[] tabIle = mg.getTabIle();
         partieRestanteAjouer--;
+        if (this.getNom().compareTo("Freyja") == 0) {
+            Freyja f = (Freyja) this;
+            f.setaJouerEnMidgard(f.getaJouerEnMidgard() + 1);
+        }
+        aJouerEnMidgard = true;
+
         int rep = JOptionPane.showConfirmDialog(page, "La Valkyrie est sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase() + " voulez vous le bouger?", "Midgard",
                 JOptionPane.YES_NO_OPTION);
         if (rep == JOptionPane.YES_OPTION) {
@@ -484,6 +564,12 @@ public abstract class Dieu {
 
     public void jouerEnDomaineDesMort(JFrame page, Sac sac, DomaineDesMorts dm) {
         partieRestanteAjouer--;
+        if (this.getNom().compareTo("Freyja") == 0) {
+            Freyja f = (Freyja) this;
+            f.setaJouerEnDomaineDesMorts(f.getaJouerEnDomaineDesMorts() + 1);
+        }
+        aJouerEnDomaineDesMorts = true;
+
         int nbViking = dm.getlViking().size();
         int nbVikRet = 0;
         for (int j = 0; j < nbViking && j < 5; j++) {
@@ -509,12 +595,24 @@ public abstract class Dieu {
                 choix[0]);
         if (rang == 0) {
             partieRestanteAjouer--;
+            if (this.getNom().compareTo("Freyja") == 0) {
+                Freyja f = (Freyja) this;
+                f.setaJouerEnTerreBenite(f.getaJouerEnTerreBenite() + 1);
+            }
+            aJouerEnTerreBenite = true;
+
             tb.avancerVane();
         } else if (rang == 1) {
             int position = tb.getVanePostion();
             switch (position) {
                 case 1:
                     partieRestanteAjouer--;
+                    if (this.getNom().compareTo("Freyja") == 0) {
+                        Freyja f = (Freyja) this;
+                        f.setaJouerEnTerreBenite(f.getaJouerEnTerreBenite() + 1);
+                    }
+                    aJouerEnTerreBenite = true;
+
                     Ile[] tabIle = mg.getTabIle();
                     int rep = JOptionPane.showConfirmDialog(page, "La Valkyrie est sur l'ile " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase() + " voulez vous le bouger?", "Midgard",
                             JOptionPane.YES_NO_OPTION);
@@ -557,6 +655,12 @@ public abstract class Dieu {
                     break;
                 case 2:
                     partieRestanteAjouer--;
+                    if (this.getNom().compareTo("Freyja") == 0) {
+                        Freyja f = (Freyja) this;
+                        f.setaJouerEnTerreBenite(f.getaJouerEnTerreBenite() + 1);
+                    }
+                    aJouerEnTerreBenite = true;
+
                     if (!ddm.getlViking().isEmpty()) {
                         ddm.retirerViking();
                         lVikings.add(new Vikings());
@@ -569,6 +673,12 @@ public abstract class Dieu {
                     break;
                 case 3:
                     partieRestanteAjouer--;
+                    if (this.getNom().compareTo("Freyja") == 0) {
+                        Freyja f = (Freyja) this;
+                        f.setaJouerEnTerreBenite(f.getaJouerEnTerreBenite() + 1);
+                    }
+                    aJouerEnTerreBenite = true;
+
                     ChoixOrdreCarteEnnemi coce = new ChoixOrdreCarteEnnemi(page, true, pileCarteEnnemis);
                     coce.setLocationRelativeTo(page);
                     coce.setVisible(true);
@@ -576,11 +686,17 @@ public abstract class Dieu {
                     break;
                 case 4:
                     partieRestanteAjouer--;
+                    if (this.getNom().compareTo("Freyja") == 0) {
+                        Freyja f = (Freyja) this;
+                        f.setaJouerEnTerreBenite(f.getaJouerEnTerreBenite() + 1);
+                    }
+                    aJouerEnTerreBenite = true;
+
                     choixEnnemi ce = new choixEnnemi(page, true);
                     ce.setLocationRelativeTo(page);
                     ce.changerTitre("Quel dieu voulez vous faire reculer");
                     ce.setVisible(true);
-                    
+
                     int choix1 = ce.getChoix();
                     switch (choix1) {
                         case 0:
@@ -606,11 +722,17 @@ public abstract class Dieu {
                     break;
                 case 5:
                     partieRestanteAjouer--;
+                    if (this.getNom().compareTo("Freyja") == 0) {
+                        Freyja f = (Freyja) this;
+                        f.setaJouerEnTerreBenite(f.getaJouerEnTerreBenite() + 1);
+                    }
+                    aJouerEnTerreBenite = true;
+
                     ChoixGeantDeGivre cgdg = new ChoixGeantDeGivre(page, true, fdg.getPileGeantDeGivre());
                     cgdg.setLocationRelativeTo(page);
                     cgdg.setVisible(true);
-                    GeantDeGivre gdg=cgdg.getGdg();
-                    gdg.setActif(false);
+                    GeantDeGivre gdg = cgdg.getGdg();
+                    gdg.desactiver();
                     fdg.getPileGeantDeGivre().remove(gdg);
                     Collections.shuffle(fdg.getPileGeantDeGivre());
                     fdg.getGeantDeffausse().add(gdg);
@@ -656,12 +778,95 @@ public abstract class Dieu {
         this.partieRestanteAjouer = partieRestanteAjouer;
     }
 
-    public  int getMAXPARTIE() {
+    public int getMAXPARTIE() {
         return MAXPARTIE;
     }
 
     public int getFORCEINITIALE() {
         return FORCEINITIALE;
     }
-    
+
+    public boolean isaJouerEnAsgard() {
+        return aJouerEnAsgard;
+    }
+
+    public boolean isaJouerEnDomaineDesMorts() {
+        return aJouerEnDomaineDesMorts;
+    }
+
+    public boolean isaJouerEnForgeDesNains() {
+        return aJouerEnForgeDesNains;
+    }
+
+    public boolean isaJouerEnForteresseDeGlace() {
+        return aJouerEnForteresseDeGlace;
+    }
+
+    public boolean isaJouerEnMidgard() {
+        return aJouerEnMidgard;
+    }
+
+    public boolean isaJouerEnMondeDesTenebres() {
+        return aJouerEnMondeDesTenebres;
+    }
+
+    public boolean isaJouerEnRoyaumeDuFeu() {
+        return aJouerEnRoyaumeDuFeu;
+    }
+
+    public boolean isaJouerEnTerreBenite() {
+        return aJouerEnTerreBenite;
+    }
+
+    public boolean isaJoueurEnDeumeureDesElfes() {
+        return aJoueurEnDeumeureDesElfes;
+    }
+
+    public void setaJouerEnAsgard(boolean aJouerEnAsgard) {
+        this.aJouerEnAsgard = aJouerEnAsgard;
+    }
+
+    public void setaJouerEnDomaineDesMorts(boolean aJouerEnDomaineDesMorts) {
+        this.aJouerEnDomaineDesMorts = aJouerEnDomaineDesMorts;
+    }
+
+    public void setaJouerEnForgeDesNains(boolean aJouerEnForgeDesNains) {
+        this.aJouerEnForgeDesNains = aJouerEnForgeDesNains;
+    }
+
+    public void setaJouerEnForteresseDeGlace(boolean aJouerEnForteresseDeGlace) {
+        this.aJouerEnForteresseDeGlace = aJouerEnForteresseDeGlace;
+    }
+
+    public void setaJouerEnMidgard(boolean aJouerEnMidgard) {
+        this.aJouerEnMidgard = aJouerEnMidgard;
+    }
+
+    public void setaJouerEnMondeDesTenebres(boolean aJouerEnMondeDesTenebres) {
+        this.aJouerEnMondeDesTenebres = aJouerEnMondeDesTenebres;
+    }
+
+    public void setaJouerEnRoyaumeDuFeu(boolean aJouerEnRoyaumeDuFeu) {
+        this.aJouerEnRoyaumeDuFeu = aJouerEnRoyaumeDuFeu;
+    }
+
+    public void setaJouerEnTerreBenite(boolean aJouerEnTerreBenite) {
+        this.aJouerEnTerreBenite = aJouerEnTerreBenite;
+    }
+
+    public void setaJoueurEnDeumeureDesElfes(boolean aJoueurEnDeumeureDesElfes) {
+        this.aJoueurEnDeumeureDesElfes = aJoueurEnDeumeureDesElfes;
+    }
+
+    public void setlArtefact(HashMap<String, Artefact> lArtefact) {
+        this.lArtefact = lArtefact;
+    }
+
+    public void setlElfes(ArrayList<Elfes> lElfes) {
+        this.lElfes = lElfes;
+    }
+
+    public void setlVikings(ArrayList<Vikings> lVikings) {
+        this.lVikings = lVikings;
+    }
 }
