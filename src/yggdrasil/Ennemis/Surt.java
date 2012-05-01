@@ -8,6 +8,7 @@ import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import yggdrasil.De;
+import yggdrasil.Dieu.Dieu;
 import yggdrasil.Monde.RoyaumeDuFeu;
 import yggdrasil.Pion.GeantDeFeu;
 import yggdrasil.Pion.Pion;
@@ -26,11 +27,35 @@ public class Surt extends Ennemis {
         this.de = de;
     }
 
-    public void action(Sac[] tabSacs, RoyaumeDuFeu rdf, JFrame page) {
+    public void action(Sac[] tabSacs, RoyaumeDuFeu rdf, JFrame page, Dieu deus) {
         this.avancer(1);
         int k = 0;
         int nb = 0;
-        Sac s = tabSacs[de.getCouleur()];
+        int val;
+        
+         if ("Tyr".equals(deus.getNom())) {
+            int det1 = de.getCouleur();
+            int det2 = de.getCouleur();
+
+            String[] choix1 = {tabSacs[det1].getCouleur(),tabSacs[det2].getCouleur()};
+            JOptionPane jop1 = new JOptionPane();
+            int rang1 = JOptionPane.showOptionDialog(page,
+                    "Quelle couleur du dé choisissez vous?",
+                    "Avantage Tyr",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    choix1,
+                    choix1[0]);
+            if (rang1 == 0) {
+                val = det1;
+            } else {
+                val = det2;
+            }
+        } else {
+            val = de.getValeur();
+        }
+        Sac s = tabSacs[val];
         int nbGeantDeFeu = rdf.getlGeantDeFeu().size();
         while (k < this.getPuissance() && k < nbGeantDeFeu) {
             Iterator it = s.getlPion().iterator();

@@ -326,12 +326,26 @@ public class EcranPrincipal extends javax.swing.JPanel {
             page.getContentPane().removeAll();
             page.getContentPane().add(new EcranPrincipal(page, partie));
             page.revalidate();
+             if ("Odin".equals(partie.getDieuActuel().getNom())) {
+            String e = partie.getPileCarteEnnemis().get(0);
+            String e1 = partie.getPileCarteEnnemis().get(1);
+            OdinTire dt = new OdinTire(page, true, e,e1);
+            dt.setLocationRelativeTo(page);
+            dt.setVisible(true);
+            int choix=dt.getChoix();
+            String ec=partie.getPileCarteEnnemis().get(choix);
+            partie.getPileCarteEnnemis().remove(ec);
+            partie.appliquerEnnemi(page, ec);
+
+        } else {
             String e = partie.getPileCarteEnnemis().get(0);
             DieuTire dt = new DieuTire(page, true, e);
             dt.setLocationRelativeTo(page);
             dt.setVisible(true);
             partie.getPileCarteEnnemis().remove(0);
             partie.appliquerEnnemi(page, e);
+        }
+
         }
         page.getContentPane().removeAll();
         page.getContentPane().add(new EcranPrincipal(page, partie));

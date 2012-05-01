@@ -14,13 +14,14 @@ public class DieuTire extends javax.swing.JDialog {
      * Creates new form DieuTire
      */
     private static String e;
-    public DieuTire(java.awt.Frame parent, boolean modal,String e) {
+
+    public DieuTire(java.awt.Frame parent, boolean modal, String e) {
         super(parent, modal);
-        DieuTire.e=e;
+        DieuTire.e = e;
         initComponents();
-    
-                labelCarteEnnemi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/"+e+"C.png")));
-          
+
+        labelCarteEnnemi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + e + "C.png")));
+
     }
 
     /**
@@ -121,6 +122,7 @@ public class DieuTire extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
+
     /**
      * @param args the command line arguments
      */
@@ -159,7 +161,7 @@ public class DieuTire extends javax.swing.JDialog {
 
             @Override
             public void run() {
-                DieuTire dialog = new DieuTire(new javax.swing.JFrame(), true,e);
+                DieuTire dialog = new DieuTire(new javax.swing.JFrame(), true, e);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

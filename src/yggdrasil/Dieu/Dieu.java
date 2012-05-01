@@ -26,6 +26,7 @@ import yggdrasil.vue.choixEnnemi;
  */
 public abstract class Dieu {
      private final int MAXPARTIE = 3;
+     private final int FORCEINITIALE =0;
     private ArrayList<Vikings> lVikings;
     private ArrayList<Elfes> lElfes;
     private HashMap<String, Artefact> lArtefact;
@@ -657,6 +658,10 @@ public abstract class Dieu {
 
     public  int getMAXPARTIE() {
         return MAXPARTIE;
+    }
+
+    public int getFORCEINITIALE() {
+        return FORCEINITIALE;
     }
     
 }

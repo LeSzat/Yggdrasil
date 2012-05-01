@@ -22,7 +22,7 @@ public class Asgard extends Monde {
     public Asgard(Dieu deus, Ennemis ennemis) {
         this.deus = deus;
         this.ennemis = ennemis;
-        this.forceDieu = 0;
+        this.forceDieu = deus.getFORCEINITIALE();
         this.forceEnnemi = setForceEnnemi();
     }
 

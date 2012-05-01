@@ -7,7 +7,6 @@ package yggdrasil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import yggdrasil.Dieu.Dieu;
@@ -36,7 +35,6 @@ public class Partie {
     private TerreBenite tb;
     private ForteresseDeGlace fdg;
     private MondeDesTenebres mdt;
-    private Scanner sc;
 
     public Partie() {
         de = new De();
@@ -51,7 +49,6 @@ public class Partie {
         this.fdg = new ForteresseDeGlace(this);
         this.mdt = new MondeDesTenebres();
         this.dm = new DomaineDesMorts();
-        sc = new Scanner(System.in);
     }
 
     public void creerDemeureDesElfes() {
@@ -194,13 +191,13 @@ public class Partie {
     public void appliquerEnnemi(JFrame page, String e) {
         if (e.compareTo("Hel") == 0) {
             Hel hel = (Hel) tabEnnemis[0];
-            hel.action(tabSac, dm, page);
+            hel.action(tabSac, dm, page,dieuActuel);
         } else if (e.compareTo("Surt") == 0) {
             Surt surt = (Surt) tabEnnemis[1];
-            surt.action(tabSac, rdf, page);
+            surt.action(tabSac, rdf, page,dieuActuel);
         } else if (e.compareTo("Jormungand") == 0) {
             Jormungand jormungand = (Jormungand) tabEnnemis[2];
-            jormungand.action(mg, page);
+            jormungand.action(mg, page,dieuActuel);
         } else if (e.compareTo("Loki") == 0) {
             Loki loki = (Loki) tabEnnemis[3];
             loki.action(fdg);
@@ -211,7 +208,7 @@ public class Partie {
             Fenrir fenrir = (Fenrir) tabEnnemis[5];
             fenrir.action(page);
             while (!fenrir.isCalmer()) {
-                fenrir.essayerDeCalmer(page);
+                fenrir.essayerDeCalmer(page,dieuActuel);
                 dieuActuel.setPartieRestanteAjouer(dieuActuel.getPartieRestanteAjouer() - 1);
                 if (dieuActuel.getPartieRestanteAjouer() == 0) {
                     int j = lDieu.indexOf(dieuActuel);
@@ -221,12 +218,26 @@ public class Partie {
                     } else {
                         dieuActuel = (lDieu.get(j + 1));
                     }
-                    String e1 = pileCarteEnnemis.get(0);
-                    DieuTire dt = new DieuTire(page, true, e1);
-                    dt.setLocationRelativeTo(page);
-                    dt.setVisible(true);
-                    pileCarteEnnemis.remove(0);
-                    appliquerEnnemi(page, e1);
+                    if ("Odin".equals(dieuActuel.getNom())) {
+                        String e2 = pileCarteEnnemis.get(0);
+                        String e1 = pileCarteEnnemis.get(1);
+                        OdinTire dt = new OdinTire(page, true, e2, e1);
+                        dt.setLocationRelativeTo(page);
+                        dt.setVisible(true);
+                        int choix = dt.getChoix();
+                        String ec = pileCarteEnnemis.get(choix);
+                        pileCarteEnnemis.remove(ec);
+                        appliquerEnnemi(page, ec);
+
+                    } else {
+                        String e1 = pileCarteEnnemis.get(0);
+                        DieuTire dt = new DieuTire(page, true, e1);
+                        dt.setLocationRelativeTo(page);
+                        dt.setVisible(true);
+                        pileCarteEnnemis.remove(0);
+                        appliquerEnnemi(page, e1);
+                    }
+
                     page.getContentPane().removeAll();
                     page.getContentPane().add(new EcranPrincipal(page, this));
                     page.revalidate();
