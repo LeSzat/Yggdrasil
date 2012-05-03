@@ -10,28 +10,28 @@ import yggdrasil.Ennemis.Surt;
  *
  * @author mathias
  */
-public class Greip extends GeantDeGivre{
+public class Greip extends GeantDeGivre {
+
     private Surt surt;
-    public Greip(Surt surt) {
-        super("Greip", "Daeg");
+
+    public Greip(Surt surt, boolean morceauRune) {
+        super("Greip", morceauRune);
         super.setCheminImage("/yggdrasil/vue/greip.png");
-        this.surt=surt;
-        
+        this.surt = surt;
+
     }
 
-      @Override
+    @Override
     public void desactiver() {
-          super.setActif(false);
-          surt.setGeantActif(false);
-                 
+        super.setActif(false);
+        surt.setGeantActif(false);
+        super.setMorceauRune(true);
     }
 
     @Override
     public void activer() {
-         super.setActif(true);
-          surt.setGeantActif(true);
-    
+        super.setActif(true);
+        surt.setGeantActif(true);
+
     }
-    
-    
 }

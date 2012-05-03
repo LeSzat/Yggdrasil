@@ -13,8 +13,8 @@ import yggdrasil.Monde.TerreBenite;
 public class Gymir extends GeantDeGivre{
     private TerreBenite tb;
 
-    public Gymir(TerreBenite tb) {
-        super("Gymir", "Tiwaz");
+    public Gymir(TerreBenite tb, boolean morceauRune) {
+        super("Gymir", morceauRune);
         this.tb=tb;
         super.setCheminImage("/yggdrasil/vue/gymir.png");
     }
@@ -23,6 +23,7 @@ public class Gymir extends GeantDeGivre{
     public void desactiver() {
         tb.setActif(false);
         super.setActif(true);
+        super.setMorceauRune(true);
     }
 
     @Override

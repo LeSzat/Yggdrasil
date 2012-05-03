@@ -8,24 +8,32 @@ package yggdrasil.Dieu;
  *
  * @author mathias
  */
-public class Frey extends Dieu{
+public class Frey extends Dieu {
+
     private final int MAXPARTIE = 4;
-    public Frey()
-    {
+
+    public Frey() {
         super.setNom("Frey");
         super.setCheminImage("/yggdrasil/vue/Frey.jpg");
         super.setPartieRestanteAjouer(MAXPARTIE);
-        
+
     }
-    
+
     @Override
-    public void reset()
-    {
-        super.setPartieRestanteAjouer(MAXPARTIE);
+    public void reset() {
+        if (Dieu.pouvoirDieu) {
+            super.setPartieRestanteAjouer(MAXPARTIE);
+        } else {
+            super.reset();
+        }
     }
+
     @Override
-    public  int getMAXPARTIE() {
-        return MAXPARTIE;
+    public int getMAXPARTIE() {
+        if (Dieu.pouvoirDieu) {
+            return MAXPARTIE;
+        } else {
+            return super.getMAXPARTIE();
+        }
     }
 }
- 

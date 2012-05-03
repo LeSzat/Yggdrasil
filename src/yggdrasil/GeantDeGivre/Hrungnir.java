@@ -12,8 +12,8 @@ import yggdrasil.Monde.DemeureDesElfes;
  */
 public class Hrungnir extends GeantDeGivre{
     private DemeureDesElfes dde;
-    public Hrungnir(DemeureDesElfes dde) {
-        super("Hrungnir", "Sigel");
+    public Hrungnir(DemeureDesElfes dde, boolean morceauRune) {
+        super("Hrungnir", morceauRune);
         super.setCheminImage("/yggdrasil/vue/hrungnir.png");
         this.dde=dde;
     }
@@ -22,6 +22,7 @@ public class Hrungnir extends GeantDeGivre{
     public void desactiver() {
         super.setActif(false);
         dde.setActif(true);
+        super.setMorceauRune(true);
     }
 
     @Override

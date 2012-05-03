@@ -43,13 +43,14 @@ public abstract class Dieu {
     private boolean aJouerEnRoyaumeDuFeu;
     private boolean aJouerEnDomaineDesMorts;
     private boolean aJouerEnTerreBenite;
+    public static boolean pouvoirDieu;
 
     protected Dieu() {
         lVikings = new ArrayList<>();
         lElfes = new ArrayList<>();
         lArtefact = new HashMap<>();
         partieRestanteAjouer = MAXPARTIE;
-
+        pouvoirDieu=true;
         aJouerEnMidgard = false;
         aJouerEnAsgard = false;
         aJoueurEnDeumeureDesElfes = false;
@@ -59,6 +60,10 @@ public abstract class Dieu {
         aJouerEnRoyaumeDuFeu = false;
         aJouerEnDomaineDesMorts = false;
         aJouerEnTerreBenite = false;
+        for(int i =0;i<100;i++)
+        {
+            lVikings.add(new Vikings());
+        }
     }
 
     public void reset() {
@@ -130,18 +135,14 @@ public abstract class Dieu {
         }
         if (de.isActif()) {
             int det = de.getValeur();
-
             as.ajoutValDe(det);
-
             JOptionPane.showMessageDialog(page, "La valeur du dé est de " + det, "Asgard", JOptionPane.INFORMATION_MESSAGE);
 
-           
-        }
-        else
-        {
+
+        } else {
             JOptionPane.showMessageDialog(page, "Vous ne pouvez pas jeter le dé, il faut battre Thiazy pour pouvour le réutiliser", "Asgard", JOptionPane.INFORMATION_MESSAGE);
         }
-         JOptionPane.showMessageDialog(page, "vous avez une force de " + as.getForceDieu() + " votre ennemi a une force de " + as.getForceEnnemi(), "Asgard", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(page, "vous avez une force de " + as.getForceDieu() + " votre ennemi a une force de " + as.getForceEnnemi(), "Asgard", JOptionPane.INFORMATION_MESSAGE);
         if (!lElfes.isEmpty()) {
             int nbElfes;
             int taille = lElfes.size();
@@ -453,16 +454,14 @@ public abstract class Dieu {
             JOptionPane.showMessageDialog(page, "Vous n'avez pas de Viking à sacrifier", "Asgard",
                     JOptionPane.INFORMATION_MESSAGE);
         }
-        
-        
-        if(de.isActif())
-        {
-        int det = de.getValeur();
-        forcedieu += de.getValeur();
-        JOptionPane.showMessageDialog(page, "La valeur du dé est de " + det, "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
-        }else
-        {
-             JOptionPane.showMessageDialog(page, "Vous ne pouvez pas utiliser le dé. Thiazy l'a bloqué", "Asgard", JOptionPane.INFORMATION_MESSAGE);
+
+
+        if (de.isActif()) {
+            int det = de.getValeur();
+            forcedieu += det;
+            JOptionPane.showMessageDialog(page, "La valeur du dé est de " + det, "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(page, "Vous ne pouvez pas utiliser le dé. Thiazy l'a bloqué", "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
         }
 
         JOptionPane.showMessageDialog(page, "vous avez une force de " + forcedieu + " votre ennemi a une force de " + gdg.getForce(), "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
@@ -488,7 +487,7 @@ public abstract class Dieu {
         }
         if (forcedieu >= gdg.getForce()) {
             JOptionPane.showMessageDialog(page, "Vous avez gagné!", "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
-            gdg.setActif(false);
+            gdg.desactiver();
         } else {
             JOptionPane.showMessageDialog(page, "Vous avez perdu!", "Forteresse de glace", JOptionPane.INFORMATION_MESSAGE);
         }

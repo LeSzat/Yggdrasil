@@ -10,30 +10,19 @@ package yggdrasil.Rune;
  */
 public abstract class Rune {
     private String nom;
-    private boolean actif;
     
     public Rune(String nom)
     {
-        this.nom = nom;
-        this.actif=false;
+        this.nom = nom;;
     }
     @Override
     public String toString()
     {
-        return "Rune : "+nom;
-    }
-
-    public boolean isActif() {
-        return actif;
+        return nom;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public void setActif(boolean actif) {
-        this.actif = actif;
-    }
-    
-    
 }

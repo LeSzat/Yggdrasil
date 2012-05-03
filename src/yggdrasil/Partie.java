@@ -47,18 +47,16 @@ public class Partie {
         this.fdn = new ForgeDesNains();
         this.rdf = new RoyaumeDuFeu();
         this.tb = new TerreBenite();
-        this.fdg = new ForteresseDeGlace(this);
         this.mdt = new MondeDesTenebres();
         this.dm = new DomaineDesMorts();
-        as=new Asgard();
-    }
-
-    public void creerDemeureDesElfes() {
-        dde = new DemeureDesElfes(lDieu.size());
+        as = new Asgard();
+        dde = new DemeureDesElfes();
+        this.fdg = new ForteresseDeGlace(this);
     }
 
     public void ajouterDieu(Dieu d) {
         this.lDieu.add(d);
+        dde.getlElfes().add(new Elfes());
     }
 
     private void creationEnnemis() {
@@ -81,12 +79,12 @@ public class Partie {
     private void creationPileEnnemis() {
         pileCarteEnnemis = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
-            pileCarteEnnemis.add("Fenrir");
-            pileCarteEnnemis.add("Hel");
-            pileCarteEnnemis.add("Jormungand");
+//            pileCarteEnnemis.add("Fenrir");
+//            pileCarteEnnemis.add("Hel");
+//            pileCarteEnnemis.add("Jormungand");
             pileCarteEnnemis.add("Loki");
-            pileCarteEnnemis.add("Nidhogg");
-            pileCarteEnnemis.add("Surt");
+//            pileCarteEnnemis.add("Nidhogg");
+//            pileCarteEnnemis.add("Surt");
         }
         Collections.shuffle(pileCarteEnnemis);
     }
@@ -105,7 +103,7 @@ public class Partie {
         ce.setVisible(true);
         int choix = ce.getChoix();
         if (choix > -1) {
-            dieuActuel.jouerEnAsgard(tabEnnemis[choix], de, dde, dm, fdn,as, page);
+            dieuActuel.jouerEnAsgard(tabEnnemis[choix], de, dde, dm, fdn, as, page);
         }
     }
 
@@ -188,18 +186,71 @@ public class Partie {
         } else {
             JOptionPane.showMessageDialog(page, "Pas de géant de givre à combatrre", "Forteresse de glace", JOptionPane.ERROR_MESSAGE);
         }
+        verifRunes(page);
+    }
+
+    public void verifRunes(JFrame page) {
+        boolean activerDaeg = true;
+        boolean activerMann = true;
+        boolean activerSigel = true;
+        boolean activerTiwaz = true;
+        for (boolean b : fdg.getRuneDaeg()) {
+            if (!b) {
+                activerDaeg = false;
+            }
+        }
+        for (boolean b : fdg.getRuneMann()) {
+            if (!b) {
+                activerMann = false;
+            }
+        }
+        for (boolean b : fdg.getRuneSigel()) {
+            if (!b) {
+                activerSigel = false;
+            }
+        }
+        for (boolean b : fdg.getRuneTiwaz()) {
+            if (!b) {
+                activerTiwaz = false;
+            }
+        }
+        if (activerSigel) {
+            fdg.jouerSigel(page, this);
+            for (boolean b : fdg.getRuneSigel()) {
+                b=false;
+            }
+        }
+        if (activerDaeg) {
+            fdg.jouerDaeg(page, this);
+            for (boolean b : fdg.getRuneDaeg()) {
+                b=false;
+            }
+        
+        }
+        if (activerTiwaz) {
+            fdg.jouerTiwaz(page, this);
+            for (boolean b : fdg.getRuneTiwaz()) {
+                b=false;
+            }
+        }
+        if (activerMann) {
+            fdg.jouerMann(page, this);
+            for (boolean b : fdg.getRuneMann()) {
+                b=false;
+            }
+        }
     }
 
     public void appliquerEnnemi(JFrame page, String e) {
         if (e.compareTo("Hel") == 0) {
             Hel hel = (Hel) tabEnnemis[0];
-            hel.action(tabSac, dm, page,dieuActuel);
+            hel.action(tabSac, dm, page, dieuActuel);
         } else if (e.compareTo("Surt") == 0) {
             Surt surt = (Surt) tabEnnemis[1];
-            surt.action(tabSac, rdf, page,dieuActuel);
+            surt.action(tabSac, rdf, page, dieuActuel);
         } else if (e.compareTo("Jormungand") == 0) {
             Jormungand jormungand = (Jormungand) tabEnnemis[2];
-            jormungand.action(mg, page,dieuActuel);
+            jormungand.action(mg, page, dieuActuel);
         } else if (e.compareTo("Loki") == 0) {
             Loki loki = (Loki) tabEnnemis[3];
             loki.action(fdg);
@@ -210,7 +261,7 @@ public class Partie {
             Fenrir fenrir = (Fenrir) tabEnnemis[5];
             fenrir.action(page);
             while (!fenrir.isCalmer()) {
-                fenrir.essayerDeCalmer(page,dieuActuel);
+                fenrir.essayerDeCalmer(page, dieuActuel);
                 dieuActuel.setPartieRestanteAjouer(dieuActuel.getPartieRestanteAjouer() - 1);
                 if (dieuActuel.getPartieRestanteAjouer() == 0) {
                     int j = lDieu.indexOf(dieuActuel);
@@ -220,7 +271,7 @@ public class Partie {
                     } else {
                         dieuActuel = (lDieu.get(j + 1));
                     }
-                    if ("Odin".equals(dieuActuel.getNom())) {
+                    if ("Odin".equals(dieuActuel.getNom()) && Dieu.pouvoirDieu) {
                         String e2 = pileCarteEnnemis.get(0);
                         String e1 = pileCarteEnnemis.get(1);
                         OdinTire dt = new OdinTire(page, true, e2, e1);
@@ -318,5 +369,4 @@ public class Partie {
     public Asgard getAs() {
         return as;
     }
-    
 }

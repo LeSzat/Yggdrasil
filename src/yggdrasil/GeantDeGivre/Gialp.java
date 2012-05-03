@@ -14,10 +14,9 @@ public class Gialp extends GeantDeGivre {
 
     private RoyaumeDuFeu rdf;
 
-    public Gialp(RoyaumeDuFeu rdf) {
-        super("Gialp", "Daeg");
+    public Gialp(RoyaumeDuFeu rdf, boolean morceauRune) {
+        super("Gialp", morceauRune);
         this.rdf = rdf;
-        
         super.setCheminImage("/yggdrasil/vue/gialp.png");
     }
     
@@ -25,6 +24,8 @@ public class Gialp extends GeantDeGivre {
     public void desactiver() {
         super.setActif(false);
         rdf.setActif(true);
+        super.setMorceauRune(true);
+        
     }
     
     @Override

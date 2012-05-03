@@ -9,40 +9,47 @@ package yggdrasil.GeantDeGivre;
  * @author mathias
  */
 public abstract class GeantDeGivre {
+
+    protected boolean geantActif;
     private String nom;
-    private String nomRune;
     private boolean actif;
     private String cheminImage;
-    private int force;
+    private boolean morceauRune;
 
-    public GeantDeGivre(String nom, String nomRune) {
+    public GeantDeGivre(String nom, boolean morceauRune) {
+        geantActif = true;
         this.nom = nom;
-        this.nomRune = nomRune;
-        force=3;
+        this.morceauRune = morceauRune;
     }
 
     public abstract void desactiver();
+
     public abstract void activer();
 
     public boolean isActif() {
         return actif;
     }
 
-   
+    
 
     public String getNom() {
         return nom;
     }
 
-    public String getNomRune() {
-        return nomRune;
+    public boolean isMorceauRune() {
+        return morceauRune;
     }
+
+    public void setMorceauRune(boolean morceauRune) {
+        this.morceauRune = morceauRune;
+    }
+
+    
 
     public void setActif(boolean actif) {
         this.actif = actif;
     }
 
-   
     public String getCheminImage() {
         return cheminImage;
     }
@@ -52,16 +59,15 @@ public abstract class GeantDeGivre {
     }
 
     public int getForce() {
-        return force;
-    }
-
-    public void setForce(int force) {
-        this.force = force;
+        if (geantActif) {
+            return 3;
+        } else {
+            return 4;
+        }
     }
     
     @Override
-    public String toString()
-    {
-        return nom+" "+nomRune;
+    public String toString() {
+        return nom;
     }
 }

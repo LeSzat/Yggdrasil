@@ -29,6 +29,10 @@ public class Jormungand extends Ennemis {
         int k = 0;
         int val;
         Ile[] tabIle = mg.getTabIle();
+        for(Ile ile:tabIle)
+        {
+            ile.setSubmergee(false);
+        }
          if ("Tyr".equals(deus.getNom())) {
             int det1 = de.getCouleur();
             int det2 = de.getCouleur();

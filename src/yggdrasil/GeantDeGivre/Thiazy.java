@@ -13,10 +13,9 @@ import yggdrasil.De;
 public class Thiazy extends GeantDeGivre{
 
     private De de;
-    public Thiazy(De de) {
-        super("Thiazy", "Tiwaz");
+    public Thiazy(De de, boolean morceauRune) {
+        super("Thiazy", morceauRune);
         this.de=de;
-        
         super.setCheminImage("/yggdrasil/vue/thiazy.png");
     }
 
@@ -24,6 +23,7 @@ public class Thiazy extends GeantDeGivre{
     public void desactiver() {
         super.setActif(false);
         de.setActif(true);
+        super.setMorceauRune(true);
     }
 
     @Override

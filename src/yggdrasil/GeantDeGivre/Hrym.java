@@ -12,10 +12,9 @@ import yggdrasil.Monde.DomaineDesMorts;
  */
 public class Hrym extends GeantDeGivre{
     private DomaineDesMorts ddm;
-    public Hrym(DomaineDesMorts ddm) {
-        super("Hrym", "Sigel");
+    public Hrym(DomaineDesMorts ddm, boolean morceauRune) {
+        super("Hrym", morceauRune);
         this.ddm=ddm;
-        
         super.setCheminImage("/yggdrasil/vue/hrym.png");
     }
 
@@ -23,6 +22,7 @@ public class Hrym extends GeantDeGivre{
     public void desactiver() {
         super.setActif(false);
         ddm.setActif(true);
+        super.setMorceauRune(true);
     }
 
     @Override

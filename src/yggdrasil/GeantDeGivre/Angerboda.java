@@ -14,8 +14,8 @@ public class Angerboda extends GeantDeGivre {
     
     private Hel hel;
     
-    public Angerboda(Hel hel) {
-        super("Angerboda", "Sigel");
+    public Angerboda(Hel hel,boolean morceauRune) {
+        super("Angerboda",morceauRune);
         super.setCheminImage("/yggdrasil/vue/angerboda.png");
         this.hel = hel;
     }
@@ -24,11 +24,12 @@ public class Angerboda extends GeantDeGivre {
     public void desactiver() {
         super.setActif(false);
         hel.setGeantActif(false);
+        super.setMorceauRune(true);
     }
     
     @Override
     public void activer() {
-        super.setActif(false);
+        super.setActif(true);
         hel.setGeantActif(true);
     }
 }

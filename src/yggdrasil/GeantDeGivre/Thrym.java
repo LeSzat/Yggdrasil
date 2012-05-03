@@ -12,8 +12,8 @@ import yggdrasil.Ennemis.Jormungand;
  */
 public class Thrym extends GeantDeGivre{
     private Jormungand jormungand;
-    public Thrym(Jormungand jormungand) {
-        super("Thrym", "Sigel");
+    public Thrym(Jormungand jormungand,boolean morceauRune) {
+        super("Thrym", morceauRune);
         super.setCheminImage("/yggdrasil/vue/thrym.png");
         this.jormungand=jormungand;
     }
@@ -22,6 +22,7 @@ public class Thrym extends GeantDeGivre{
     public void desactiver() {
         super.setActif(false);
         jormungand.setGeantActif(false);
+        super.setMorceauRune(true);
     }
 
     @Override

@@ -12,8 +12,8 @@ import yggdrasil.Ennemis.Nidhogg;
  */
 public class Thokk extends GeantDeGivre{
     private Nidhogg nidhogg;
-    public Thokk(Nidhogg nidhogg) {
-        super("Thokk", "Mann");
+    public Thokk(Nidhogg nidhogg, boolean morceauRune) {
+        super("Thokk", morceauRune);
         this.nidhogg=nidhogg;
         super.setCheminImage("/yggdrasil/vue/thokk.png");
     }
@@ -22,6 +22,7 @@ public class Thokk extends GeantDeGivre{
     public void desactiver() {
         super.setActif(false);
         nidhogg.setGeantActif(false);
+        super.setMorceauRune(true);
     }
 
     @Override

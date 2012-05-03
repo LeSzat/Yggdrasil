@@ -13,10 +13,9 @@ import yggdrasil.Monde.MondeDesTenebres;
 public class Fafner extends GeantDeGivre{
 
     private MondeDesTenebres mdt;
-    public Fafner(MondeDesTenebres mdt) {
-        super("Fafner", "Tiwaz");
+    public Fafner(MondeDesTenebres mdt, boolean morceauRune) {
+        super("Fafner", morceauRune);
         this.mdt=mdt;
-        
         super.setCheminImage("/yggdrasil/vue/fafner.png");
     }
 
@@ -24,6 +23,7 @@ public class Fafner extends GeantDeGivre{
     public void desactiver() {
         super.setActif(false);
         mdt.setActif(true);
+        super.setMorceauRune(true);
         
     }
 

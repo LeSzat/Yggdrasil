@@ -12,8 +12,8 @@ import yggdrasil.Ennemis.Loki;
  */
 public class Suttung extends GeantDeGivre{
     private Loki loki;
-    public Suttung(Loki loki) {
-        super("Suttung", "Sigel");
+    public Suttung(Loki loki, boolean morceauRune) {
+        super("Suttung", morceauRune);
         super.setCheminImage("/yggdrasil/vue/suttung.png");
         this.loki=loki;
     }
@@ -22,6 +22,7 @@ public class Suttung extends GeantDeGivre{
     public void desactiver() {
         super.setActif(false);
         loki.setGeantActif(false);
+        super.setMorceauRune(true);
     }
 
     @Override

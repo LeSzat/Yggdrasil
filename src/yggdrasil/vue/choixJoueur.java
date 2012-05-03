@@ -281,10 +281,10 @@ public class choixJoueur extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Yggdrasil", 0, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 255, 255));
         jButton1.setText("Continuer");
-        jButton1.setActionCommand("Continuer");
         jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 255, 255), 1, true));
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setEnabled(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -329,9 +329,10 @@ public class choixJoueur extends javax.swing.JPanel {
                 imageJoueur5.setIcon(null);
                 imageJoueur6.setIcon(null);
                 imageJoueur1.setIcon(null);
-
+                jButton1.setEnabled(false);
                 break;
             default:
+                jButton1.setEnabled(true);
                 if (joueur[0].isEmpty()) {
                     joueur[0] = (String) JcomboJoueur1.getSelectedItem();
                     imageJoueur1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[0] + ".jpg")));
@@ -520,12 +521,11 @@ public class choixJoueur extends javax.swing.JPanel {
                 }
             }
         }
-        partie.creerDemeureDesElfes();
         partie.setDieuActuel(partie.getlDieu().get(0));
         page.getContentPane().removeAll();
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
-        if ("Odin".equals(partie.getDieuActuel().getNom())) {
+        if ("Odin".equals(partie.getDieuActuel().getNom())&&Dieu.pouvoirDieu) {
             String e = partie.getPileCarteEnnemis().get(0);
             String e1 = partie.getPileCarteEnnemis().get(1);
             OdinTire dt = new OdinTire(page, true, e,e1);

@@ -8,17 +8,21 @@ package yggdrasil.Dieu;
  *
  * @author mathias
  */
-public class Thor extends Dieu{
-    private final int FORCEINITIALE =1;
-    public Thor()
-    {
+public class Thor extends Dieu {
+
+    private final int FORCEINITIALE = 1;
+
+    public Thor() {
         super.setNom("Thor");
         super.setCheminImage("/yggdrasil/vue/Thor.jpg");
     }
 
     @Override
     public int getFORCEINITIALE() {
-        return FORCEINITIALE;
+        if (Dieu.pouvoirDieu) {
+            return FORCEINITIALE;
+        } else {
+            return super.getFORCEINITIALE();
+        }
     }
-    
 }

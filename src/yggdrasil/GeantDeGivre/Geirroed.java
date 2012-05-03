@@ -12,8 +12,8 @@ import yggdrasil.Monde.ForgeDesNains;
  */
 public class Geirroed extends GeantDeGivre{
     private ForgeDesNains fdn;
-    public Geirroed(ForgeDesNains fdn) {
-        super("Geirroed", "Daeg");
+    public Geirroed(ForgeDesNains fdn,boolean morceauRune) {
+        super("Geirroed", morceauRune);
         this.fdn=fdn;
         super.setCheminImage("/yggdrasil/vue/geirroed.png");
     }
@@ -22,6 +22,7 @@ public class Geirroed extends GeantDeGivre{
     public void desactiver() {
         super.setActif(false);
         fdn.setActif(true);
+        super.setMorceauRune(true);
     }
 
     @Override

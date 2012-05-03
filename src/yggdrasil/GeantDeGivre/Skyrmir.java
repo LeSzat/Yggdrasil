@@ -12,10 +12,9 @@ import yggdrasil.Ennemis.Fenrir;
  */
 public class Skyrmir extends GeantDeGivre{
     private Fenrir fenrir;
-    public Skyrmir(Fenrir fenrir) {
-        super("Skyrmir", "Sigel");
+    public Skyrmir(Fenrir fenrir, boolean morceauRune) {
+        super("Skyrmir", morceauRune);
         this.fenrir=fenrir;
-        
         super.setCheminImage("/yggdrasil/vue/skymir.png");
     }
 
@@ -23,6 +22,7 @@ public class Skyrmir extends GeantDeGivre{
     public void desactiver() {
         super.setActif(false);
         fenrir.setGeantActif(false);
+        super.setMorceauRune(true);
     }
 
     @Override

@@ -27,17 +27,21 @@ public class De {
     }
 
     public int getValeur() {
+
         Random r = new Random();
-        int t1 = -1;
+        int t1 = 0;
+
         do {
-            t1 = r.nextInt(6) - 1;
+            t1 = r.nextInt(6);
         } while (t1 < 0 || t1 > 5);
+        System.out.println(t1);
+
         return face[t1].getVal();
     }
 
     public int getCouleur() {
         Random r = new Random();
-        int t1 = r.nextInt(6) - 1;
+        int t1 = r.nextInt(6);
         switch (t1) {
             case 0:
                 return 0;

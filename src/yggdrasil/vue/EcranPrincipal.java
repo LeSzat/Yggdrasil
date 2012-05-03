@@ -9,8 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import yggdrasil.Artefact;
+import yggdrasil.Dieu.Dieu;
 import yggdrasil.Dieu.Freyja;
 import yggdrasil.Ennemis.Ennemis;
+import yggdrasil.GeantDeGivre.GeantDeGivre;
 import yggdrasil.Monde.Ile;
 import yggdrasil.Partie;
 
@@ -304,6 +306,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         int tailleGeanDef = partie.getFdg().getGeantDeffausse().size();
         for (int i = 0; i < tailleGeanDef; i++) {
             tabGeant[i].setIcon(new javax.swing.ImageIcon(getClass().getResource(partie.getFdg().getGeantDeffausse().get(i).getCheminImage())));
+
             if (!partie.getFdg().getGeantDeffausse().get(i).isActif()) {
                 tabGeant[i].setText("Battu!");
             }
@@ -311,7 +314,56 @@ public class EcranPrincipal extends javax.swing.JPanel {
             tabGeant[i].setVerticalTextPosition(JLabel.CENTER);
 
         }
-
+        for (GeantDeGivre gdg : partie.getFdg().getGeantDeffausse()) {
+            if (gdg.getNom().compareTo("Angerboda") == 0 && !gdg.isActif()) {
+                jSiegel9.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Bergelmir") == 0 && !gdg.isActif()) {
+                jMann8.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Fafner") == 0 && !gdg.isActif()) {
+                jTiwaz7.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Geirroed") == 0 && !gdg.isActif()) {
+                jDaeg7.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Gialp") == 0 && !gdg.isActif()) {
+                jDaeg6.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Greip") == 0 && !gdg.isActif()) {
+                jDaeg5.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Gymir") == 0 && !gdg.isActif()) {
+                jTiwaz6.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Hrungnir") == 0 && !gdg.isActif()) {
+                jSiegel10.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Hrym") == 0 && !gdg.isActif()) {
+                jSiegel12.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Hymir") == 0 && !gdg.isActif()) {
+                jMann7.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Skyrmir") == 0 && !gdg.isActif()) {
+                jDaeg8.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Suttung") == 0 && !gdg.isActif()) {
+                jTiwaz5.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Thiazy") == 0 && !gdg.isActif()) {
+                jTiwaz8.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Thokk") == 0 && !gdg.isActif()) {
+                jMann6.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Thrym") == 0 && !gdg.isActif()) {
+                jMann5.setEnabled(true);
+            }
+            if (gdg.getNom().compareTo("Utgardloki") == 0 && !gdg.isActif()) {
+                jSiegel11.setEnabled(true);
+            }
+        }
 
     }
 
@@ -524,6 +576,27 @@ public class EcranPrincipal extends javax.swing.JPanel {
         ileBlancheSub = new javax.swing.JLabel();
         ileBleueSub = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel61 = new javax.swing.JPanel();
+        jPanel62 = new javax.swing.JPanel();
+        jTiwaz5 = new javax.swing.JLabel();
+        jTiwaz6 = new javax.swing.JLabel();
+        jTiwaz7 = new javax.swing.JLabel();
+        jTiwaz8 = new javax.swing.JLabel();
+        jPanel63 = new javax.swing.JPanel();
+        jDaeg5 = new javax.swing.JLabel();
+        jDaeg6 = new javax.swing.JLabel();
+        jDaeg7 = new javax.swing.JLabel();
+        jDaeg8 = new javax.swing.JLabel();
+        jPanel64 = new javax.swing.JPanel();
+        jSiegel9 = new javax.swing.JLabel();
+        jSiegel10 = new javax.swing.JLabel();
+        jSiegel11 = new javax.swing.JLabel();
+        jSiegel12 = new javax.swing.JLabel();
+        jPanel65 = new javax.swing.JPanel();
+        jMann5 = new javax.swing.JLabel();
+        jMann6 = new javax.swing.JLabel();
+        jMann7 = new javax.swing.JLabel();
+        jMann8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setAutoscrolls(true);
@@ -1278,6 +1351,219 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/plateau.jpg"))); // NOI18N
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        jPanel61.setOpaque(false);
+
+        jPanel62.setOpaque(false);
+        jPanel62.setRequestFocusEnabled(false);
+        jPanel62.setLayout(new javax.swing.BoxLayout(jPanel62, javax.swing.BoxLayout.Y_AXIS));
+
+        jTiwaz5.setForeground(new java.awt.Color(255, 204, 0));
+        jTiwaz5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Tiwaz1.png"))); // NOI18N
+        jTiwaz5.setEnabled(false);
+        jTiwaz5.setMaximumSize(new java.awt.Dimension(80, 25));
+        jTiwaz5.setMinimumSize(new java.awt.Dimension(80, 25));
+        jTiwaz5.setPreferredSize(new java.awt.Dimension(80, 25));
+        jTiwaz5.setRequestFocusEnabled(false);
+        jPanel62.add(jTiwaz5);
+
+        jTiwaz6.setForeground(new java.awt.Color(255, 204, 0));
+        jTiwaz6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Tiwaz2.png"))); // NOI18N
+        jTiwaz6.setEnabled(false);
+        jTiwaz6.setMaximumSize(new java.awt.Dimension(80, 25));
+        jTiwaz6.setMinimumSize(new java.awt.Dimension(80, 25));
+        jTiwaz6.setPreferredSize(new java.awt.Dimension(80, 25));
+        jTiwaz6.setRequestFocusEnabled(false);
+        jPanel62.add(jTiwaz6);
+
+        jTiwaz7.setForeground(new java.awt.Color(255, 204, 0));
+        jTiwaz7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Tiwaz3.png"))); // NOI18N
+        jTiwaz7.setEnabled(false);
+        jTiwaz7.setMaximumSize(new java.awt.Dimension(80, 25));
+        jTiwaz7.setMinimumSize(new java.awt.Dimension(80, 25));
+        jTiwaz7.setPreferredSize(new java.awt.Dimension(80, 25));
+        jTiwaz7.setRequestFocusEnabled(false);
+        jPanel62.add(jTiwaz7);
+
+        jTiwaz8.setForeground(new java.awt.Color(255, 204, 0));
+        jTiwaz8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Tiwaz4.png"))); // NOI18N
+        jTiwaz8.setEnabled(false);
+        jTiwaz8.setMaximumSize(new java.awt.Dimension(80, 25));
+        jTiwaz8.setMinimumSize(new java.awt.Dimension(80, 25));
+        jTiwaz8.setPreferredSize(new java.awt.Dimension(80, 25));
+        jTiwaz8.setRequestFocusEnabled(false);
+        jPanel62.add(jTiwaz8);
+
+        jPanel63.setOpaque(false);
+        jPanel63.setRequestFocusEnabled(false);
+        jPanel63.setLayout(new javax.swing.BoxLayout(jPanel63, javax.swing.BoxLayout.Y_AXIS));
+
+        jDaeg5.setForeground(new java.awt.Color(255, 204, 0));
+        jDaeg5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Dael1.png"))); // NOI18N
+        jDaeg5.setEnabled(false);
+        jDaeg5.setMaximumSize(new java.awt.Dimension(80, 25));
+        jDaeg5.setMinimumSize(new java.awt.Dimension(80, 25));
+        jDaeg5.setPreferredSize(new java.awt.Dimension(80, 25));
+        jDaeg5.setRequestFocusEnabled(false);
+        jPanel63.add(jDaeg5);
+
+        jDaeg6.setForeground(new java.awt.Color(255, 204, 0));
+        jDaeg6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Dael2.png"))); // NOI18N
+        jDaeg6.setEnabled(false);
+        jDaeg6.setMaximumSize(new java.awt.Dimension(80, 25));
+        jDaeg6.setMinimumSize(new java.awt.Dimension(80, 25));
+        jDaeg6.setPreferredSize(new java.awt.Dimension(80, 25));
+        jDaeg6.setRequestFocusEnabled(false);
+        jPanel63.add(jDaeg6);
+
+        jDaeg7.setForeground(new java.awt.Color(255, 204, 0));
+        jDaeg7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Dael3.png"))); // NOI18N
+        jDaeg7.setEnabled(false);
+        jDaeg7.setMaximumSize(new java.awt.Dimension(80, 25));
+        jDaeg7.setMinimumSize(new java.awt.Dimension(80, 25));
+        jDaeg7.setPreferredSize(new java.awt.Dimension(80, 25));
+        jDaeg7.setRequestFocusEnabled(false);
+        jPanel63.add(jDaeg7);
+
+        jDaeg8.setForeground(new java.awt.Color(255, 204, 0));
+        jDaeg8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Dael4.png"))); // NOI18N
+        jDaeg8.setEnabled(false);
+        jDaeg8.setMaximumSize(new java.awt.Dimension(80, 25));
+        jDaeg8.setMinimumSize(new java.awt.Dimension(80, 25));
+        jDaeg8.setPreferredSize(new java.awt.Dimension(80, 25));
+        jDaeg8.setRequestFocusEnabled(false);
+        jPanel63.add(jDaeg8);
+
+        jPanel64.setOpaque(false);
+        jPanel64.setRequestFocusEnabled(false);
+        jPanel64.setLayout(new javax.swing.BoxLayout(jPanel64, javax.swing.BoxLayout.Y_AXIS));
+
+        jSiegel9.setForeground(new java.awt.Color(255, 204, 0));
+        jSiegel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Siegel1.png"))); // NOI18N
+        jSiegel9.setEnabled(false);
+        jSiegel9.setMaximumSize(new java.awt.Dimension(80, 25));
+        jSiegel9.setMinimumSize(new java.awt.Dimension(80, 25));
+        jSiegel9.setPreferredSize(new java.awt.Dimension(80, 25));
+        jSiegel9.setRequestFocusEnabled(false);
+        jPanel64.add(jSiegel9);
+
+        jSiegel10.setForeground(new java.awt.Color(255, 204, 0));
+        jSiegel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Siegel2.png"))); // NOI18N
+        jSiegel10.setEnabled(false);
+        jSiegel10.setMaximumSize(new java.awt.Dimension(80, 25));
+        jSiegel10.setMinimumSize(new java.awt.Dimension(80, 25));
+        jSiegel10.setPreferredSize(new java.awt.Dimension(80, 25));
+        jSiegel10.setRequestFocusEnabled(false);
+        jPanel64.add(jSiegel10);
+
+        jSiegel11.setForeground(new java.awt.Color(255, 204, 0));
+        jSiegel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Siegel3.png"))); // NOI18N
+        jSiegel11.setEnabled(false);
+        jSiegel11.setMaximumSize(new java.awt.Dimension(80, 25));
+        jSiegel11.setMinimumSize(new java.awt.Dimension(80, 25));
+        jSiegel11.setPreferredSize(new java.awt.Dimension(80, 25));
+        jSiegel11.setRequestFocusEnabled(false);
+        jPanel64.add(jSiegel11);
+
+        jSiegel12.setForeground(new java.awt.Color(255, 204, 0));
+        jSiegel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Siegel4..png"))); // NOI18N
+        jSiegel12.setEnabled(false);
+        jSiegel12.setMaximumSize(new java.awt.Dimension(80, 25));
+        jSiegel12.setMinimumSize(new java.awt.Dimension(80, 25));
+        jSiegel12.setPreferredSize(new java.awt.Dimension(80, 25));
+        jSiegel12.setRequestFocusEnabled(false);
+        jPanel64.add(jSiegel12);
+
+        jPanel65.setOpaque(false);
+        jPanel65.setRequestFocusEnabled(false);
+        jPanel65.setLayout(new javax.swing.BoxLayout(jPanel65, javax.swing.BoxLayout.Y_AXIS));
+
+        jMann5.setForeground(new java.awt.Color(255, 204, 0));
+        jMann5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Mann1.png"))); // NOI18N
+        jMann5.setEnabled(false);
+        jMann5.setMaximumSize(new java.awt.Dimension(80, 25));
+        jMann5.setMinimumSize(new java.awt.Dimension(80, 25));
+        jMann5.setPreferredSize(new java.awt.Dimension(80, 25));
+        jMann5.setRequestFocusEnabled(false);
+        jPanel65.add(jMann5);
+
+        jMann6.setForeground(new java.awt.Color(255, 204, 0));
+        jMann6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Mann2.png"))); // NOI18N
+        jMann6.setEnabled(false);
+        jMann6.setMaximumSize(new java.awt.Dimension(80, 25));
+        jMann6.setMinimumSize(new java.awt.Dimension(80, 25));
+        jMann6.setPreferredSize(new java.awt.Dimension(80, 25));
+        jMann6.setRequestFocusEnabled(false);
+        jPanel65.add(jMann6);
+
+        jMann7.setForeground(new java.awt.Color(255, 204, 0));
+        jMann7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Mann3.png"))); // NOI18N
+        jMann7.setEnabled(false);
+        jMann7.setMaximumSize(new java.awt.Dimension(80, 25));
+        jMann7.setMinimumSize(new java.awt.Dimension(80, 25));
+        jMann7.setPreferredSize(new java.awt.Dimension(80, 25));
+        jMann7.setRequestFocusEnabled(false);
+        jPanel65.add(jMann7);
+
+        jMann8.setForeground(new java.awt.Color(255, 204, 0));
+        jMann8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Mann4.PNG"))); // NOI18N
+        jMann8.setEnabled(false);
+        jMann8.setMaximumSize(new java.awt.Dimension(80, 25));
+        jMann8.setMinimumSize(new java.awt.Dimension(80, 25));
+        jMann8.setPreferredSize(new java.awt.Dimension(80, 25));
+        jMann8.setRequestFocusEnabled(false);
+        jPanel65.add(jMann8);
+
+        javax.swing.GroupLayout jPanel61Layout = new javax.swing.GroupLayout(jPanel61);
+        jPanel61.setLayout(jPanel61Layout);
+        jPanel61Layout.setHorizontalGroup(
+            jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 108, Short.MAX_VALUE)
+            .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel61Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel62, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel61Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel63, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel61Layout.createSequentialGroup()
+                    .addContainerGap(15, Short.MAX_VALUE)
+                    .addComponent(jPanel64, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(15, Short.MAX_VALUE)))
+            .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel61Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel65, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jPanel61Layout.setVerticalGroup(
+            jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 630, Short.MAX_VALUE)
+            .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel61Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel62, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(509, Short.MAX_VALUE)))
+            .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel61Layout.createSequentialGroup()
+                    .addGap(116, 116, 116)
+                    .addComponent(jPanel63, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(402, Short.MAX_VALUE)))
+            .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel61Layout.createSequentialGroup()
+                    .addContainerGap(321, Short.MAX_VALUE)
+                    .addComponent(jPanel64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(209, 209, 209)))
+            .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel61Layout.createSequentialGroup()
+                    .addGap(219, 219, 219)
+                    .addComponent(jPanel65, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(311, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1285,14 +1571,20 @@ public class EcranPrincipal extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel61, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(268, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jPanel61, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(340, 455, Short.MAX_VALUE))
         );
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -1302,7 +1594,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (partie.getDde().isActif()) {
             if (!partie.getDieuActuel().isaJoueurEnDeumeureDesElfes()
-                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJoueurEnDeumeureDesElfes() < 2)) {
+                    || ((partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJoueurEnDeumeureDesElfes() < 2)&&Dieu.pouvoirDieu)) {
                 partie.jouerEnDemeureDesElfes(page);
                 verifFinTour();
             } else {
@@ -1317,7 +1609,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (partie.getDm().isActif()) {
             if (!partie.getDieuActuel().isaJouerEnDomaineDesMorts()
-                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnDomaineDesMorts() < 2)) {
+                    || ((partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnDomaineDesMorts() < 2)&&Dieu.pouvoirDieu)) {
                 partie.jouerEnDomaineDesMort(page);
                 verifFinTour();
             } else {
@@ -1332,7 +1624,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (partie.getRdf().isActif()) {
             if (!partie.getDieuActuel().isaJouerEnRoyaumeDuFeu()
-                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnRoyaumeDuFeu() < 2)) {
+                    || ((partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnRoyaumeDuFeu() < 2)&&Dieu.pouvoirDieu)) {
                 partie.jouerEnRoyaumeDuFeu(page);
                 verifFinTour();
             } else {
@@ -1347,7 +1639,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (partie.getMg().isActif()) {
             if (!partie.getDieuActuel().isaJouerEnMidgard()
-                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnMidgard() < 2)) {
+                    || ((partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnMidgard() < 2)&&Dieu.pouvoirDieu)) {
                 partie.jouerEnMidgard(page);
                 verifFinTour();
             } else {
@@ -1362,7 +1654,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (partie.getAs().isActif()) {
             if (!partie.getDieuActuel().isaJouerEnAsgard()
-                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnAsgard() < 2)) {
+                    || ((partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnAsgard() < 2)&&Dieu.pouvoirDieu)) {
                 partie.jouerAsgard(page);
                 verifFinTour();
             } else {
@@ -1377,7 +1669,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (partie.getFdn().isActif()) {
             if (!partie.getDieuActuel().isaJouerEnForgeDesNains()
-                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnForgeDesNains() < 2)) {
+                    || ((partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnForgeDesNains() < 2)&&Dieu.pouvoirDieu)) {
                 partie.jouerEnForgeDesNains(page);
                 verifFinTour();
             } else {
@@ -1392,7 +1684,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (partie.getMdt().isActif()) {
             if (!partie.getDieuActuel().isaJouerEnMondeDesTenebres()
-                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnMondeDesTenebres() < 2)) {
+                    || ((partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnMondeDesTenebres() < 2)&&Dieu.pouvoirDieu)) {
                 partie.jouerMondeDesTenebres(page);
                 verifFinTour();
             } else {
@@ -1407,7 +1699,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (partie.getTb().isActif()) {
             if (!partie.getDieuActuel().isaJouerEnTerreBenite()
-                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnTerreBenite() < 2)) {
+                    || ((partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnTerreBenite() < 2)&&Dieu.pouvoirDieu)) {
                 partie.jouerEnTerreBenite(page);
                 verifFinTour();
             } else {
@@ -1422,7 +1714,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (partie.getFdg().isActif()) {
             if (!partie.getDieuActuel().isaJouerEnForteresseDeGlace()
-                    || (partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnForteresseDeGlace() < 2)) {
+                    || ((partie.getDieuActuel().getNom().compareTo("Freyja") == 0 && ((Freyja) partie.getDieuActuel()).getaJouerEnForteresseDeGlace() < 2)&&Dieu.pouvoirDieu)) {
                 partie.jouerEnForteresseDeGlace(page);
                 verifFinTour();
             } else {
@@ -1476,6 +1768,10 @@ public class EcranPrincipal extends javax.swing.JPanel {
     private javax.swing.JLabel ileVerte;
     private javax.swing.JLabel ileVerteSub;
     private javax.swing.JLabel imageElfe;
+    private javax.swing.JLabel jDaeg5;
+    private javax.swing.JLabel jDaeg6;
+    private javax.swing.JLabel jDaeg7;
+    private javax.swing.JLabel jDaeg8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1503,6 +1799,10 @@ public class EcranPrincipal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jMann5;
+    private javax.swing.JLabel jMann6;
+    private javax.swing.JLabel jMann7;
+    private javax.swing.JLabel jMann8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1557,8 +1857,21 @@ public class EcranPrincipal extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel56;
     private javax.swing.JPanel jPanel57;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel61;
+    private javax.swing.JPanel jPanel62;
+    private javax.swing.JPanel jPanel63;
+    private javax.swing.JPanel jPanel64;
+    private javax.swing.JPanel jPanel65;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel jSiegel10;
+    private javax.swing.JLabel jSiegel11;
+    private javax.swing.JLabel jSiegel12;
+    private javax.swing.JLabel jSiegel9;
+    private javax.swing.JLabel jTiwaz5;
+    private javax.swing.JLabel jTiwaz6;
+    private javax.swing.JLabel jTiwaz7;
+    private javax.swing.JLabel jTiwaz8;
     private javax.swing.JLabel jorgumand0;
     private javax.swing.JLabel jorgumand1;
     private javax.swing.JLabel jorgumand2;
