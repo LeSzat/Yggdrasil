@@ -4,17 +4,21 @@
  */
 package yggdrasil;
 
+import de.De;
+import dieu.Dieu;
+import ennemis.*;
+import geantdegivre.GeantDeGivre;
+import geantdegivre.Surt;
+import iles.Sac;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import yggdrasil.Dieu.Dieu;
-import yggdrasil.Ennemis.*;
-import yggdrasil.GeantDeGivre.GeantDeGivre;
-import yggdrasil.Monde.*;
-import yggdrasil.vue.*;
+import monde.*;
+import pion.Elfes;
+import vue.*;
 
 /**
  * Classe principale elle gère toutes les interactions entre l'affichage et le
@@ -208,9 +212,10 @@ public class Partie {
     }
 
     /**
-     * Utilisée lorsque le joueur veux jouer en Monde des ténébres. Cette fonction envoie
-     * tous les éléments utiles à la classe Dieu.
-     *C'est içi que l'utilisateur choisis le dieu qu'il veut aider
+     * Utilisée lorsque le joueur veux jouer en Monde des ténébres. Cette
+     * fonction envoie tous les éléments utiles à la classe Dieu. C'est içi que
+     * l'utilisateur choisis le dieu qu'il veut aider
+     *
      * @param page Jframe principale
      */
     public void jouerMondeDesTenebres(JFrame page) {
@@ -244,11 +249,14 @@ public class Partie {
             JOptionPane.showMessageDialog(page, "Vous n'avez de coequipier à aider", "Monde des ténébres", JOptionPane.ERROR_MESSAGE);
         }
     }
-/**
- * Utilisée lorsque le joueur veux jouer en Domaine des mort. Cette fonction envoie tous les éléments utiles à la classe Dieu.
- * C'est içi que l'utlisateur choisis le sac dans lequel il veut mettre les vikings
- * @param page Jframe principale
- */
+
+    /**
+     * Utilisée lorsque le joueur veux jouer en Domaine des mort. Cette fonction
+     * envoie tous les éléments utiles à la classe Dieu. C'est içi que
+     * l'utlisateur choisis le sac dans lequel il veut mettre les vikings
+     *
+     * @param page Jframe principale
+     */
     public void jouerEnDomaineDesMort(JFrame page) {
         ChoixSac cs = new ChoixSac(page, true);
         cs.setLocationRelativeTo(page);
@@ -259,11 +267,14 @@ public class Partie {
         }
 
     }
-/**
- * Utilisée lorsque le joueur veux jouer en Royaume du feu. Cette fonction envoie tous les éléments utiles à la classe Dieu.
- * C'est içi que l'utlisateur choisis le sac dans lequel il veut mettre les vikings
- * @param page Jframe principale
- */
+
+    /**
+     * Utilisée lorsque le joueur veux jouer en Royaume du feu. Cette fonction
+     * envoie tous les éléments utiles à la classe Dieu. C'est içi que
+     * l'utlisateur choisis le sac dans lequel il veut mettre les vikings
+     *
+     * @param page Jframe principale
+     */
     public void jouerEnRoyaumeDuFeu(JFrame page) {
         ChoixSac cs = new ChoixSac(page, true);
         cs.setLocationRelativeTo(page);
@@ -273,11 +284,14 @@ public class Partie {
             dieuActuel.jouerEnRoyaumeDuFeu(page, tabSac[choix], rdf);
         }
     }
-/**
- * Utilisée lorsque le joueur veux jouer en Forteresse de glace. Cette fonction envoie tous les éléments utiles à la classe Dieu.
- * C'est içi que l'utlisateur choisis le le géant qu'il veut combattre
- * @param page Jframe principale
- */
+
+    /**
+     * Utilisée lorsque le joueur veux jouer en Forteresse de glace. Cette
+     * fonction envoie tous les éléments utiles à la classe Dieu. C'est içi que
+     * l'utlisateur choisis le le géant qu'il veut combattre
+     *
+     * @param page Jframe principale
+     */
     public void jouerEnForteresseDeGlace(JFrame page) {
         ArrayList<GeantDeGivre> lGeantTemp = new ArrayList<>();
         for (GeantDeGivre gdgf : fdg.getGeantDeffausse()) {
@@ -296,10 +310,13 @@ public class Partie {
         }
         verifRunes(page);
     }
-/**
- * Vérifie l'état des runes. Si une rune est complète cette action lance l'action de la rune
- * @param page JFrame principale
- */
+
+    /**
+     * Vérifie l'état des runes. Si une rune est complète cette action lance
+     * l'action de la rune
+     *
+     * @param page JFrame principale
+     */
     public void verifRunes(JFrame page) {
         boolean activerDaeg = true;
         boolean activerMann = true;
@@ -351,11 +368,13 @@ public class Partie {
             }
         }
     }
-/**
- * Applique l'effet de la carte ennemi tirée
- * @param page JFrame principale
- * @param e Nom de l'ennemi
- */
+
+    /**
+     * Applique l'effet de la carte ennemi tirée
+     *
+     * @param page JFrame principale
+     * @param e Nom de l'ennemi
+     */
     public void appliquerEnnemi(JFrame page, String e) {
         if (e.compareTo("Hel") == 0) {
             Hel hel = (Hel) tabEnnemis[0];
@@ -416,25 +435,28 @@ public class Partie {
             }
         }
     }
-/**
-     * Utilisée lorsque le joueur veux jouer en Terre bénite. Cette
-     * fonction envoie tous les éléments utiles à la classe Dieu.
+
+    /**
+     * Utilisée lorsque le joueur veux jouer en Terre bénite. Cette fonction
+     * envoie tous les éléments utiles à la classe Dieu.
      *
      * @param page Jframe principale
      */
     public void jouerEnTerreBenite(JFrame page) {
         dieuActuel.jouerEnTerreBenite(tb, mg, dm, pileCarteEnnemis, tabEnnemis, fdg, page);
     }
-/**
- * 
- * @return le dieu actuel
- */
+
+    /**
+     *
+     * @return le dieu actuel
+     */
     public Dieu getDieuActuel() {
         return dieuActuel;
     }
 
     /**
      * Met à jour le dieu actuel
+     *
      * @param dieuActuel le joueur suivant
      */
     public void setDieuActuel(Dieu dieuActuel) {
@@ -447,38 +469,41 @@ public class Partie {
     public LinkedList getlDieu() {
         return lDieu;
     }
-/**
- * 
- * @return le tableau contenant les ennemis
- */
+
+    /**
+     *
+     * @return le tableau contenant les ennemis
+     */
     public Ennemis[] getTabEnnemis() {
         return tabEnnemis;
     }
-/**
- * 
- * @return le monde Domaine des elfes
- */
+
+    /**
+     *
+     * @return le monde Domaine des elfes
+     */
     public DemeureDesElfes getDde() {
         return dde;
     }
 
     /**
-     * 
-     * @return le monde Domaine des morts 
+     *
+     * @return le monde Domaine des morts
      */
     public DomaineDesMorts getDm() {
         return dm;
     }
-/**
- * 
- * @return le monde Forge des nains
- */
+
+    /**
+     *
+     * @return le monde Forge des nains
+     */
     public ForgeDesNains getFdn() {
         return fdn;
     }
 
     /**
-     * 
+     *
      * @return le monde Midgard
      */
     public Midgard getMg() {
@@ -486,7 +511,7 @@ public class Partie {
     }
 
     /**
-     * 
+     *
      * @return le monde Royaume du feu
      */
     public RoyaumeDuFeu getRdf() {
@@ -494,29 +519,31 @@ public class Partie {
     }
 
     /**
-     * 
+     *
      * @return le monde Terre bénite
      */
     public TerreBenite getTb() {
         return tb;
     }
-/**
- * 
- * @return le dé
- */
+
+    /**
+     *
+     * @return le dé
+     */
     public De getDe() {
         return de;
     }
-/**
- * 
- * @return le monde Forteresse de glace
- */
+
+    /**
+     *
+     * @return le monde Forteresse de glace
+     */
     public ForteresseDeGlace getFdg() {
         return fdg;
     }
 
     /**
-     * 
+     *
      * @return le monde Monde des ténébres
      */
     public MondeDesTenebres getMdt() {
@@ -524,7 +551,7 @@ public class Partie {
     }
 
     /**
-     * 
+     *
      * @return la pile de carte ennemi
      */
     public LinkedList getPileCarteEnnemis() {
@@ -532,7 +559,7 @@ public class Partie {
     }
 
     /**
-     * 
+     *
      * @return le tableau contenant les sacs
      */
     public Sac[] getTabSac() {
@@ -540,7 +567,7 @@ public class Partie {
     }
 
     /**
-     * 
+     *
      * @return le monde Asgard
      */
     public Asgard getAs() {

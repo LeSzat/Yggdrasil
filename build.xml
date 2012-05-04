@@ -10,6 +10,30 @@
 <project name="Yggdrasil" default="default" basedir=".">
     <description>Builds, tests, and runs the project Yggdrasil.</description>
     <import file="nbproject/build-impl.xml"/>
+	<target name="netbeans-extra" description="Generates UML-Javadoc">
+    <property file="nbproject/project.properties"/>
+    <mkdir dir="${dist.javadoc.dir}"/>
+    <javadoc source="${javac.source}" packagenames="org.\*" 
+          destdir="${dist.javadoc.dir}"  
+          private="true">
+        <classpath>
+            <path path="${javac.classpath}"/>
+            <path path="${module.classpath}"/>
+        </classpath>
+        <fileset dir="${src.dir}" excludes="${excludes}" 
+          includes="${includes}">
+            <filename name="\*\*/\*.java"/>
+        </fileset>
+        <doclet name="org.umlgraph.doclet.UmlGraphDoc" 
+          path="C:\Users\Mathias\Desktop\UMLGraph-5.4\UMLGraph-5.4\lib\UmlGraph.jar">
+            <param name="-attributes" />
+            <param name="-operations" />
+            <param name="-qualify" />
+            <param name="-types" />
+            <param name="-visibility" />
+        </doclet>
+    </javadoc>
+</target>
     <!--
 
     There exist several targets which are by default empty and which can be 

@@ -6,7 +6,7 @@ package yggdrasil;
 
 import java.io.IOException;
 import javax.swing.JFrame;
-import yggdrasil.vue.Accueil;
+import vue.Accueil;
 
 /**
  *Lance le jeu
