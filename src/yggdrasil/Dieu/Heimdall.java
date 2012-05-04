@@ -13,16 +13,23 @@ import yggdrasil.Pion.Vikings;
 import yggdrasil.Sac;
 
 /**
- *
- * @author mathias
+ * Modélise le Dieu Heimdall
  */
 public class Heimdall extends Dieu {
 
     public Heimdall() {
         super.setNom("Heimdall");
-        super.setCheminImage("/yggdrasil/vue/Heimdall.jpg");
+        super.setCheminImage("/images/Heimdall.jpg");
     }
 
+    /**
+     * Overide de la fonction jouerEnMidgard, car Heimdall a des pouvoirs
+     * spéciaux
+     *
+     * @param page JFrame principale
+     * @param mg Le Monde Midgard
+     * @param tabSac Le sac dans lequel prendre les vikings
+     */
     @Override
     public void jouerEnMidgard(JFrame page, Midgard mg, Sac[] tabSac) {
         if (Dieu.pouvoirDieu) {
@@ -55,10 +62,10 @@ public class Heimdall extends Dieu {
                         mg.getValkyrie().setPosition(mg.getValkyrie().getPosition() + 1);
                         JOptionPane.showMessageDialog(page, "La Valkyrie mainteant sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase(), "Midgard", JOptionPane.INFORMATION_MESSAGE);
                     }
-                    
+
                 }
             }
-            
+
             if (mg.getValkyrie().getPosition() == 0) {
                 JOptionPane.showMessageDialog(page, "La Valkyrie est  sur l'île " + tabIle[mg.getValkyrie().getPosition()].getCouleur().toString().toLowerCase() + " vous ne pouvez pas sauver de vikings sur cette île", "Midgard", JOptionPane.INFORMATION_MESSAGE);
             } else if (tabIle[mg.getValkyrie().getPosition()].isSubmergee()) {

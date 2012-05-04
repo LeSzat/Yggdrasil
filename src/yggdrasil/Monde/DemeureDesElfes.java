@@ -5,6 +5,7 @@
 package yggdrasil.Monde;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import yggdrasil.Dieu.Dieu;
 import yggdrasil.Elfes;
 
@@ -14,10 +15,10 @@ import yggdrasil.Elfes;
  */
 public class DemeureDesElfes extends Monde {
 
-    private ArrayList<Elfes> lElfes;
+    private LinkedList lElfes;
 
     public DemeureDesElfes() {
-      lElfes=new ArrayList<>();
+      lElfes=new LinkedList();
       lElfes.add(new Elfes());
     }
 
@@ -40,7 +41,7 @@ public class DemeureDesElfes extends Monde {
         }
     }
 
-    public ArrayList<Elfes> getlElfes() {
+    public LinkedList getlElfes() {
         return lElfes;
     }
 }

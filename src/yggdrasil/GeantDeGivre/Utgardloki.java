@@ -7,22 +7,31 @@ package yggdrasil.GeantDeGivre;
 import yggdrasil.Dieu.Dieu;
 
 /**
- *
- * @author mathias
+ *Modélise le géant de givre Utgardloki
  */
 public class Utgardloki extends GeantDeGivre{
+    /**
+     * Initialise Utgardloki
+     * @param morceauRune Le morceau de rune
+     */
     public Utgardloki(boolean morceauRune) {
         super("Utgardloki", morceauRune);
-        super.setCheminImage("/yggdrasil/vue/utgardloki.png");
+        super.setCheminImage("/images/utgardloki.png");
     }
 
     @Override
+    /**
+     * Désactive Utgardloki
+     */
     public void desactiver() {
         super.setActif(false);
         Dieu.pouvoirDieu=true;
         super.setMorceauRune(true);
     }
 
+    /**
+     * Active Utgardloki
+     */
     @Override
     public void activer() {
         super.setActif(true);

@@ -5,8 +5,7 @@
 package yggdrasil.Dieu;
 
 /**
- *
- * @author mathias
+ * Modélise le déesse Freyja
  */
 public class Freyja extends Dieu {
 
@@ -20,9 +19,12 @@ public class Freyja extends Dieu {
     private int aJouerEnDomaineDesMorts;
     private int aJouerEnTerreBenite;
 
+    /**
+     * Initialise Freyja
+     */
     public Freyja() {
         super.setNom("Freyja");
-        super.setCheminImage("/yggdrasil/vue/Freyja.jpg");
+        super.setCheminImage("/images/Freyja.jpg");
         aJouerEnMidgard = 0;
         aJouerEnAsgard = 0;
         aJoueurEnDeumeureDesElfes = 0;
@@ -105,5 +107,4 @@ public class Freyja extends Dieu {
     public void setaJoueurEnDeumeureDesElfes(int aJoueurEnDeumeureDesElfes) {
         this.aJoueurEnDeumeureDesElfes = aJoueurEnDeumeureDesElfes;
     }
-    
 }

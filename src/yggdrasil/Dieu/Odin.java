@@ -5,13 +5,12 @@
 package yggdrasil.Dieu;
 
 /**
- *
- * @author mathias
+ Modélise le dieu Odin
  */
 public class Odin extends Dieu{
     public Odin()
     {
         super.setNom("Odin");
-        super.setCheminImage("/yggdrasil/vue/Odin.jpg");
+        super.setCheminImage("/images/Odin.jpg");
     }
 }

@@ -9,60 +9,71 @@ import yggdrasil.Dieu.Dieu;
 import yggdrasil.Ennemis.Ennemis;
 
 /**
- *
- * @author mathias
+ * Modélise le monde Asgard
  */
 public class Asgard extends Monde {
 
+    /**
+     * L'ennemi du combat
+     */
     private Ennemis ennemis;
+    /**
+     * La force du dieu
+     */
     private int forceDieu;
+    /**
+     * La force de l'ennemi
+     */
     private int forceEnnemi;
 
+    /**
+     * Fonction à appeler lors du jeu en Asgard
+     * @param deus Le dieu qui combat
+     * @param ennemis L'ennemi à combattre
+     */
     public void commencerCombat(Dieu deus, Ennemis ennemis) {
         this.ennemis = ennemis;
         this.forceDieu = deus.getFORCEINITIALE();
         this.forceEnnemi = setForceEnnemi();
     }
 
+    /**
+     * Ajoute le nombre de vikings sacrifiés à la force du dieu
+     * @param NbVikingSac Nombre de vikings à sacrifier
+     */
     public void ajoutViking(int NbVikingSac) {
         this.forceDieu += NbVikingSac;
     }
 
+    /**
+     * Ajoute la valeur du dé à la force du dieu
+     * @param val Valeur de la face du dé
+     */
     public void ajoutValDe(int val) {
         this.forceDieu += val;
     }
 
+    /**
+     * 
+     * @return la force de l'ennemi
+     */
     private int setForceEnnemi() {
-        int pos = ennemis.getPosition();
-        if (!ennemis.isGeantActif()) {
-            if (pos < 3) {
-                return 5;
-            } else if (pos < 5) {
-                return 6;
-            } else if (pos < 8) {
-                return 7;
-            } else {
-                return 8;
-            }
-        }
-        else{
-            if (pos < 3) {
-                return 6;
-            } else if (pos < 5) {
-                return 7;
-            } else if (pos < 8) {
-                return 8;
-            } else {
-                return 9;
-            }
-        }
-            
+        return ennemis.getForce();
+
     }
 
+    /**
+     * Ajoute la force de l'artefact utilisé
+     * @param ar L'artefact utilisé
+     */
     public void ajoutArtefact(Artefact ar) {
         this.forceDieu += ar.getNiveau();
     }
 
+    /**
+     * Ajoute le nombre d'elfes sacrifier
+     * @param i le nombre d'elfes sacrifiés
+     */
     public void ajouterElfes(int i) {
         this.forceDieu += i;
     }

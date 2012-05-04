@@ -37,255 +37,134 @@ public class EcranPrincipal extends javax.swing.JPanel {
         initComponents();
 
 
-        switch (partie.getTb().getVanePostion()) {
-            case 0:
-                vanpo0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/vane.png")));
-                break;
-            case 1:
-                vanpo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/vane.png")));
-                break;
-            case 2:
-                vanpo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/vane.png")));
-                break;
-            case 3:
-                vanpo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/vane.png")));
-                break;
-            case 4:
-                vanpo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/vane.png")));
-                break;
-            case 5:
-                vanpo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/vane.png")));
-                break;
-        }
+          this.page = page;
+        this.partie = partie;
+        initComponents();
+        JLabel[] tabGeant = new JLabel[16];;
+        JLabel[] tabVane = new JLabel[6];
+
+        JLabel[] tabHel = new JLabel[8];
+        JLabel[] tabSurt = new JLabel[8];
+        JLabel[] tabJorgumand = new JLabel[8];
+        JLabel[] tabLoki = new JLabel[8];
+        JLabel[] tabNidhogg = new JLabel[8];
+        JLabel[] tabFenrir = new JLabel[8];
+
+        
+
+        tabVane[0] = vanpo0;
+        tabVane[1] = vanpo1;
+        tabVane[2] = vanpo2;
+        tabVane[3] = vanpo3;
+        tabVane[4] = vanpo4;
+        tabVane[5] = vanpo5;
+
+        tabVane[partie.getTb().getVanePostion()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vane.png")));
+
         Ennemis[] tabEn = partie.getTabEnnemis();
-        int longu = tabEn.length;
 
-        switch (tabEn[0].getPosition()) {
-            case 0:
-                hel0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/hel.png")));
-                break;
-            case 1:
-                hel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/hel.png")));
-                break;
-            case 2:
-                hel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/hel.png")));
-                break;
-            case 3:
-                hel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/hel.png")));
-                break;
-            case 4:
-                hel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/hel.png")));
-                break;
-            case 5:
-                hel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/hel.png")));
-                break;
-            case 6:
-                hel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/hel.png")));
-                break;
-            case 7:
-                hel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/hel.png")));
-                break;
-
-        }
-
-        switch (tabEn[1].getPosition()) {
-            case 0:
-                surt0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 1:
-                surt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 2:
-                surt2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 3:
-                surt3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 4:
-                surt4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 5:
-                surt5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 6:
-                surt6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 7:
-                surt7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-
-        }
-        switch (tabEn[2].getPosition()) {
-            case 0:
-                jorgumand0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/jormungand.png")));
-                break;
-            case 1:
-                jorgumand1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/jormungand.png")));
-                break;
-            case 2:
-                jorgumand2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/jormungand.png")));
-                break;
-            case 3:
-                jorgumand3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/jormungand.png")));
-                break;
-            case 4:
-                jorgumand4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/jormungand.png")));
-                break;
-            case 5:
-                jorgumand5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/jormungand.png")));
-                break;
-            case 6:
-                jorgumand6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/jormungand.png")));
-                break;
-            case 7:
-                jorgumand7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/jormungand.png")));
-                break;
-
-        }
-        switch (tabEn[3].getPosition()) {
-            case 0:
-                loki0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/loki.png")));
-                break;
-            case 1:
-                loki1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/loki.png")));
-                break;
-            case 2:
-                loki2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/loki.png")));
-                break;
-            case 3:
-                loki3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/loki.png")));
-                break;
-            case 4:
-                loki4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/loki.png")));
-                break;
-            case 5:
-                loki5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/loki.png")));
-                break;
-            case 6:
-                loki6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/loki.png")));
-                break;
-            case 7:
-                loki7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/loki.png")));
-                break;
-
-        }
-        switch (tabEn[4].getPosition()) {
-            case 0:
-                Nidhogg0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/nidhogg.png")));
-                break;
-            case 1:
-                Nidhogg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/nidhogg.png")));
-                break;
-            case 2:
-                Nidhogg2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/nidhogg.png")));
-                break;
-            case 3:
-                Nidhogg3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/nidhogg.png")));
-                break;
-            case 4:
-                Nidhogg4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/nidhogg.png")));
-                break;
-            case 5:
-                Nidhogg5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/nidhogg.png")));
-                break;
-            case 6:
-                Nidhogg6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/nidhogg.png")));
-                break;
-            case 7:
-                Nidhogg7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/nidhogg.png")));
-                break;
-
-        }
-        switch (tabEn[5].getPosition()) {
-            case 0:
-                Fenrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/fenrir.png")));
-                break;
-            case 1:
-                Fenrir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/fenrir.png")));
-                break;
-            case 2:
-                Fenrir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/fenrir.png")));
-                break;
-            case 3:
-                Fenrir3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/fenrir.png")));
-                break;
-            case 4:
-                Fenrir4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/fenrir.png")));
-                break;
-            case 5:
-                Fenrir5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/fenrir.png")));
-                break;
-            case 6:
-                Fenrir6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/fenrir.png")));
-                break;
-            case 7:
-                Fenrir7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/fenrir.png")));
-                break;
-
-        }
-        switch (tabEn[1].getPosition()) {
-            case 0:
-                surt0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 1:
-                surt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 2:
-                surt2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 3:
-                surt3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 4:
-                surt4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 5:
-                surt5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 6:
-                surt6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-            case 7:
-                surt7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/surt.png")));
-                break;
-
-        }
+        tabHel[0]= hel0;
+        tabHel[1]= hel1;
+        tabHel[2]= hel2;
+        tabHel[3]= hel3;
+        tabHel[4]= hel4;
+        tabHel[5]= hel5;
+        tabHel[6]= hel6;
+        tabHel[7]= hel7;
+        
+        tabHel[tabEn[0].getPosition()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hel.png")));
+        
+        tabSurt[0]= surt0;
+        tabSurt[1]= surt1;
+        tabSurt[2]= surt2;
+        tabSurt[3]= surt3;
+        tabSurt[4]= surt4;
+        tabSurt[5]= surt5;
+        tabSurt[6]= surt6;
+        tabSurt[7]= surt7;
+        
+        tabSurt[tabEn[1].getPosition()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/surt.png")));
+        
+        tabJorgumand[0]= jorgumand0;
+        tabJorgumand[1]= jorgumand1;
+        tabJorgumand[2]= jorgumand2;
+        tabJorgumand[3]= jorgumand3;
+        tabJorgumand[4]= jorgumand4;
+        tabJorgumand[5]= jorgumand5;
+        tabJorgumand[6]= jorgumand6;
+        tabJorgumand[7]= jorgumand7;
+        
+        tabJorgumand[tabEn[2].getPosition()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jormungand.png")));
+        
+        tabLoki[0]= loki0;
+        tabLoki[1]= loki1;
+        tabLoki[2]= loki2;
+        tabLoki[3]= loki3;
+        tabLoki[4]= loki4;
+        tabLoki[5]= loki5;
+        tabLoki[6]= loki6;
+        tabLoki[7]= loki7;
+        
+        tabLoki[tabEn[3].getPosition()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loki.png")));
+        
+        tabNidhogg[0]=  Nidhogg0;
+        tabNidhogg[1]=  Nidhogg1;
+        tabNidhogg[2]=  Nidhogg2;
+        tabNidhogg[3]=  Nidhogg3;
+        tabNidhogg[4]=  Nidhogg4;
+        tabNidhogg[5]=  Nidhogg5;
+        tabNidhogg[6]=  Nidhogg6;
+        tabNidhogg[7]=  Nidhogg7;
+        
+        tabNidhogg[tabEn[4].getPosition()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/nidhogg.png")));
+        
+        tabFenrir[0]= Fenrir;
+        tabFenrir[1]= Fenrir1;
+        tabFenrir[2]= Fenrir2;
+        tabFenrir[3]= Fenrir3;
+        tabFenrir[4]= Fenrir4;
+        tabFenrir[5]= Fenrir5;
+        tabFenrir[6]= Fenrir6;
+        tabFenrir[7]= Fenrir7;
+        
+        tabFenrir[tabEn[5].getPosition()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fenrir.png")));
+        
         int nbArt = partie.getDieuActuel().getlArtefact().size();
         Iterator it = partie.getDieuActuel().getlArtefact().values().iterator();
         while (it.hasNext()) {
             JLabel jl = new JLabel();
             Artefact a = (Artefact) it.next();
-            jl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + a.getEnnemi() + a.getNiveau() + ".png")));// NOI18N
+            jl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + a.getEnnemi() + a.getNiveau() + ".png")));// NOI18N
             panelArtefact.add(jl);
         }
         switch (partie.getMg().getValkyrie().getPosition()) {
             case 0:
-                ileArcEnCiel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/valkyrie.png")));
+                ileArcEnCiel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/valkyrie.png")));
                 break;
             case 1:
-                ileBlanche.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/valkyrie.png")));
+                ileBlanche.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/valkyrie.png")));
                 break;
             case 2:
-                ileBleue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/valkyrie.png")));
+                ileBleue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/valkyrie.png")));
                 break;
             case 3:
-                ileVerte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/valkyrie.png")));
+                ileVerte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/valkyrie.png")));
                 break;
             case 4:
-                ileNoire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/valkyrie.png")));
+                ileNoire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/valkyrie.png")));
                 break;
 
         }
         Ile[] tabIle = partie.getMg().getTabIle();
 
         if (tabIle[1].isSubmergee()) {
-            ileBlancheSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/ileSub.png")));
+            ileBlancheSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ileSub.png")));
         } else if (tabIle[2].isSubmergee()) {
-            ileBleueSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/ileSub.png")));
+            ileBleueSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ileSub.png")));
         } else if (tabIle[3].isSubmergee()) {
-            ileVerteSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/ileSub.png")));
+            ileVerteSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ileSub.png")));
         } else if (tabIle[4].isSubmergee()) {
-            ileNoireSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/ileSub.png")));
+            ileNoireSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ileSub.png")));
         }
         tabGeant[0] = jLabel28;
         tabGeant[1] = jLabel29;
@@ -372,27 +251,27 @@ public class EcranPrincipal extends javax.swing.JPanel {
             int j = partie.getlDieu().indexOf(partie.getDieuActuel());
             partie.getDieuActuel().reset();
             if ((j + 1) == partie.getlDieu().size()) {
-                partie.setDieuActuel(partie.getlDieu().get(0));
+                partie.setDieuActuel((Dieu)partie.getlDieu().get(0));
             } else {
-                partie.setDieuActuel(partie.getlDieu().get(j + 1));
+                partie.setDieuActuel((Dieu)partie.getlDieu().get(j + 1));
 
             }
             page.getContentPane().removeAll();
             page.getContentPane().add(new EcranPrincipal(page, partie));
             page.revalidate();
             if ("Odin".equals(partie.getDieuActuel().getNom())) {
-                String e = partie.getPileCarteEnnemis().get(0);
-                String e1 = partie.getPileCarteEnnemis().get(1);
+                String e = (String)partie.getPileCarteEnnemis().get(0);
+                String e1 = (String)partie.getPileCarteEnnemis().get(1);
                 OdinTire dt = new OdinTire(page, true, e, e1);
                 dt.setLocationRelativeTo(page);
                 dt.setVisible(true);
                 int choix = dt.getChoix();
-                String ec = partie.getPileCarteEnnemis().get(choix);
+                String ec =(String) partie.getPileCarteEnnemis().get(choix);
                 partie.getPileCarteEnnemis().remove(ec);
                 partie.appliquerEnnemi(page, ec);
 
             } else {
-                String e = partie.getPileCarteEnnemis().get(0);
+                String e = (String)partie.getPileCarteEnnemis().get(0);
                 DieuTire dt = new DieuTire(page, true, e);
                 dt.setLocationRelativeTo(page);
                 dt.setVisible(true);
@@ -620,7 +499,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Yggdrasil", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/elfe.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/elfe.png"))); // NOI18N
         jLabel8.setText(" : ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -632,7 +511,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Yggdrasil", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/viking50.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/viking50.png"))); // NOI18N
         jLabel11.setText(" : ");
         jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -867,7 +746,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         labelNombreElfes.setText(Integer.toString(partie.getDde().getlElfes().size()));
         jPanel4.add(labelNombreElfes, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 14, 40, 30));
 
-        imageElfe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/elfe.png"))); // NOI18N
+        imageElfe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/elfe.png"))); // NOI18N
         imageElfe.setText("jLabel3");
         imageElfe.setToolTipText("");
         jPanel4.add(imageElfe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -898,7 +777,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         });
         jPanel3.add(boutonMidgard, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 270, 110));
 
-        boutonForgeDesNains.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/carteArte.png"))); // NOI18N
+        boutonForgeDesNains.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/carteArte.png"))); // NOI18N
         boutonForgeDesNains.setToolTipText("<html>\n<h3>Forge des nains</h3>\nRécupérer un Artefact de niveau 1 au choix dans la Forge des Nains.<br/>\nou<br/>\nRemettre un Artefact de niveau 1 ou 2 dans la Forge des Nains afin de récupérer<br/>\nun Artefact de niveau directement supérieur, à condition que ces 2 Artefacts<br/>\naffectent le même Ennemi.<br/>\nIl faut noter que l’effet des Artefacts s’applique dès qu’ils ont été récupérés.<br/>\nUn Dieu peut posséder plusieurs Artefacts différents. Deux Dieux peuvent<br/>\nposséder le même Artefact mais à des niveaux différents.<br/></html>");
         boutonForgeDesNains.setActionCommand("boutonForgeDesNains");
         boutonForgeDesNains.setBorderPainted(false);
@@ -938,7 +817,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel5.setOpaque(false);
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/GeantDeFeu.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/GeantDeFeu.png"))); // NOI18N
         jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 50, 50));
@@ -962,7 +841,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         labelnombreGeantDeFeuRestant.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelnombreGeantDeFeuRestant.setText(Integer.toString(partie.getFdg().getPileGeantDeGivre().size()));
 
-        boutonForteresseDeGlace.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/carteGeantDeFeuDos.png"))); // NOI18N
+        boutonForteresseDeGlace.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/carteGeantDeFeuDos.png"))); // NOI18N
         boutonForteresseDeGlace.setToolTipText("<html>\n<h3>Forteresse de glaces</h3>\nCombattre un Géant actif (voir Loki) ou le premier Géant de la pioche face<br/>\ncachée sans le retourner. Tous les Géants de Givre ont une force de combat<br/>\nde 3. (Voir la section «COMBAT»).<br/>\nSi le combat est gagné par le Dieu, le Géant est alors placé à l’écart du plateau<br/>\net son effet cesse immédiatement de s’appliquer. Cette défausse est commune<br/>\nà tous les Dieux.<br/>\nSi le combat est perdu, le Géant reste sur le dessus de la pile s’il était face<br/>\ncachée ou, s’il était actif (face visible), son effet continue de s’appliquer.<br/>\nLorsque les 4 Géants correspondant à une même Rune ont été vaincus, le<br/>\nDieu actif applique immédiatement le pouvoir de cette Rune.<br/>\n</html>");
         boutonForteresseDeGlace.setActionCommand("boutonForteresseDeGlace");
         boutonForteresseDeGlace.setBorderPainted(false);
@@ -1011,7 +890,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jLabel6.setText(Integer.toString(partie.getDm().getlViking().size()));
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 506, 30, 30));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/viking.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/viking.png"))); // NOI18N
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 494, 50, 50));
 
         vanpo0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1348,7 +1227,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel3.add(ileBleueSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 50, 30));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/plateau.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plateau.jpg"))); // NOI18N
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel61.setOpaque(false);
@@ -1358,7 +1237,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel62.setLayout(new javax.swing.BoxLayout(jPanel62, javax.swing.BoxLayout.Y_AXIS));
 
         jTiwaz5.setForeground(new java.awt.Color(255, 204, 0));
-        jTiwaz5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Tiwaz1.png"))); // NOI18N
+        jTiwaz5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tiwaz1.png"))); // NOI18N
         jTiwaz5.setEnabled(false);
         jTiwaz5.setMaximumSize(new java.awt.Dimension(80, 25));
         jTiwaz5.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1367,7 +1246,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel62.add(jTiwaz5);
 
         jTiwaz6.setForeground(new java.awt.Color(255, 204, 0));
-        jTiwaz6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Tiwaz2.png"))); // NOI18N
+        jTiwaz6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tiwaz2.png"))); // NOI18N
         jTiwaz6.setEnabled(false);
         jTiwaz6.setMaximumSize(new java.awt.Dimension(80, 25));
         jTiwaz6.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1376,7 +1255,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel62.add(jTiwaz6);
 
         jTiwaz7.setForeground(new java.awt.Color(255, 204, 0));
-        jTiwaz7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Tiwaz3.png"))); // NOI18N
+        jTiwaz7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tiwaz3.png"))); // NOI18N
         jTiwaz7.setEnabled(false);
         jTiwaz7.setMaximumSize(new java.awt.Dimension(80, 25));
         jTiwaz7.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1385,7 +1264,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel62.add(jTiwaz7);
 
         jTiwaz8.setForeground(new java.awt.Color(255, 204, 0));
-        jTiwaz8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Tiwaz4.png"))); // NOI18N
+        jTiwaz8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Tiwaz4.png"))); // NOI18N
         jTiwaz8.setEnabled(false);
         jTiwaz8.setMaximumSize(new java.awt.Dimension(80, 25));
         jTiwaz8.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1398,7 +1277,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel63.setLayout(new javax.swing.BoxLayout(jPanel63, javax.swing.BoxLayout.Y_AXIS));
 
         jDaeg5.setForeground(new java.awt.Color(255, 204, 0));
-        jDaeg5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Dael1.png"))); // NOI18N
+        jDaeg5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dael1.png"))); // NOI18N
         jDaeg5.setEnabled(false);
         jDaeg5.setMaximumSize(new java.awt.Dimension(80, 25));
         jDaeg5.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1407,7 +1286,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel63.add(jDaeg5);
 
         jDaeg6.setForeground(new java.awt.Color(255, 204, 0));
-        jDaeg6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Dael2.png"))); // NOI18N
+        jDaeg6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dael2.png"))); // NOI18N
         jDaeg6.setEnabled(false);
         jDaeg6.setMaximumSize(new java.awt.Dimension(80, 25));
         jDaeg6.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1416,7 +1295,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel63.add(jDaeg6);
 
         jDaeg7.setForeground(new java.awt.Color(255, 204, 0));
-        jDaeg7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Dael3.png"))); // NOI18N
+        jDaeg7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dael3.png"))); // NOI18N
         jDaeg7.setEnabled(false);
         jDaeg7.setMaximumSize(new java.awt.Dimension(80, 25));
         jDaeg7.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1425,7 +1304,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel63.add(jDaeg7);
 
         jDaeg8.setForeground(new java.awt.Color(255, 204, 0));
-        jDaeg8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Dael4.png"))); // NOI18N
+        jDaeg8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Dael4.png"))); // NOI18N
         jDaeg8.setEnabled(false);
         jDaeg8.setMaximumSize(new java.awt.Dimension(80, 25));
         jDaeg8.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1438,7 +1317,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel64.setLayout(new javax.swing.BoxLayout(jPanel64, javax.swing.BoxLayout.Y_AXIS));
 
         jSiegel9.setForeground(new java.awt.Color(255, 204, 0));
-        jSiegel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Siegel1.png"))); // NOI18N
+        jSiegel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Siegel1.png"))); // NOI18N
         jSiegel9.setEnabled(false);
         jSiegel9.setMaximumSize(new java.awt.Dimension(80, 25));
         jSiegel9.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1447,7 +1326,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel64.add(jSiegel9);
 
         jSiegel10.setForeground(new java.awt.Color(255, 204, 0));
-        jSiegel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Siegel2.png"))); // NOI18N
+        jSiegel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Siegel2.png"))); // NOI18N
         jSiegel10.setEnabled(false);
         jSiegel10.setMaximumSize(new java.awt.Dimension(80, 25));
         jSiegel10.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1456,7 +1335,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel64.add(jSiegel10);
 
         jSiegel11.setForeground(new java.awt.Color(255, 204, 0));
-        jSiegel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Siegel3.png"))); // NOI18N
+        jSiegel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Siegel3.png"))); // NOI18N
         jSiegel11.setEnabled(false);
         jSiegel11.setMaximumSize(new java.awt.Dimension(80, 25));
         jSiegel11.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1465,7 +1344,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel64.add(jSiegel11);
 
         jSiegel12.setForeground(new java.awt.Color(255, 204, 0));
-        jSiegel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Siegel4..png"))); // NOI18N
+        jSiegel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Siegel4..png"))); // NOI18N
         jSiegel12.setEnabled(false);
         jSiegel12.setMaximumSize(new java.awt.Dimension(80, 25));
         jSiegel12.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1478,7 +1357,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel65.setLayout(new javax.swing.BoxLayout(jPanel65, javax.swing.BoxLayout.Y_AXIS));
 
         jMann5.setForeground(new java.awt.Color(255, 204, 0));
-        jMann5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Mann1.png"))); // NOI18N
+        jMann5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Mann1.png"))); // NOI18N
         jMann5.setEnabled(false);
         jMann5.setMaximumSize(new java.awt.Dimension(80, 25));
         jMann5.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1487,7 +1366,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel65.add(jMann5);
 
         jMann6.setForeground(new java.awt.Color(255, 204, 0));
-        jMann6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Mann2.png"))); // NOI18N
+        jMann6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Mann2.png"))); // NOI18N
         jMann6.setEnabled(false);
         jMann6.setMaximumSize(new java.awt.Dimension(80, 25));
         jMann6.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1496,7 +1375,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel65.add(jMann6);
 
         jMann7.setForeground(new java.awt.Color(255, 204, 0));
-        jMann7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Mann3.png"))); // NOI18N
+        jMann7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Mann3.png"))); // NOI18N
         jMann7.setEnabled(false);
         jMann7.setMaximumSize(new java.awt.Dimension(80, 25));
         jMann7.setMinimumSize(new java.awt.Dimension(80, 25));
@@ -1505,7 +1384,7 @@ public class EcranPrincipal extends javax.swing.JPanel {
         jPanel65.add(jMann7);
 
         jMann8.setForeground(new java.awt.Color(255, 204, 0));
-        jMann8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Mann4.PNG"))); // NOI18N
+        jMann8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Mann4.PNG"))); // NOI18N
         jMann8.setEnabled(false);
         jMann8.setMaximumSize(new java.awt.Dimension(80, 25));
         jMann8.setMinimumSize(new java.awt.Dimension(80, 25));

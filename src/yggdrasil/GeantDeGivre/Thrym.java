@@ -7,17 +7,27 @@ package yggdrasil.GeantDeGivre;
 import yggdrasil.Ennemis.Jormungand;
 
 /**
- *
- * @author mathias
+ *Modélise le géant de givre Thrym
  */
 public class Thrym extends GeantDeGivre{
+    /**
+     * L'ennemi Jormungand
+     */
     private Jormungand jormungand;
+    /**
+     * Initialise Thrym
+     * @param jormungand L'ennemi Jormungand
+     * @param morceauRune le morceau de rune
+     */
     public Thrym(Jormungand jormungand,boolean morceauRune) {
         super("Thrym", morceauRune);
-        super.setCheminImage("/yggdrasil/vue/thrym.png");
+        super.setCheminImage("/images/thrym.png");
         this.jormungand=jormungand;
     }
 
+    /**
+     * Désactive Thrym
+     */
     @Override
     public void desactiver() {
         super.setActif(false);
@@ -25,6 +35,9 @@ public class Thrym extends GeantDeGivre{
         super.setMorceauRune(true);
     }
 
+    /**
+     * Active Thrym
+     */
     @Override
     public void activer() {
         super.setActif(true);

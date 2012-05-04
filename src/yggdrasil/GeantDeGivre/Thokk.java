@@ -7,17 +7,21 @@ package yggdrasil.GeantDeGivre;
 import yggdrasil.Ennemis.Nidhogg;
 
 /**
- *
- * @author mathias
+ * Modélise le géant de givre Thokk
  */
-public class Thokk extends GeantDeGivre{
+public class Thokk extends GeantDeGivre {
+
     private Nidhogg nidhogg;
+
     public Thokk(Nidhogg nidhogg, boolean morceauRune) {
         super("Thokk", morceauRune);
-        this.nidhogg=nidhogg;
-        super.setCheminImage("/yggdrasil/vue/thokk.png");
+        this.nidhogg = nidhogg;
+        super.setCheminImage("/images/thokk.png");
     }
 
+    /**
+     * Désactive Thokk
+     */
     @Override
     public void desactiver() {
         super.setActif(false);
@@ -25,12 +29,12 @@ public class Thokk extends GeantDeGivre{
         super.setMorceauRune(true);
     }
 
+    /**
+     * Active Thokk
+     */
     @Override
     public void activer() {
         super.setActif(true);
-       nidhogg.setGeantActif(true);
+        nidhogg.setGeantActif(true);
     }
-
-  
-    
 }

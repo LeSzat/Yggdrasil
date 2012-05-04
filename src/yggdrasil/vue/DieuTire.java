@@ -20,7 +20,7 @@ public class DieuTire extends javax.swing.JDialog {
         DieuTire.e = e;
         initComponents();
 
-        labelCarteEnnemi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + e + "C.png")));
+        labelCarteEnnemi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + e + "C.png")));
 
     }
 

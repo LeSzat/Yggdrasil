@@ -5,8 +5,8 @@
 package yggdrasil;
 
 /**
- *
- * @author mathias
+ *Modélise un elfes
+ * 
  */
 public class Elfes {
     

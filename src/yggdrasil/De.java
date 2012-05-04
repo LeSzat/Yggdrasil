@@ -7,12 +7,17 @@ package yggdrasil;
 import java.util.Random;
 
 /**
- *
- * @author mathias
+ * Modélise le dé d'Yggdrasil
  */
 public class De {
 
+    /**
+     * Tableau des 6 faces du dé
+     */
     private Face[] face;
+    /**
+     * Définit si le dé a été bloqué par un géant de givre
+     */
     private boolean actif;
 
     public De() {
@@ -25,7 +30,10 @@ public class De {
         face[5] = new Face("Noir", 3);
         actif = true;
     }
-
+/**
+ * Donne une face aléatoirement
+ * @return la valeur correspondant à la face
+ */
     public int getValeur() {
 
         Random r = new Random();
@@ -38,7 +46,10 @@ public class De {
 
         return face[t1].getVal();
     }
-
+/**
+ * Donne une face aléatoirement
+ * @return l'index de la couleur correspondant à la face
+ */
     public int getCouleur() {
         Random r = new Random();
         int t1 = r.nextInt(6);
@@ -59,11 +70,17 @@ public class De {
                 return getCouleur();
         }
     }
-
+/**
+ * 
+ * @return la valeur de actif
+ */
     public boolean isActif() {
         return actif;
     }
-
+/**
+ * change la valeur de actif
+ * @param actif 
+ */
     public void setActif(boolean actif) {
         this.actif = actif;
     }

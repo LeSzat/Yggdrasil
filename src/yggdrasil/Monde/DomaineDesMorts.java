@@ -5,6 +5,7 @@
 package yggdrasil.Monde;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import yggdrasil.Pion.Vikings;
 
 /**
@@ -13,10 +14,10 @@ import yggdrasil.Pion.Vikings;
  */
 public class DomaineDesMorts extends Monde {
 
-    private ArrayList<Vikings> lViking;
+    private LinkedList lViking;
 
     public DomaineDesMorts() {
-        lViking = new ArrayList<>();
+        lViking = new LinkedList();
         for (int i = 0; i < 5; i++) {
             lViking.add(new Vikings());
         }
@@ -31,7 +32,7 @@ public class DomaineDesMorts extends Monde {
     {
         lViking.remove(0);
     }
-    public ArrayList<Vikings> getlViking() {
+    public LinkedList getlViking() {
         return lViking;
     }
     

@@ -5,24 +5,41 @@
 package yggdrasil.Ennemis;
 
 /**
- *
- * @author mathias
+ * Modélise les ennemis
  */
 public abstract class Ennemis {
 
+    /**
+     * Position en Midgard
+     */
     private int position;
+    /**
+     * Nom
+     */
     private String nom;
+    /**
+     * Si le géant de givre pour ce dieu est activé(ça donne +1 lors des
+     * combats)
+     */
     private boolean geantActif;
 
+    /**
+     * Initialise un ennemi
+     */
     public Ennemis() {
         this.position = 0;
-        geantActif=false;
+        geantActif = false;
     }
 
     public int getPosition() {
         return position;
     }
 
+    /**
+     *
+     * @return la force pour les combats selon la position de l'ennemi sur
+     * Midgard
+     */
     public int getForce() {
         if (position < 3) {
             return 5;
@@ -34,9 +51,13 @@ public abstract class Ennemis {
             return 8;
         }
     }
-    public int getPuissance()
-    {
-         if (position < 3) {
+
+    /**
+     *
+     * @return la puissance lors de leurs effets
+     */
+    public int getPuissance() {
+        if (position < 3) {
             return 1;
         } else if (position < 5) {
             return 2;
@@ -44,6 +65,7 @@ public abstract class Ennemis {
             return 3;
         }
     }
+
     public void reculer(int i) {
         if (position > 0) {
             position -= i;
@@ -71,5 +93,4 @@ public abstract class Ennemis {
     public void setGeantActif(boolean geantActif) {
         this.geantActif = geantActif;
     }
-    
 }

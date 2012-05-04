@@ -15,29 +15,36 @@ import yggdrasil.Pion.Vikings;
 import yggdrasil.Sac;
 
 /**
- *
- * @author mathias
+ *Modléise l'ennemi Hel
  */
 public class Hel extends Ennemis {
-
+/**
+ * Le dé
+ */
     private De de;
 
     public Hel(De de) {
         super.setNom("Hel");
         this.de = de;
     }
-
-    public void action(Sac[] tabSacs, DomaineDesMorts ddm, JFrame page,Dieu deus) {
+/**
+ * Effet de Hel
+ * @param tabSacs le tableau contenant les sacs
+ * @param ddm Le monde Domaine des morts
+ * @param page JFrame principale
+ * @param deus Le dieu actuel
+ */
+    public void action(Sac[] tabSacs, DomaineDesMorts ddm, JFrame page, Dieu deus) {
         this.avancer(1);
         int k = 0;
         int nb = 0;
         int val;
-        
-         if ("Tyr".equals(deus.getNom())) {
+
+        if ("Tyr".equals(deus.getNom())) {
             int det1 = de.getCouleur();
             int det2 = de.getCouleur();
 
-            String[] choix1 = {tabSacs[det1].getCouleur(),tabSacs[det2].getCouleur()};
+            String[] choix1 = {tabSacs[det1].getCouleur(), tabSacs[det2].getCouleur()};
             JOptionPane jop1 = new JOptionPane();
             int rang1 = JOptionPane.showOptionDialog(page,
                     "Quelle couleur du dé choisissez vous?",
@@ -55,7 +62,7 @@ public class Hel extends Ennemis {
         } else {
             val = de.getValeur();
         }
-        
+
         Sac s = tabSacs[val];
         int nbViking = s.getNbVikings();
         while (k < this.getPuissance() && k < nbViking) {

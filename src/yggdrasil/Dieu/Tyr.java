@@ -17,16 +17,27 @@ import yggdrasil.Monde.DomaineDesMorts;
 import yggdrasil.Monde.ForgeDesNains;
 
 /**
- *
- * @author mathias
+ * Modélise le dieu Tyr
  */
 public class Tyr extends Dieu {
 
     public Tyr() {
         super.setNom("Tyr");
-        super.setCheminImage("/yggdrasil/vue/Tyr.jpg");
+        super.setCheminImage("/images/Tyr.jpg");
     }
 
+    /**
+     * Redéfinition de la fonction jouer en Asgard, car son pouvoir impact sur
+     * ce monde
+     *
+     * @param en L'ennemi à combattre
+     * @param de Le dé
+     * @param dde Le Monde Domaine des elfes
+     * @param ddm Le monde Domaine des morts
+     * @param fdn Le monde Forge des nains
+     * @param as Le monde Asgard
+     * @param page JFrame principale
+     */
     @Override
     public void jouerEnAsgard(Ennemis en, De de, DemeureDesElfes dde, DomaineDesMorts ddm, ForgeDesNains fdn, Asgard as, JFrame page) {
         if (Dieu.pouvoirDieu) {
@@ -142,6 +153,17 @@ public class Tyr extends Dieu {
         }
     }
 
+    /**
+     * Redéfinition de la fonction jouer en Asgard, car son pouvoir impact sur
+     * ce monde
+     *
+     * @param deus dieu actuel
+     * @param gdg Le géant de givre à combattre
+     * @param de Le dé
+     * @param ddm Le Monde Domaine des morts
+     * @param dde Le Monde Demeures des Elfes
+     * @param page JFrame principale
+     */
     @Override
     public void jouerEnForteresseDeGlace(Dieu deus, GeantDeGivre gdg, De de, DomaineDesMorts ddm, DemeureDesElfes dde, JFrame page) {
         if (Dieu.pouvoirDieu) {

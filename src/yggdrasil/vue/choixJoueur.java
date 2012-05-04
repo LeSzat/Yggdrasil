@@ -304,7 +304,7 @@ public class choixJoueur extends javax.swing.JPanel {
                 break;
             default:
                 joueur[5] = (String) JcomboJoueur6.getSelectedItem();
-                imageJoueur6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[5] + ".jpg")));
+                imageJoueur6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + joueur[5] + ".jpg")));
                 break;
         }
     }//GEN-LAST:event_JcomboJoueur6ActionPerformed
@@ -335,7 +335,7 @@ public class choixJoueur extends javax.swing.JPanel {
                 jButton1.setEnabled(true);
                 if (joueur[0].isEmpty()) {
                     joueur[0] = (String) JcomboJoueur1.getSelectedItem();
-                    imageJoueur1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[0] + ".jpg")));
+                    imageJoueur1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + joueur[0] + ".jpg")));
                     JcomboJoueur2.removeItem(joueur[0]);
                     JcomboJoueur3.removeItem(joueur[0]);
                     JcomboJoueur4.removeItem(joueur[0]);
@@ -348,7 +348,7 @@ public class choixJoueur extends javax.swing.JPanel {
                     JcomboJoueur5.addItem(joueur[0]);
                     JcomboJoueur6.addItem(joueur[0]);
                     joueur[0] = (String) JcomboJoueur1.getSelectedItem();
-                    imageJoueur1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[0] + ".jpg")));
+                    imageJoueur1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + joueur[0] + ".jpg")));
                     JcomboJoueur2.removeItem(joueur[0]);
                     JcomboJoueur3.removeItem(joueur[0]);
                     JcomboJoueur4.removeItem(joueur[0]);
@@ -380,7 +380,7 @@ public class choixJoueur extends javax.swing.JPanel {
             default:
                 if (joueur[2].isEmpty()) {
                     joueur[2] = (String) JcomboJoueur3.getSelectedItem();
-                    imageJoueur3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[2] + ".jpg")));
+                    imageJoueur3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + joueur[2] + ".jpg")));
                     JcomboJoueur4.removeItem(joueur[2]);
                     JcomboJoueur5.removeItem(joueur[2]);
                     JcomboJoueur6.removeItem(joueur[2]);
@@ -389,7 +389,7 @@ public class choixJoueur extends javax.swing.JPanel {
                     JcomboJoueur5.addItem(joueur[2]);
                     JcomboJoueur6.addItem(joueur[2]);
                     joueur[2] = (String) JcomboJoueur3.getSelectedItem();
-                    imageJoueur3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[2] + ".jpg")));
+                    imageJoueur3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + joueur[2] + ".jpg")));
                     JcomboJoueur4.removeItem(joueur[2]);
                     JcomboJoueur5.removeItem(joueur[2]);
                     JcomboJoueur6.removeItem(joueur[2]);
@@ -415,14 +415,14 @@ public class choixJoueur extends javax.swing.JPanel {
             default:
                 if (joueur[3].isEmpty()) {
                     joueur[3] = (String) JcomboJoueur4.getSelectedItem();
-                    imageJoueur4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[3] + ".jpg")));
+                    imageJoueur4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + joueur[3] + ".jpg")));
                     JcomboJoueur5.removeItem(joueur[3]);
                     JcomboJoueur6.removeItem(joueur[3]);
                 } else {
                     JcomboJoueur5.addItem(joueur[3]);
                     JcomboJoueur6.addItem(joueur[3]);
                     joueur[3] = (String) JcomboJoueur4.getSelectedItem();
-                    imageJoueur4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[3] + ".jpg")));
+                    imageJoueur4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + joueur[3] + ".jpg")));
                     JcomboJoueur5.removeItem(joueur[3]);
                     JcomboJoueur6.removeItem(joueur[3]);
                 }
@@ -445,14 +445,14 @@ public class choixJoueur extends javax.swing.JPanel {
             default:
                 if (joueur[4].isEmpty()) {
                     joueur[4] = (String) JcomboJoueur5.getSelectedItem();
-                    imageJoueur5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[4] + ".jpg")));
+                    imageJoueur5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + joueur[4] + ".jpg")));
                     JcomboJoueur5.removeItem(joueur[4]);
                     JcomboJoueur6.removeItem(joueur[4]);
                 } else {
                     JcomboJoueur5.addItem(joueur[4]);
                     JcomboJoueur6.addItem(joueur[4]);
                     joueur[4] = (String) JcomboJoueur5.getSelectedItem();
-                    imageJoueur5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[4] + ".jpg")));
+                    imageJoueur5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + joueur[4] + ".jpg")));
                     JcomboJoueur6.removeItem(joueur[4]);
                 }
                 JcomboJoueur6.setEnabled(true);
@@ -480,7 +480,7 @@ public class choixJoueur extends javax.swing.JPanel {
             default:
                 if (joueur[1].isEmpty()) {
                     joueur[1] = (String) JcomboJoueur2.getSelectedItem();
-                    imageJoueur2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[1] + ".jpg")));
+                    imageJoueur2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + joueur[1] + ".jpg")));
                     JcomboJoueur3.removeItem(joueur[1]);
                     JcomboJoueur4.removeItem(joueur[1]);
                     JcomboJoueur5.removeItem(joueur[1]);
@@ -491,7 +491,7 @@ public class choixJoueur extends javax.swing.JPanel {
                     JcomboJoueur5.addItem(joueur[1]);
                     JcomboJoueur6.addItem(joueur[1]);
                     joueur[1] = (String) JcomboJoueur2.getSelectedItem();
-                    imageJoueur2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + joueur[1] + ".jpg")));
+                    imageJoueur2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + joueur[1] + ".jpg")));
                     JcomboJoueur3.removeItem(joueur[1]);
                     JcomboJoueur4.removeItem(joueur[1]);
                     JcomboJoueur5.removeItem(joueur[1]);
@@ -521,23 +521,23 @@ public class choixJoueur extends javax.swing.JPanel {
                 }
             }
         }
-        partie.setDieuActuel(partie.getlDieu().get(0));
+        partie.setDieuActuel((Dieu)partie.getlDieu().get(0));
         page.getContentPane().removeAll();
         page.getContentPane().add(new EcranPrincipal(page, partie));
         page.revalidate();
         if ("Odin".equals(partie.getDieuActuel().getNom())&&Dieu.pouvoirDieu) {
-            String e = partie.getPileCarteEnnemis().get(0);
-            String e1 = partie.getPileCarteEnnemis().get(1);
+            String e = (String)partie.getPileCarteEnnemis().get(0);
+            String e1 =(String) partie.getPileCarteEnnemis().get(1);
             OdinTire dt = new OdinTire(page, true, e,e1);
             dt.setLocationRelativeTo(page);
             dt.setVisible(true);
             int choix=dt.getChoix();
-            String ec=partie.getPileCarteEnnemis().get(choix);
+            String ec=(String)partie.getPileCarteEnnemis().get(choix);
             partie.getPileCarteEnnemis().remove(ec);
             partie.appliquerEnnemi(page, ec);
 
         } else {
-            String e = partie.getPileCarteEnnemis().get(0);
+            String e = (String)partie.getPileCarteEnnemis().get(0);
             DieuTire dt = new DieuTire(page, true, e);
             dt.setLocationRelativeTo(page);
             dt.setVisible(true);

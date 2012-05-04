@@ -23,8 +23,8 @@ public class OdinTire extends javax.swing.JDialog {
         OdinTire.e1 = e1;
         OdinTire.e = e;
         
-         labelCarteEnnemi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + e + "C.png")));
-        labelCarteEnnemi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + e1 + "C.png")));
+         labelCarteEnnemi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + e + "C.png")));
+        labelCarteEnnemi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + e1 + "C.png")));
     }
 
     public int getChoix() {

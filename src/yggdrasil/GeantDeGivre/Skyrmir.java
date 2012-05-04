@@ -7,17 +7,27 @@ package yggdrasil.GeantDeGivre;
 import yggdrasil.Ennemis.Fenrir;
 
 /**
- *
- * @author mathias
+ *Modélise le géant de givre Skyrmir
  */
 public class Skyrmir extends GeantDeGivre{
+    /**
+     * L'ennemi Fenrir
+     */
     private Fenrir fenrir;
+    /**
+     * Initialise Skyrmir
+     * @param fenrir L'ennemi Fenrir
+     * @param morceauRune Le morceau de rune
+     */
     public Skyrmir(Fenrir fenrir, boolean morceauRune) {
         super("Skyrmir", morceauRune);
         this.fenrir=fenrir;
-        super.setCheminImage("/yggdrasil/vue/skymir.png");
+        super.setCheminImage("/images/skymir.png");
     }
 
+    /**
+     * Désactive Skyrmir
+     */
     @Override
     public void desactiver() {
         super.setActif(false);
@@ -25,6 +35,9 @@ public class Skyrmir extends GeantDeGivre{
         super.setMorceauRune(true);
     }
 
+    /**
+     * Active Skyrmir
+     */
     @Override
     public void activer() {
         super.setActif(true);

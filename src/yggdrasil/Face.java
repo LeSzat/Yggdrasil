@@ -5,37 +5,42 @@
 package yggdrasil;
 
 /**
- *
- * @author mathias
+ *Modélise une face du dé d'Yggdrasil
  */
 public class Face {
 
-   
+   /**
+    * Couleur de la face
+    */
     private String couleur;
+    /**
+     * 
+     * valeur de la face
+     */
     private int val;
-    
+    /**
+     * 
+     * @param couleur couleur de la face
+     * @param val valeur de la face
+     */
      public Face(String couleur, int val) {
         this.couleur = couleur;
         this.val = val;
     }
-
+/**
+ * 
+ * @return la couleur de la face
+ */
     public String getCouleur() {
         return couleur;
     }
 
-    public void setCouleur(String couleur) {
-        this.couleur = couleur;
-    }
-
+/**
+ * 
+ * @return la valeur de la face
+ */
     public int getVal() {
         return val;
     }
 
-    public void setVal(int val) {
-        this.val = val;
-    }
-     
-    
-    
-    
 }

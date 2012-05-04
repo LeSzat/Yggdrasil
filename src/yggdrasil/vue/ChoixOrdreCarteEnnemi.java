@@ -5,7 +5,7 @@
 package yggdrasil.vue;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedList;
 
 /**
  *
@@ -16,23 +16,23 @@ public class ChoixOrdreCarteEnnemi extends javax.swing.JDialog {
     /**
      * Creates new form ChoixOrdreCarteEnnemi
      */
-    private static ArrayList<String> pileCarteEnnemis;
+    private static LinkedList pileCarteEnnemis;
     private int[] ordre;
 
-    public ChoixOrdreCarteEnnemi(java.awt.Frame parent, boolean modal, ArrayList<String> pileCarteEnnemis) {
+    public ChoixOrdreCarteEnnemi(java.awt.Frame parent, boolean modal, LinkedList pileCarteEnnemis) {
         super(parent, modal);
         this.ordre = new int[6];
         for (int o : ordre) {
             o = 0;
         }
-        this.pileCarteEnnemis = pileCarteEnnemis;
+        ChoixOrdreCarteEnnemi.pileCarteEnnemis = pileCarteEnnemis;
         initComponents();
-        premiereCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + pileCarteEnnemis.get(0).toString() + "C.png")));
-        secondeCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + pileCarteEnnemis.get(1).toString() + "C.png")));
-        troisiemeCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + pileCarteEnnemis.get(2).toString() + "C.png")));
-        quatriemeCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + pileCarteEnnemis.get(3).toString() + "C.png")));
-        cinquiemeCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + pileCarteEnnemis.get(4).toString() + "C.png")));
-        sixiemeCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/" + pileCarteEnnemis.get(5).toString() + "C.png")));
+        premiereCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + pileCarteEnnemis.get(0).toString() + "C.png")));
+        secondeCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + pileCarteEnnemis.get(1).toString() + "C.png")));
+        troisiemeCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + pileCarteEnnemis.get(2).toString() + "C.png")));
+        quatriemeCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + pileCarteEnnemis.get(3).toString() + "C.png")));
+        cinquiemeCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + pileCarteEnnemis.get(4).toString() + "C.png")));
+        sixiemeCarte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/" + pileCarteEnnemis.get(5).toString() + "C.png")));
     }
 
     /**
@@ -410,7 +410,7 @@ public class ChoixOrdreCarteEnnemi extends javax.swing.JDialog {
 
         String[] temp = new String[6];
         for (int i = 0; i < 6; i++) {
-            temp[i] = pileCarteEnnemis.get(i);
+            temp[i] =(String) pileCarteEnnemis.get(i);
         }
         for (int i = 0; i < 6; i++) {
             pileCarteEnnemis.remove(0);

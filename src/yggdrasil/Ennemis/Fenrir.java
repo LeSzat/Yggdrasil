@@ -10,8 +10,7 @@ import yggdrasil.De;
 import yggdrasil.Dieu.Dieu;
 
 /**
- *
- * @author mathias
+ * Modélise l'ennemi Fenrir
  */
 public class Fenrir extends Ennemis {
 
@@ -25,11 +24,22 @@ public class Fenrir extends Ennemis {
 
     }
 
+    /**
+     * Initialise l'effet de Fenrir
+     *
+     * @param page JFrame principale
+     */
     public void action(JFrame page) {
         calmer = false;
         JOptionPane.showMessageDialog(page, "Pour calmer fenrir vous devez faire 0 si sa puissance est de 3, 0 ou 1 si sa puissance est de 2 ou 0,1 ou 2 si sa puissance est de 3", "Fenrir", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Cette fonction sert à calmer Fenrir
+     *
+     * @param page
+     * @param deus
+     */
     public void essayerDeCalmer(JFrame page, Dieu deus) {
         int val;
         if ("Tyr".equals(deus.getNom())) {

@@ -5,29 +5,40 @@
 package yggdrasil.Dieu;
 
 /**
- *
- * @author mathias
+ * Modélise le dieu Frey
  */
 public class Frey extends Dieu {
 
+    /**
+     * Son pouvoir est qu'il peut jouer fois
+     */
     private final int MAXPARTIE = 4;
 
+    /**
+     * Initialise Frey
+     */
     public Frey() {
         super.setNom("Frey");
-        super.setCheminImage("/yggdrasil/vue/Frey.jpg");
+        super.setCheminImage("/images/Frey.jpg");
         super.setPartieRestanteAjouer(MAXPARTIE);
 
     }
 
+    /**
+     * Overide de la fonction reset de Dieu
+     */
     @Override
     public void reset() {
+        super.reset();
         if (Dieu.pouvoirDieu) {
             super.setPartieRestanteAjouer(MAXPARTIE);
-        } else {
-            super.reset();
         }
+
     }
 
+    /**
+     * Overide de la fonction getMAXPARTIE de Dieu
+     */
     @Override
     public int getMAXPARTIE() {
         if (Dieu.pouvoirDieu) {

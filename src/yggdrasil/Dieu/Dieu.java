@@ -21,36 +21,93 @@ import yggdrasil.vue.ChoixOrdreCarteEnnemi;
 import yggdrasil.vue.choixEnnemi;
 
 /**
- *
- * @author mathias
+ * Modélise un dieu, c'est dans cette classe que toutes les actions sont faites
  */
 public abstract class Dieu {
 
+    /**
+     * Nombre de monde que peut fair un dieu
+     */
     private final int MAXPARTIE = 3;
+    /**
+     * Force initiale pour les combats
+     */
     private final int FORCEINITIALE = 0;
-    private ArrayList<Vikings> lVikings;
-    private ArrayList<Elfes> lElfes;
+    /**
+     * Liste contenant les vikings du dieux
+     */
+    private LinkedList<Vikings> lVikings;
+    /**
+     * Liste contenant les elfes du dieu
+     */
+    private LinkedList<Elfes> lElfes;
+    /**
+     * Hashmap contenat les artefact du dieu
+     */
     private HashMap<String, Artefact> lArtefact;
+    /**
+     * Nom du dieu
+     */
     private String nom;
+    /**
+     * Chemin de l'image du dieu
+     */
     private String cheminImage;
+    /**
+     * Nombre de parties restantes du dieu
+     */
     private int partieRestanteAjouer;
+    /**
+     * vrai si le joueur à déjà joué en Midgard
+     */
     private boolean aJouerEnMidgard;
+    /**
+     * vrai si le joueur à déjà joué en Asgard
+     */
     private boolean aJouerEnAsgard;
+    /**
+     * vrai si le joueur à déjà joué en Demeure des elfes
+     */
     private boolean aJoueurEnDeumeureDesElfes;
+    /**
+     * vrai si le joueur à déjà joué en Monde des ténébres
+     */
     private boolean aJouerEnMondeDesTenebres;
+    /**
+     * vrai si le joueur à déjà joué en forge des nains
+     */
     private boolean aJouerEnForgeDesNains;
+    /**
+     * vrai si le joueur à déjà joué en Forteresse de glace
+     */
     private boolean aJouerEnForteresseDeGlace;
+    /**
+     * vrai si le joueur à déjà joué en Royaume du feu
+     */
     private boolean aJouerEnRoyaumeDuFeu;
+    /**
+     * vrai si le joueur à déjà joué en Domaine des morts
+     */
     private boolean aJouerEnDomaineDesMorts;
+    /**
+     * vrai si le joueur à déjà joué en Terre bénite
+     */
     private boolean aJouerEnTerreBenite;
+    /**
+     * vrai si le dieu peut utiliser ses pouvoirs, un géant de givre peut les
+     * bloquer
+     */
     public static boolean pouvoirDieu;
 
+    /**
+     * Initialise un dieu
+     */
     protected Dieu() {
-        lVikings = new ArrayList<>();
-        lElfes = new ArrayList<>();
+        lVikings = new LinkedList();
+        lElfes = new LinkedList();
         lArtefact = new HashMap<>();
         partieRestanteAjouer = MAXPARTIE;
-        pouvoirDieu=true;
+        pouvoirDieu = true;
         aJouerEnMidgard = false;
         aJouerEnAsgard = false;
         aJoueurEnDeumeureDesElfes = false;
@@ -60,12 +117,11 @@ public abstract class Dieu {
         aJouerEnRoyaumeDuFeu = false;
         aJouerEnDomaineDesMorts = false;
         aJouerEnTerreBenite = false;
-        for(int i =0;i<100;i++)
-        {
-            lVikings.add(new Vikings());
-        }
     }
 
+    /**
+     * Remise à zéro des mondes visités
+     */
     public void reset() {
         partieRestanteAjouer = MAXPARTIE;
         aJouerEnMidgard = false;
@@ -79,6 +135,17 @@ public abstract class Dieu {
         aJouerEnTerreBenite = false;
     }
 
+    /**
+     * Modélise l'action de jouer en Asgard
+     *
+     * @param en Ennemi à combattre
+     * @param de Le dé
+     * @param dde La monde Demeure des elfes
+     * @param ddm Le monde Domaine des mort
+     * @param fdn Le monde Forges des nains
+     * @param as Le monde Asgard
+     * @param page La JFrame principale
+     */
     public void jouerEnAsgard(Ennemis en, De de, DemeureDesElfes dde, DomaineDesMorts ddm, ForgeDesNains fdn, Asgard as, JFrame page) {
         as.commencerCombat(this, en);
         partieRestanteAjouer--;
@@ -175,6 +242,12 @@ public abstract class Dieu {
         }
     }
 
+    /**
+     * Modélise l'action de jouer en Forge des nains
+     *
+     * @param fdn Monde forge des nains
+     * @param page Jframe principale
+     */
     public void jouerEnForgeDesNains(ForgeDesNains fdn, JFrame page) {
         int i = 0;
         Artefact a;
@@ -215,7 +288,13 @@ public abstract class Dieu {
         }
     }
 
-    public void jouerEnDemeureDesElfes(ArrayList<Elfes> lelfes, JFrame page) {
+    /**
+     * Modélise l'action de jouer en Demeures des elfes
+     *
+     * @param lelfes Liste des elfes dans le Forge des nains
+     * @param page JFrame principale
+     */
+    public void jouerEnDemeureDesElfes(LinkedList lelfes, JFrame page) {
         if (!lelfes.isEmpty()) {
             int reponse = JOptionPane.showConfirmDialog(page,
                     "Il reste " + Integer.toString(lelfes.size()) + " elfe(s). Voulez-vous en prendre 1?",
@@ -237,6 +316,12 @@ public abstract class Dieu {
         }
     }
 
+    /**
+     * Modélise l'action de jouer dans le Monde des Ténébres
+     *
+     * @param deus Le dieu à aider
+     * @param page JFrame principale
+     */
     public void jouerMondeDesTenebres(Dieu deus, JFrame page) {
         boolean fin = false;
         partieRestanteAjouer--;
@@ -374,7 +459,12 @@ public abstract class Dieu {
                                 null,
                                 choixNbElfes,
                                 choixNbElfes[0]);
-                        int nbElfe = Integer.parseInt(nbElfes);
+                        int nbElfe;
+                        try {
+                            nbElfe = Integer.parseInt(nbElfes);
+                        } catch (Exception e) {
+                            nbElfe = 0;
+                        }
 
                         for (int i = 0; i < nbElfe; i++) {
                             deus.getlVikings().remove(0);
@@ -390,6 +480,13 @@ public abstract class Dieu {
         }
     }
 
+    /**
+     * Modélise l'action de jouer en Royaume du feu
+     *
+     * @param page JFrame principale
+     * @param sac Sac duquel on enlève les géants de feu
+     * @param rdf Le Monde Royaume du feu
+     */
     public void jouerEnRoyaumeDuFeu(JFrame page, Sac sac, RoyaumeDuFeu rdf) {
         partieRestanteAjouer--;
         if (this.getNom().compareTo("Freyja") == 0) {
@@ -419,6 +516,16 @@ public abstract class Dieu {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Modélise l'action de jouer en Forteresse de glace
+     *
+     * @param deus Dieu, pas this car certain dieu ont besoin de leurs pouvoirs
+     * @param gdg Le géant de givre à combattre
+     * @param de Le dé
+     * @param ddm Le monde Domaine des morts
+     * @param dde Le monde Demeure des elfes
+     * @param page JFrame principale
+     */
     public void jouerEnForteresseDeGlace(Dieu deus, GeantDeGivre gdg, De de, DomaineDesMorts ddm, DemeureDesElfes dde, JFrame page) {
 
         int forcedieu = deus.getFORCEINITIALE();
@@ -481,7 +588,11 @@ public abstract class Dieu {
                     null,
                     choixNbElfes,
                     choixNbElfes[0]);
-            nbElfes = Integer.parseInt(nbVikaSa);
+            try {
+                nbElfes = Integer.parseInt(nbVikaSa);
+            } catch (Exception e) {
+                nbElfes = 0;
+            }
             forcedieu += nbElfes;
             dde.remettreElfes(this, nbElfes);
         }
@@ -493,6 +604,13 @@ public abstract class Dieu {
         }
     }
 
+    /**
+     * Modélise l'action de jouer en Midgard
+     *
+     * @param page JFrame principale
+     * @param mg Le monde Midgard
+     * @param tabSac le sac dans lequel prendre les vikings
+     */
     public void jouerEnMidgard(JFrame page, Midgard mg, Sac[] tabSac) {
         Ile[] tabIle = mg.getTabIle();
         partieRestanteAjouer--;
@@ -561,6 +679,13 @@ public abstract class Dieu {
         }
     }
 
+    /**
+     * Modélise l'action de jouer dans le Domaine des morts
+     *
+     * @param page JFrame principale
+     * @param sac Sac dans lequel prendre les vikings
+     * @param dm Monde domaine des morts
+     */
     public void jouerEnDomaineDesMort(JFrame page, Sac sac, DomaineDesMorts dm) {
         partieRestanteAjouer--;
         if (this.getNom().compareTo("Freyja") == 0) {
@@ -580,7 +705,18 @@ public abstract class Dieu {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void jouerEnTerreBenite(TerreBenite tb, Midgard mg, DomaineDesMorts ddm, ArrayList<String> pileCarteEnnemis, Ennemis[] tabEnnemis, ForteresseDeGlace fdg, JFrame page) {
+    /**
+     * Modélise l'action de jouer en Terre bénite
+     *
+     * @param tb Le Mondes Terre bénite
+     * @param mg Le Monde Midgard
+     * @param ddm Le Monde Domaine des morts
+     * @param pileCarteEnnemis Liste des cartes ennemies
+     * @param tabEnnemis Tableau contenant les ennemis
+     * @param fdg Le Monde Forteresse de glace
+     * @param page JFrame principale
+     */
+    public void jouerEnTerreBenite(TerreBenite tb, Midgard mg, DomaineDesMorts ddm, LinkedList pileCarteEnnemis, Ennemis[] tabEnnemis, ForteresseDeGlace fdg, JFrame page) {
 
         String[] choix = {"avancer Vane", "utiliser Vane"};
         JOptionPane jop = new JOptionPane();
@@ -745,11 +881,11 @@ public abstract class Dieu {
         return lArtefact;
     }
 
-    public ArrayList<Elfes> getlElfes() {
+    public LinkedList getlElfes() {
         return lElfes;
     }
 
-    public ArrayList<Vikings> getlVikings() {
+    public LinkedList getlVikings() {
         return lVikings;
     }
 
@@ -859,13 +995,5 @@ public abstract class Dieu {
 
     public void setlArtefact(HashMap<String, Artefact> lArtefact) {
         this.lArtefact = lArtefact;
-    }
-
-    public void setlElfes(ArrayList<Elfes> lElfes) {
-        this.lElfes = lElfes;
-    }
-
-    public void setlVikings(ArrayList<Vikings> lVikings) {
-        this.lVikings = lVikings;
     }
 }

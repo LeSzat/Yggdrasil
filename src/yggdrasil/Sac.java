@@ -12,14 +12,23 @@ import yggdrasil.Pion.Pion;
 import yggdrasil.Pion.Vikings;
 
 /**
- *
- * @author mathias
+ *Modélise les sacs
  */
 public class Sac {
-
+    /**
+     * Couleur du sac
+     */
     private String couleur;
+    /**
+     * Liste des pions
+     */
     private ArrayList<Pion> lPion;
-
+/**
+ * Constructeur d'un sac
+ * @param couleur la couleur du sac
+ * @param nbViking le nombre de vikings à mettre dans le sac
+ * @param nbGeantDeFeu le nombre de géant de feu à mettre dans le sac
+ */
     public Sac(String couleur, int nbViking, int nbGeantDeFeu) {
         this.couleur = couleur;
         this.lPion = new ArrayList<>();
@@ -32,14 +41,24 @@ public class Sac {
         Collections.shuffle(lPion);
 
     }
-
+/**
+ * 
+ * @return la couleur du sac
+ */
     public String getCouleur() {
         return couleur;
     }
-
+/**
+ * 
+ * @return la liste des pions
+ */
     public ArrayList<Pion> getlPion() {
         return lPion;
     }
+    /**
+     * 
+     * @return le nombre de vikings contenu dans le sac
+     */
     public int getNbVikings()
     {
         Iterator it = lPion.iterator();

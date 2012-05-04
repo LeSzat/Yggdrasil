@@ -4,15 +4,12 @@
  */
 package yggdrasil;
 
-import java.awt.GraphicsEnvironment;
 import java.io.IOException;
-import java.util.Scanner;
 import javax.swing.JFrame;
 import yggdrasil.vue.Accueil;
 
 /**
- *
- * @author mathias
+ *Lance le jeu
  */
 public class Yggdrasil {
 

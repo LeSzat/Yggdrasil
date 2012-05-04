@@ -7,18 +7,30 @@ package yggdrasil.GeantDeGivre;
 import yggdrasil.De;
 
 /**
- *
- * @author mathias
+ * Modélise le géant de givre Thiazy
  */
-public class Thiazy extends GeantDeGivre{
+public class Thiazy extends GeantDeGivre {
 
+    /**
+     * Le dé
+     */
     private De de;
+
+    /**
+     * Initialise Thiazy
+     *
+     * @param de Le dé
+     * @param morceauRune Le morceau de rune
+     */
     public Thiazy(De de, boolean morceauRune) {
         super("Thiazy", morceauRune);
-        this.de=de;
-        super.setCheminImage("/yggdrasil/vue/thiazy.png");
+        this.de = de;
+        super.setCheminImage("/images/thiazy.png");
     }
 
+    /**
+     * Désactive Thiazy
+     */
     @Override
     public void desactiver() {
         super.setActif(false);
@@ -26,11 +38,12 @@ public class Thiazy extends GeantDeGivre{
         super.setMorceauRune(true);
     }
 
+    /**
+     * Active Thiazy
+     */
     @Override
     public void activer() {
         super.setActif(true);
         de.setActif(false);
     }
-    
-    
 }

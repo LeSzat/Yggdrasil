@@ -27,22 +27,22 @@ public class ChoixArtefact extends javax.swing.JDialog {
         for (int i = 0; i < liste.size(); i++) {
             if ("Hel".equals(liste.get(i).getEnnemi())) {
                 indexDieux[0]=i;
-                imageHel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Hel" + liste.get(i).getNiveau() + ".png")));
+                imageHel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Hel" + liste.get(i).getNiveau() + ".png")));
             } else if ("Surt".equals(liste.get(i).getEnnemi().toString())) {
                 indexDieux[1]=i;
-                imageSurt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Surt" + liste.get(i).getNiveau() + ".png")));
+                imageSurt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Surt" + liste.get(i).getNiveau() + ".png")));
             } else if ("Fenrir".equals(liste.get(i).getEnnemi().toString())) {
                 indexDieux[2]=i;
-                imageFenrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Fenrir" + liste.get(i).getNiveau() + ".png")));
+                imageFenrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Fenrir" + liste.get(i).getNiveau() + ".png")));
             } else if ("Jormungand".equals(liste.get(i).getEnnemi().toString())) {
                 indexDieux[3]=i;
-                imageJormungand.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Jormungand" + liste.get(i).getNiveau() + ".png")));
+                imageJormungand.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Jormungand" + liste.get(i).getNiveau() + ".png")));
             } else if ("Loki".equals(liste.get(i).getEnnemi().toString())) {
                 indexDieux[4]=i;
-                imageLoki.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Loki" + liste.get(i).getNiveau() + ".png")));
+                imageLoki.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Loki" + liste.get(i).getNiveau() + ".png")));
             } else if ("Nidhogg".equals(liste.get(i).getEnnemi().toString())) {
                 indexDieux[5]=i;
-                imageNidhogg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yggdrasil/vue/Nidhogg" + liste.get(i).getNiveau() + ".png")));
+                imageNidhogg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Nidhogg" + liste.get(i).getNiveau() + ".png")));
             }
 
         }

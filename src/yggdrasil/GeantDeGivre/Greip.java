@@ -7,16 +7,23 @@ package yggdrasil.GeantDeGivre;
 import yggdrasil.Ennemis.Surt;
 
 /**
- *
- * @author mathias
+ *Modélise le géant de givre Greip
  */
 public class Greip extends GeantDeGivre {
 
+    /**
+     * L'ennemi Surt
+     */
     private Surt surt;
 
+    /**
+     * Initialise le géant de givre Greip
+     * @param surt L'ennemiSurt
+     * @param morceauRune Le morceau de rune
+     */
     public Greip(Surt surt, boolean morceauRune) {
         super("Greip", morceauRune);
-        super.setCheminImage("/yggdrasil/vue/greip.png");
+        super.setCheminImage("/images/greip.png");
         this.surt = surt;
 
     }

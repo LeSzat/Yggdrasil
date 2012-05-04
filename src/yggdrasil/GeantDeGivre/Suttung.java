@@ -7,17 +7,22 @@ package yggdrasil.GeantDeGivre;
 import yggdrasil.Ennemis.Loki;
 
 /**
- *
- * @author mathias
+ *Modélise le géant de givre Suttung
  */
 public class Suttung extends GeantDeGivre{
+    /**
+     * L'ennemi Loki
+     */
     private Loki loki;
     public Suttung(Loki loki, boolean morceauRune) {
         super("Suttung", morceauRune);
-        super.setCheminImage("/yggdrasil/vue/suttung.png");
+        super.setCheminImage("/images/suttung.png");
         this.loki=loki;
     }
 
+    /**
+     * Désactive l'ennemi Loki
+     */
     @Override
     public void desactiver() {
         super.setActif(false);
@@ -25,6 +30,9 @@ public class Suttung extends GeantDeGivre{
         super.setMorceauRune(true);
     }
 
+    /**
+     * Active l'ennemi Loki
+     */
     @Override
     public void activer() {
         super.setActif(true);

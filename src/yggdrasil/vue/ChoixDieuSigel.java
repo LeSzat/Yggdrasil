@@ -5,6 +5,7 @@
 package yggdrasil.vue;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import yggdrasil.Dieu.Dieu;
 
 /**
@@ -16,9 +17,9 @@ public class ChoixDieuSigel extends javax.swing.JDialog {
     /**
      * Creates new form ChoixDieuSigel
      */
-    private static ArrayList<Dieu> lDieu;
+    private static LinkedList<Dieu> lDieu;
     private Dieu d;
-    public ChoixDieuSigel(java.awt.Frame parent, boolean modal,ArrayList<Dieu> lDieu) {
+    public ChoixDieuSigel(java.awt.Frame parent, boolean modal,LinkedList<Dieu> lDieu) {
         super(parent, modal);
         ChoixDieuSigel.lDieu=lDieu;
         initComponents();

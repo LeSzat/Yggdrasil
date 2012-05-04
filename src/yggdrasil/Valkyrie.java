@@ -5,10 +5,12 @@
 package yggdrasil;
 
 /**
- *
- * @author mathias
+ *Modélise la Valkyrie
  */
 public class Valkyrie {
+    /**
+     * Position de la valkyrie
+     */
     private int position;
     
     public Valkyrie()

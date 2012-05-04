@@ -5,8 +5,7 @@
 package yggdrasil;
 
 /**
- *
- * @author mathias
+ *Modélise le Vane
  */
 public class Vane {
     private int position;

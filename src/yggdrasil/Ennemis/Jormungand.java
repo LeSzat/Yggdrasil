@@ -12,32 +12,45 @@ import yggdrasil.Monde.Ile;
 import yggdrasil.Monde.Midgard;
 
 /**
- *
- * @author mathias
+ * Modélise l'ennemi Jormungand
  */
 public class Jormungand extends Ennemis {
 
+    /**
+     * Le dé
+     */
     private De de;
 
+    /**
+     * Initialise Jormungand
+     *
+     * @param de
+     */
     public Jormungand(De de) {
         super.setNom("Jormungand");
         this.de = de;
     }
 
-    public void action(Midgard mg,JFrame page,Dieu deus) {
+    /**
+     * Effet de Jormungand
+     *
+     * @param mg Le Monde Midgard
+     * @param page JFrame principale
+     * @param deus Le dieu actuel
+     */
+    public void action(Midgard mg, JFrame page, Dieu deus) {
         this.avancer(1);
         int k = 0;
         int val;
         Ile[] tabIle = mg.getTabIle();
-        for(Ile ile:tabIle)
-        {
+        for (Ile ile : tabIle) {
             ile.setSubmergee(false);
         }
-         if ("Tyr".equals(deus.getNom())) {
+        if ("Tyr".equals(deus.getNom())) {
             int det1 = de.getCouleur();
             int det2 = de.getCouleur();
 
-            String[] choix1 = {tabIle[det1+1].getCouleur(),tabIle[det2+1].getCouleur()};
+            String[] choix1 = {tabIle[det1 + 1].getCouleur(), tabIle[det2 + 1].getCouleur()};
             JOptionPane jop1 = new JOptionPane();
             int rang1 = JOptionPane.showOptionDialog(page,
                     "Quelle couleur du dé choisissez vous?",
@@ -50,16 +63,16 @@ public class Jormungand extends Ennemis {
             if (rang1 == 0) {
                 val = det1;
             } else {
-                 val = det2;
+                val = det2;
             }
         } else {
             val = de.getValeur();
         }
-        
-        Ile ile = tabIle[val+1];
+
+        Ile ile = tabIle[val + 1];
         ile.setSubmergee(true);
         mg.getValkyrie().setPosition(0);
-         JOptionPane.showMessageDialog(page, "Jormungand vient de submérger l'ile "+ile.getCouleur().toLowerCase(), "Effet de Hel", JOptionPane.INFORMATION_MESSAGE);
-        
+        JOptionPane.showMessageDialog(page, "Jormungand vient de submérger l'ile " + ile.getCouleur().toLowerCase(), "Effet de Hel", JOptionPane.INFORMATION_MESSAGE);
+
     }
 }

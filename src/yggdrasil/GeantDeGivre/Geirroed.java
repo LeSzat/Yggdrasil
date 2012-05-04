@@ -7,17 +7,27 @@ package yggdrasil.GeantDeGivre;
 import yggdrasil.Monde.ForgeDesNains;
 
 /**
- *
- * @author mathias
+ *Modélise le géant de givre Geirroed
  */
 public class Geirroed extends GeantDeGivre{
+    /**
+     * Le monde forge des nains
+     */
     private ForgeDesNains fdn;
+    /**
+     * Intialise Geirroed
+     * @param fdn Le monde Forge des nains
+     * @param morceauRune Le morceau de rune
+     */
     public Geirroed(ForgeDesNains fdn,boolean morceauRune) {
         super("Geirroed", morceauRune);
         this.fdn=fdn;
-        super.setCheminImage("/yggdrasil/vue/geirroed.png");
+        super.setCheminImage("/images/geirroed.png");
     }
 
+    /**
+     * Désactive Geirroed
+     */
     @Override
     public void desactiver() {
         super.setActif(false);
@@ -25,6 +35,9 @@ public class Geirroed extends GeantDeGivre{
         super.setMorceauRune(true);
     }
 
+    /**
+     * aActive Geirroed
+     */
     @Override
     public void activer() {
         super.setActif(true);

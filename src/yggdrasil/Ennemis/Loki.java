@@ -7,14 +7,17 @@ package yggdrasil.Ennemis;
 import yggdrasil.Monde.ForteresseDeGlace;
 
 /**
- *
- * @author mathias
+ *Modélise l'ennemi Loki
  */
 public class Loki extends Ennemis{
     public Loki()
     {
         super.setNom("Loki");
     }
+    /**
+     * Effet de Loki
+     * @param fdg Le monde Forteresse de glace
+     */
     public void action(ForteresseDeGlace fdg)
     {
         this.avancer(1);

@@ -7,17 +7,30 @@ package yggdrasil.GeantDeGivre;
 import yggdrasil.Monde.DomaineDesMorts;
 
 /**
- *
- * @author mathias
+ * Modélise le géant de givre Hrym
  */
-public class Hrym extends GeantDeGivre{
+public class Hrym extends GeantDeGivre {
+
+    /**
+     * Le monde Domaine des morts
+     */
     private DomaineDesMorts ddm;
+
+    /**
+     * Initialise Hrym
+     *
+     * @param ddm Le monde Domaine des morts
+     * @param morceauRune Le morceau de rune
+     */
     public Hrym(DomaineDesMorts ddm, boolean morceauRune) {
         super("Hrym", morceauRune);
-        this.ddm=ddm;
-        super.setCheminImage("/yggdrasil/vue/hrym.png");
+        this.ddm = ddm;
+        super.setCheminImage("/images/hrym.png");
     }
 
+    /**
+     * Désactive Hrym
+     */
     @Override
     public void desactiver() {
         super.setActif(false);
@@ -25,11 +38,12 @@ public class Hrym extends GeantDeGivre{
         super.setMorceauRune(true);
     }
 
+    /**
+     * Active Hrym
+     */
     @Override
     public void activer() {
         super.setActif(true);
         ddm.setActif(false);
     }
-
- 
 }

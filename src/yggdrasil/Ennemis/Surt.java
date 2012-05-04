@@ -15,8 +15,7 @@ import yggdrasil.Pion.Pion;
 import yggdrasil.Sac;
 
 /**
- *
- * @author mathias
+ * Modélise l'ennemi Surt
  */
 public class Surt extends Ennemis {
 
@@ -27,17 +26,25 @@ public class Surt extends Ennemis {
         this.de = de;
     }
 
+    /**
+     * Effet de Surt
+     *
+     * @param tabSacs la tableau des sacs
+     * @param rdf Le Monde Royaume du feu
+     * @param page JFrame principale
+     * @param deus Le dieu actuel
+     */
     public void action(Sac[] tabSacs, RoyaumeDuFeu rdf, JFrame page, Dieu deus) {
         this.avancer(1);
         int k = 0;
         int nb = 0;
         int val;
-        
-         if ("Tyr".equals(deus.getNom())) {
+
+        if ("Tyr".equals(deus.getNom())) {
             int det1 = de.getCouleur();
             int det2 = de.getCouleur();
 
-            String[] choix1 = {tabSacs[det1].getCouleur(),tabSacs[det2].getCouleur()};
+            String[] choix1 = {tabSacs[det1].getCouleur(), tabSacs[det2].getCouleur()};
             JOptionPane jop1 = new JOptionPane();
             int rang1 = JOptionPane.showOptionDialog(page,
                     "Quelle couleur du dé choisissez vous?",
@@ -68,6 +75,6 @@ public class Surt extends Ennemis {
             }
             k++;
         }
-        JOptionPane.showMessageDialog(page, "Surt a retiré " + nb + " géant de feu du Royaume du feu, il les a mis dans le sac " + s.getCouleur().toLowerCase()+".", "Effet de Surt", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(page, "Surt a retiré " + nb + " géant de feu du Royaume du feu, il les a mis dans le sac " + s.getCouleur().toLowerCase() + ".", "Effet de Surt", JOptionPane.INFORMATION_MESSAGE);
     }
 }

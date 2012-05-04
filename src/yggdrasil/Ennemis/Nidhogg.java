@@ -4,13 +4,11 @@
  */
 package yggdrasil.Ennemis;
 
-import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author mathias
+ * Modélise l'ennemis Nidhogg
  */
 public class Nidhogg extends Ennemis {
 
@@ -18,7 +16,13 @@ public class Nidhogg extends Ennemis {
         super.setNom("Nidhogg");
     }
 
-    public void action(Ennemis[] lEnnemis,JFrame page) {
+    /**
+     * Effet de Nidhogg
+     *
+     * @param lEnnemis Tableau des ennemis
+     * @param page JFrame principale
+     */
+    public void action(Ennemis[] lEnnemis, JFrame page) {
         this.avancer(1);
         int pos = 100;
         int ind = 100;
@@ -29,6 +33,6 @@ public class Nidhogg extends Ennemis {
             }
         }
         lEnnemis[ind].avancer(1);
-        JOptionPane.showMessageDialog(page, "Nidögg vient de faire avancer "+lEnnemis[ind].getNom(), "Effet de Nidhögg", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(page, "Nidögg vient de faire avancer " + lEnnemis[ind].getNom(), "Effet de Nidhögg", JOptionPane.INFORMATION_MESSAGE);
     }
 }
